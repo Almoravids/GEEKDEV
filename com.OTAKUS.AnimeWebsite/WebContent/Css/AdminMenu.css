@@ -1,0 +1,159 @@
+body{
+	min-width:1100px;
+	max-width:2100px;
+	background-color:rgb(10,10,10);
+	margin:0;
+	padding:0;
+	font-family:palatino linotype;
+	/*Disable Selection Text*/
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#MenuNav{
+	background-color:#003326 ;
+	opacity:.9;
+	height:60px;
+	position:relative;
+	z-index:20;
+	margin:0;
+	padding:0;
+}
+#MenuNav #ulnav div{
+	margin-top:2%;
+}
+#MenuNav .HiddenNav,#MenuNav #logo{
+	vertical-align:top;
+	display:inline-block;
+		
+	margin:0px;
+	padding:0;
+}
+#MenuNav #logo{
+	position:relative;
+	top:0px;
+	left:5%;
+	width:6%;
+	height:55px;
+	margin-right:8%;
+}
+
+#MenuNav .HiddenNav div,#MenuNav .HiddenNav input{
+	display:middle;
+}
+#MenuNav .HiddenNav{
+	width:65%;
+	height:60px;
+}
+
+#MenuNav .HiddenNav  li{
+	color:white;
+	opacity:0.7;
+	
+	font-size:15px;
+	font-family:arial;
+	
+	
+	display:inline;
+	
+	padding:21px 4%;
+	
+	list-style:none;
+}
+
+#MenuNav .HiddenNav li:hover{
+	background-color:rgba(10,80,50,1);
+	cursor:pointer;		
+}
+#MenuNav #userNav li{
+	float:right;
+	position:relative;
+    
+}
+#MenuNav #userImg,#MenuNav #notifications{
+	
+	vertical-align:middle;
+}
+#MenuNav #userImg{
+	width:55px;
+	height:55px;
+	
+	position:relative;
+	top:2px;
+	border-radius:55px;
+	box-shadow:0 0 30px #008563 inset;
+}
+#MenuNav #notifications{
+	width:24px;
+	height:24px;
+  
+	margin:0 2%;
+	margin-top:0px;
+}
+@font-face{
+	
+	src:url('MenuFont.ttf');
+	font-family:MenuFont;
+	
+}
+#MenuNav #Loupe{
+	width:32px;
+	float:right;
+	position:relative;
+	right:3%;
+	top:16px;
+	
+}
+#MenuNav #search{
+	border-right:none;
+	border-top:none;
+	border-left:1px solid rgba(255,255,255,0.7);
+	border-bottom:1px solid rgba(255,255,255,0.7);
+	border-radius:2px;
+	background-color: #003326;
+	margin:2% 0;
+	padding:5px 0;
+	width:50%;
+	outline: none;
+	text-align:center;
+	color: rgba(255,255,255,0.7);
+    display:none;
+}
+#MenuNav #Loupe:hover{
+	cursor:pointer;
+	border-right:none;
+	border-top:none;
+	
+	
+}
+
+
+	
+			/*scroll */
+			
+			/* Let's get this party started */
+			::-webkit-scrollbar {
+				width: 10px;
+			}
+			 
+			/* Track */
+			::-webkit-scrollbar-track {
+				-webkit-box-shadow: inset 0 0 6px rgba(10,10,10,0.8); 
+				-webkit-border-radius: 10px;
+				 border-radius: 10px;
+			}
+			 
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				-webkit-border-radius: 10px;
+				border-radius: 10px;
+				background:#008563; 
+			}
+			
+			
+::-webkit-scrollbar-thumb:window-inactive {
+				background: rgb(10,10,10); 
+				-webkit-box-shadow: inset 0 0 6px #008563; 
+			}

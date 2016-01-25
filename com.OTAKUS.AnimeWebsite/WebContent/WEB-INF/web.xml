@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <welcome-file-list>
+    <welcome-file>/Home.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>home</servlet-name>
+    <jsp-file>/Home.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>list</servlet-name>
+    <jsp-file>/List.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>signup</servlet-name>
+    <jsp-file>/Signup.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>profile</servlet-name>
+    <jsp-file>/Profile.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>anime</servlet-name>
+    <jsp-file>/Anime.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>episode</servlet-name>
+    <jsp-file>/Episode.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>season</servlet-name>
+    <jsp-file>/Season.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>type</servlet-name>
+    <jsp-file>/Type.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <servlet-name>user</servlet-name>
+    <jsp-file>/User.jsp</jsp-file>
+  </servlet>
+    <servlet>
+    <servlet-name>edit</servlet-name>
+    <jsp-file>/Edit.jsp</jsp-file>
+  </servlet>
+    <servlet>
+    <servlet-name>watch</servlet-name>
+    <jsp-file>/Watch.jsp</jsp-file>
+  </servlet>
+     <servlet>
+    <servlet-name>portail</servlet-name>
+    <jsp-file>/Animeportail.jsp</jsp-file>
+  </servlet>
+  
+  <!--*************************************************** MAPPING *****************************************-->
+  
+  <servlet-mapping>
+    <servlet-name>home</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>list</servlet-name>
+    <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>signup</servlet-name>
+    <url-pattern>/signup</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>profile</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>edit</servlet-name>
+    <url-pattern>/edit</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>watch</servlet-name>
+    <url-pattern>/watch</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>portail</servlet-name>
+    <url-pattern>/portail</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet-mapping>
+    <servlet-name>episode</servlet-name>
+    <url-pattern>/panel/episode</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>anime</servlet-name>
+    <url-pattern>/panel/anime</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>season</servlet-name>
+    <url-pattern>/panel/season</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>type</servlet-name>
+    <url-pattern>/panel/type</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>user</servlet-name>
+    <url-pattern>/panel/user</url-pattern>
+  </servlet-mapping>
+  
+  <!--                ERROR PAGES               -->
+<error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+</error-page>
+</web-app>

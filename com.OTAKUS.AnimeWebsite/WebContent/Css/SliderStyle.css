@@ -1,0 +1,53 @@
+@CHARSET "ISO-8859-1";
+
+		#slider {
+		padding-top:50px;
+		padding-bottom:50px;
+			width: 950px;
+			height: 400px;
+			overflow:hidden;
+		}
+		#slider ul img{
+		width: 950px;
+			height: 400px;
+		}
+
+		#slider .slides {
+			width: 6000px;
+			height:400px;
+			margin: 0;
+			padding: 0;
+		}
+		
+		#slider .slide {
+			float: left;
+			list-style-type: none;
+			width: 950px;
+			height: 400px;
+			
+		}
+		#slider p {
+			position:relative;
+			color:rgba(255,255,255,0.8);;
+			background:rgba(0,0,0,0.4);
+			font-weight:bold;
+			bottom:16.5%;
+			left:0%;
+			z-index:4;
+			width:950px;
+			height:35px;
+			text-align:left;
+			text-indent:10px;
+			padding-top:15px;
+		}
+	#slider canvas{
+	position:relative;
+	bottom:485px;
+	visibility:hidden;
+	}
+	
+	#slider img{
+	width:950px;
+	height:400px;}
+	
+	

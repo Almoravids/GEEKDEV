@@ -1,0 +1,71 @@
+body{
+  background:rgb(10,10,10);
+}
+/*************************BUTTONS****************************/
+
+.button{
+	color:white;
+	background-color:#003326;
+	border:none;
+    border-radius:7%;
+	padding:1% 2%;
+	margin:3%;
+}
+.button:hover{
+	background-color:#008563;
+}
+/***************************BLOCKS****************************************/
+           .blocks{
+            background: rgba(0,0,0,.8);
+            border: 2% solid #101010;
+            border-radius:3px;
+            }
+/***************************ANIME_FIGURES*********************************/
+                   .AnimeScreen{
+                        max-width:75%;
+                        margin:1% auto;
+						padding:.3%;
+                        display: -webkit-flex;
+                        display: flex;
+                   }
+					.AnimeScreen img{
+					    width:100%;
+						height:130px;
+						}
+					.AnimeScreen figure{
+                       -webkit-flex: 1;
+                        flex: 1;
+						height:150px;
+						margin:0 .3%;
+                        padding:auto;
+					 	display:inline-block;
+                        cursor:pointer;
+						}
+						
+					.AnimeScreen figure p{
+						font-family:Label;
+						font-size:11px;
+						text-transform:capitalize;
+						color:white;
+						display:inline-block;
+						margin:0px;
+						padding:0px;
+						position:relative;
+						bottom:0px;
+						}
+					
+					.AnimeScreen .SndLbl{
+						width:40%;
+						text-align:right;
+						}
+						
+					.AnimeScreen .FstLbl{
+						text-align:left;
+						width:60%;
+						}
+                     .AnimeScreen .FloatedLbl{
+                       background:rgba(0,0,0,.5);
+					   position:relative;
+                       bottom:20%;
+                       padding:3% 0;
+                       }
