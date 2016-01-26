@@ -5,18 +5,18 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class ALias implements RowMapper<ALias> {
+public class Alias implements RowMapper<Alias> {
 private int aliasId,animeId;
 private String alias;
-public ALias() {
+public Alias() {
 	super();
 }
-public ALias(int animeId, String alias) {
+public Alias(int animeId, String alias) {
 	super();
 	this.animeId = animeId;
 	this.alias = alias;
 }
-public ALias(int aliasId, int animeId, String alias) {
+public Alias(int aliasId, int animeId, String alias) {
 	super();
 	this.aliasId = aliasId;
 	this.animeId = animeId;
@@ -41,8 +41,8 @@ public void setAlias(String alias) {
 	this.alias = alias;
 }
 @Override
-public ALias mapRow(ResultSet rs, int arg1) throws SQLException {
-	ALias alias=new ALias();
+public Alias mapRow(ResultSet rs, int arg1) throws SQLException {
+	Alias alias=new Alias();
 	alias.setAliasId(rs.getInt("id_alias"));
 	alias.setAlias(rs.getString("name"));
 	alias.setAnimeId(rs.getInt("id_anime"));

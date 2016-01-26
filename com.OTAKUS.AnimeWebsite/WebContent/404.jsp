@@ -74,7 +74,7 @@ footer p a{
   text-decoration:none;
 }
 footer img{
-opacity:.6;
+  opacity:.6;
   width:8%;
   height:55px;
   margin:2% auto;

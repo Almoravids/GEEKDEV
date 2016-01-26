@@ -12,16 +12,16 @@ public class Anime implements RowMapper<Anime>,Comparable<Anime>{
 private int animeId,statue;
 private String name,desc,imageLink;
 private List<Type>genre;
-private List<ALias>  alias;
+private List<Alias>  alias;
 
 public Anime() {
 	super();
 	 
 }
 
-public Anime( int statue, String desc, String imageLink, List<ALias> alias, List<Type> genre) {
+public Anime( int statue, String desc, String imageLink, List<Alias> alias, List<Type> genre) {
 	super();
-	this.name = ((ArrayList<ALias>)alias).get(0).getAlias();
+	this.name = ((ArrayList<Alias>)alias).get(0).getAlias();
 	this.statue = statue;
 	this.desc = desc;
 	this.imageLink = imageLink;
@@ -29,10 +29,10 @@ public Anime( int statue, String desc, String imageLink, List<ALias> alias, List
 	this.genre = genre;
 }
 
-public Anime(int animeId, int statue, String desc, String imageLink, List<ALias> alias, List<Type> genre) {
+public Anime(int animeId, int statue, String desc, String imageLink, List<Alias> alias, List<Type> genre) {
 	super();
 	this.animeId = animeId;
-	this.name = ((ArrayList<ALias>)alias).get(0).getAlias();
+	this.name = ((ArrayList<Alias>)alias).get(0).getAlias();
 	this.statue = statue;
 	this.desc = desc;
 	this.imageLink = imageLink;
@@ -48,9 +48,9 @@ public void setId(int animeId) {
 	this.animeId = animeId;
 }
 public void setName(String name) {
-	List<ALias> list=new ArrayList<ALias>();
-	list.add(new ALias(this.getAnimeId(), name));
-	for (ALias alias : alias)
+	List<Alias> list=new ArrayList<Alias>();
+	list.add(new Alias(this.getAnimeId(), name));
+	for (Alias alias : alias)
 	list.add(alias);
 	setAlias(list);
 }
@@ -83,11 +83,11 @@ public void setImageLink(String imageLink) {
 	this.imageLink = imageLink;
 }
 
-public List<ALias> getAlias() {
+public List<Alias> getAlias() {
 	return alias;
 }
 
-public void setAlias(List<ALias> alias) {
+public void setAlias(List<Alias> alias) {
 	this.name= alias.get(0).getAlias();
 	this.alias = alias;
 }
