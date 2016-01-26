@@ -5,13 +5,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.sun.glass.ui.GestureSupport;
-
 import Dao.interfaceClasses.DaoUpdate;
 import Object.Alias;
-import Object.Anime;
 
-public class AliasDao extends DaoUpdate<Alias,Integer>{
+public class AliasDao extends DaoUpdate<Alias>{
 
 	@Override
 	public List<Alias> get(Alias alias) throws DataAccessException, ClassNotFoundException, SQLException {
@@ -45,6 +42,28 @@ public class AliasDao extends DaoUpdate<Alias,Integer>{
 		if(delete(alias)&&insert(alias))
 			rs=true;
 		return rs;
+	}
+
+	@Override
+	public boolean insertAll(List<Alias> ListAlias) throws DataAccessException, ClassNotFoundException, SQLException {
+		int rs=0;
+		for (Alias alias:ListAlias)
+			if(insert(alias))
+				rs++;
+		if (rs==ListAlias.size())
+		return true;
+		else 
+		return false;
+	}
+
+	@Override
+	public boolean updateAll(List<Alias> ListAlias) throws DataAccessException, ClassNotFoundException, SQLException {
+		boolean rs=false;
+		for (Alias alias :ListAlias)
+			delete(alias);
+			if(insertAll(ListAlias))
+				rs=true;
+			return rs;
 	}
 
 

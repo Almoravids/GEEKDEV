@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public interface IDaoUpdate<T,M> {
+public interface IDaoUpdate<T> {
     public JdbcTemplate getConnection() throws ClassNotFoundException, SQLException;
 	public  List<T> getAll() throws DataAccessException, ClassNotFoundException, SQLException;
 	public  List<T> get(T t) throws DataAccessException, ClassNotFoundException, SQLException;

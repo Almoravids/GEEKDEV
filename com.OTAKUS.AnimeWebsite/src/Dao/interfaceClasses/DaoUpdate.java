@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import Dao.DaoConnection;
 import Dao.Interfaces.IDaoUpdate;
 
-public  abstract class DaoUpdate<C,M> implements IDaoUpdate<C,M>{
+public  abstract class DaoUpdate<C> implements IDaoUpdate<C>{
 
 	@Override
 	public JdbcTemplate getConnection() throws ClassNotFoundException, SQLException {
@@ -24,31 +24,32 @@ public  abstract class DaoUpdate<C,M> implements IDaoUpdate<C,M>{
 
 	
 	public abstract boolean insert(C t) throws DataAccessException, ClassNotFoundException, SQLException;
-
-	@Override
-	public boolean insertAll(List<C> t) throws DataAccessException, ClassNotFoundException, SQLException{
-		int rs=0;
-		for (C c :t)
-			if(insert(c))
-				rs++;
-		if (rs==t.size())
-		return true;
-		else 
-		return false;
-	}
+	public abstract boolean insertAll(List<C> t) throws DataAccessException, ClassNotFoundException, SQLException;
+//	@Override
+//	public boolean insertAll(List<C> t) throws DataAccessException, ClassNotFoundException, SQLException{
+//		int rs=0;
+//		for (C c :t)
+//			if(insert(c))
+//				rs++;
+//		if (rs==t.size())
+//		return true;
+//		else 
+//		return false;
+//	}
 
 	@Override
 	public abstract boolean update(C t) throws DataAccessException, ClassNotFoundException, SQLException ;
-
 	@Override
-	public boolean updateAll(List<C> t) throws DataAccessException, ClassNotFoundException, SQLException {
-		boolean rs=false;
-		for (C c :t)
-			delete(c);
-			if(insertAll(t))
-				rs=true;
-			return rs;
-	}
+	public abstract boolean updateAll(List<C> t) throws DataAccessException, ClassNotFoundException, SQLException;
+//	@Override
+//	public boolean updateAll(List<C> t) throws DataAccessException, ClassNotFoundException, SQLException {
+//		boolean rs=false;
+//		for (C c :t)
+//			delete(c);
+//			if(insertAll(t))
+//				rs=true;
+//			return rs;
+//	}
 	
     protected boolean getResult(int rs){
     	boolean result=false;
