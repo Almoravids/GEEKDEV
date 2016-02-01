@@ -1,6 +1,11 @@
-package Object;
+package beans;
 
-public class Episode {
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public class Episode implements RowMapper<Episode>{
 private int Episodeid,episode,seasonId;
 private String name,link,imageLink,type;
 
@@ -68,6 +73,18 @@ public String getType() {
 }
 public void setType(String type) {
 	this.type = type;
+}
+@Override
+public Episode mapRow(ResultSet rs, int arg1) throws SQLException {
+	Episode episode=new Episode();
+	episode.setEpisodeid(rs.getInt("id_episode"));
+	episode.setEpisode(rs.getInt("num_episode"));
+	episode.setName(rs.getString("name"));
+	episode.setLink(rs.getString("link"));
+	episode.setImageLink(rs.getString("link_img"));
+	episode.setSeasonId(rs.getInt("id_season"));
+	episode.setType(rs.getString("type"));
+	return episode;
 }
 
 

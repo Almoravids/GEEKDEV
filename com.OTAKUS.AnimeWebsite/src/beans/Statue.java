@@ -1,4 +1,4 @@
-package Object;
+package beans;
 
 public enum Statue {
 comingSoon(1,"Coming Soon"),
@@ -30,5 +30,12 @@ complete(3,"Complete");
 	public void setStatue(String statue) {
 		this.statue = statue;
 	}
-	
+	  
+	public String getStatue(int idStatue){
+		String statueName = "";
+		for (Statue statue : this.values())
+			if (statue.getStatueId()==idStatue)
+		    statueName=statue.getStatue();
+		return statueName;
+	}
 }

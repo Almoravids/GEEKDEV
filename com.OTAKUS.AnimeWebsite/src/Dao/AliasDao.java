@@ -5,46 +5,43 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import Dao.interfaceClasses.DaoUpdate;
-import Object.Alias;
+import Dao.Interfaces.IDaoID;
+import Dao.Interfaces.IDaoIUDG;
+import Dao.Interfaces.IDaoIUDGGA;
+import beans.Alias;
 
-public class AliasDao extends DaoUpdate<Alias>{
+public class AliasDao implements IDaoID<Alias,Integer>{
 
-	@Override
-	public List<Alias> get(Alias alias) throws DataAccessException, ClassNotFoundException, SQLException {
-		return (List<Alias>)getConnection().query("select * from alias where id_anime="+alias.getAliasId(),new Alias());
-	}
-
-	@Override
-	public List<Alias> getAll() throws DataAccessException, ClassNotFoundException, SQLException {
-		return (List<Alias>) getConnection().query("select * from alias",new Alias());
+	
+	public List<Alias> get(Integer aliasId) throws DataAccessException, ClassNotFoundException, SQLException {
+		return (List<Alias>)DaoConnection.getConnection().query("select * from alias where id_anime="+aliasId,new Alias());
 	}
 
 
 
 	@Override
 	public boolean insert(Alias Alias) throws DataAccessException, ClassNotFoundException, SQLException {
-	       int rs=getConnection().update("insert into alias values(alias_seq.nextval,?,?)",Alias.getAliasId(),Alias.getAnimeId());
-           return getResult(rs);
+	       int rs=DaoConnection.getConnection().update("insert into alias values(alias_seq.nextval,?,?)",Alias.getAlias(),Alias.getAnimeId());
+           return DaoTools.getResult(rs);
 	}
 
 	
 
 	@Override
-	public boolean delete(Alias alias) throws DataAccessException, ClassNotFoundException, SQLException {
-		int rs=getConnection().update("delete from alias where id_anime="+alias.getAnimeId());
-	    return getResult(rs);
+	public boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
+		int rs=DaoConnection.getConnection().update("delete from alias where id_anime="+animeId);
+	    return DaoTools.getResult(rs);
 	}
 
-	@Override
+	
 	public boolean update(Alias alias) throws DataAccessException, ClassNotFoundException, SQLException {
 		boolean rs=false;
-		if(delete(alias)&&insert(alias))
+		if(delete(alias.getAnimeId())&&insert(alias))
 			rs=true;
 		return rs;
 	}
 
-	@Override
+
 	public boolean insertAll(List<Alias> ListAlias) throws DataAccessException, ClassNotFoundException, SQLException {
 		int rs=0;
 		for (Alias alias:ListAlias)
@@ -56,11 +53,11 @@ public class AliasDao extends DaoUpdate<Alias>{
 		return false;
 	}
 
-	@Override
+
 	public boolean updateAll(List<Alias> ListAlias) throws DataAccessException, ClassNotFoundException, SQLException {
 		boolean rs=false;
 		for (Alias alias :ListAlias)
-			delete(alias);
+			delete(alias.getAnimeId());
 			if(insertAll(ListAlias))
 				rs=true;
 			return rs;
