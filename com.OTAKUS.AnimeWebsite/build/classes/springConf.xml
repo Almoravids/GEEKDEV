@@ -5,8 +5,8 @@
     
 <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"> 
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-        <property name="username" value="mehdi"/> 
-        <property name="password" value="123456"/>  
+        <property name="username" value="otakus"/> 
+        <property name="password" value="otakus"/>  
 </bean>
     
 <bean id="DaoConnection" class="Dao.DaoConnection">

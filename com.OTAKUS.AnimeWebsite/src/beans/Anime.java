@@ -8,113 +8,106 @@ import java.util.Set;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class Anime implements RowMapper<Anime>,Comparable<Anime>{
-private int animeId,statue;
-private String name,desc,imageLink;
-private List<Type>genre;
-private List<Alias>  alias;
+public class Anime implements RowMapper<Anime>{
+	private int animeId, statue;
+	private String name, description, imageLink;
+	private List<Type> genre;
+	private List<Alias> alias;
 
-public Anime() {
-	super();
-	 
-}
+	public Anime() {
+		super();
 
-public Anime( int statue, String desc, String imageLink, List<Alias> alias, List<Type> genre) {
-	super();
-	this.name = ((ArrayList<Alias>)alias).get(0).getAlias();
-	this.statue = statue;
-	this.desc = desc;
-	this.imageLink = imageLink;
-	this.alias = alias;
-	this.genre = genre;
-}
+	}
 
-public Anime(int animeId, int statue, String desc, String imageLink, List<Alias> alias, List<Type> genre) {
-	super();
-	this.animeId = animeId;
-	this.name = ((ArrayList<Alias>)alias).get(0).getAlias();
-	this.statue = statue;
-	this.desc = desc;
-	this.imageLink = imageLink;
-	this.alias = alias;
-	this.genre = genre;
-}
+	public Anime(String name, int statue, String description, String imageLink, List<Alias> alias, List<Type> genre) {
+		super();
+		this.name = name;
+		this.statue = statue;
+		this.description = description;
+		this.imageLink = imageLink;
+		this.alias = alias;
+		this.genre = genre;
+	}
 
-public int getAnimeId() {
-	return animeId;
-}
+	public Anime(int animeId, int statue, String description, String imageLink, List<Alias> alias, List<Type> genre) {
+		super();
+		this.animeId = animeId;
+		this.name = ((ArrayList<Alias>) alias).get(0).getAlias();
+		this.statue = statue;
+		this.description = description;
+		this.imageLink = imageLink;
+		this.alias = alias;
+		this.genre = genre;
+	}
 
-public void setId(int animeId) {
-	this.animeId = animeId;
-}
-public void setName(String name) {
-	List<Alias> list=new ArrayList<Alias>();
-	list.add(new Alias(this.getAnimeId(), name));
-	for (Alias alias : alias)
-	list.add(alias);
-	setAlias(list);
-}
-public String getName() {
-	return name;
-}
+	public int getAnimeId() {
+		return animeId;
+	}
 
+	public void setId(int animeId) {
+		this.animeId = animeId;
+	}
 
-public int getStatue() {
-	return statue;
-}
+	public void setName(String name) {
+		this.name=name;
+	}
 
-public void setStatue(int statue) {
-	this.statue = statue;
-}
+	public String getName() {
+		return name;
+	}
 
-public String getDesc() {
-	return desc;
-}
+	public int getStatue() {
+		return statue;
+	}
 
-public void setDesc(String desc) {
-	this.desc = desc;
-}
+	public void setStatue(int statue) {
+		this.statue = statue;
+	}
 
-public String getImageLink() {
-	return imageLink;
-}
+	public String getDescription() {
+		return description;
+	}
 
-public void setImageLink(String imageLink) {
-	this.imageLink = imageLink;
-}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-public List<Alias> getAlias() {
-	return alias;
-}
+	public String getImageLink() {
+		return imageLink;
+	}
 
-public void setAlias(List<Alias> alias) {
-	this.name= alias.get(0).getAlias();
-	this.alias = alias;
-}
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
 
-public List<Type> getGenre() {
-	return genre;
-}
+	public List<Alias> getAlias() {
+		return alias;
+	}
 
-public void setGenre(List<Type> genre) {
-	this.genre = genre;
-}
+	public void setAlias(List<Alias> alias) {
+		this.name = alias.get(0).getAlias();
+		this.alias = alias;
+	}
 
-@Override
-public Anime mapRow(ResultSet rs, int arg1) throws SQLException {
-	Anime a=new Anime();
-	a.setId(rs.getInt("id_anime"));
-	a.setDesc(rs.getString("description"));
-	a.setImageLink(rs.getString("link_img"));
-	a.setStatue(rs.getInt("id_statue"));
+	public List<Type> getGenre() {
+		return genre;
+	}
 
-	return a;
-}
+	public void setGenre(List<Type> genre) {
+		this.genre = genre;
+	}
 
-@Override
-public int compareTo(Anime anime) {
-	
-	return this.getName().compareTo(anime.getName());
-}
+	@Override
+	public Anime mapRow(ResultSet rs, int arg1) throws SQLException {
+		Anime a = new Anime();
+		a.setId(rs.getInt("id_anime"));
+		a.setName(rs.getString("name"));
+		a.setDescription(rs.getString("description"));
+		a.setImageLink(rs.getString("image_link"));
+		a.setStatue(rs.getInt("id_statue"));
+
+		return a;
+	}
+
 
 }

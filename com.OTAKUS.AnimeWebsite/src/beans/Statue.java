@@ -7,8 +7,7 @@ complete(3,"Complete");
 	private int statueId;
 	private String statue;
 	
-	private Statue() {
-	}
+	
 	
 	private Statue(int statueId,String statue) {
 		this.statueId=statueId;
@@ -33,7 +32,7 @@ complete(3,"Complete");
 	  
 	public String getStatue(int idStatue){
 		String statueName = "";
-		for (Statue statue : this.values())
+		for (Statue statue : Statue.values())
 			if (statue.getStatueId()==idStatue)
 		    statueName=statue.getStatue();
 		return statueName;

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<%@page import="pack.Statue"%>
-<%@page import="pack.ALias"%>
-<%@page import="pack.Type"%>
+<%@page import="beans.Anime"%>
+<%@page import="beans.Statue"%>
+<%@page import="beans.Alias"%>
+<%@page import="beans.Type"%>
 <%@page import="oracle.net.aso.a"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Collection"%>
 <%@page import="java.util.TreeSet"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="pack.Anime"%>
+<%@page import="beans.Anime"%>
 <%@page import="java.util.List"%>
-<%@page import="pack.Method"%>
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
 <html>
@@ -21,13 +21,11 @@
 </script>
 </head>
 <body>
-<%!Method h; %>
 <%
 if (request.getParameter("op")!=null)
 {
 	if (request.getParameter("op").equals("add")&&request.getParameter("name")!=null){
-	h=(Method)Method.getcontext();
-	Anime a=new Anime();
+	Anime anime;
 	List list=new ArrayList<ALias>();
 	list.add(new ALias(a.getId(),request.getParameter("name")));
 	String[] alias=request.getParameter("allias").split(",");

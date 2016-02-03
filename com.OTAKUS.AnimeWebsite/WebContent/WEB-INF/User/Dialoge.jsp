@@ -1,5 +1,5 @@
-<%@page import="pack.Method"%>
-<%@page import="pack.Visitor"%>
+<%@page import="Dao.VisitorDao"%>
+<%@page import="beans.Visitor"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,8 +12,8 @@
 	<%
 	if (request.getParameter("username")!=null&&request.getParameter("username")!=""&&request.getParameter("password")!=null
 			&&request.getParameter("password")!=""&&request.getParameter("email")==null){
-	Method method=(Method)Method.getcontext();
-	Visitor visitor=method.getUser(request.getParameter("username"));
+		VisitorDao visitorDao=new VisitorDao();
+	Visitor visitor=visitorDao.get(request.getParameter("username"));
 	if (visitor.getPassword().equals(request.getParameter("password"))){
 		session.setAttribute("user", visitor);
 	           response.sendRedirect("home");

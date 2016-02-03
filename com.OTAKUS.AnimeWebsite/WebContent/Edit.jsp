@@ -7,10 +7,9 @@
 </head>
 <body>
 
-<% if (session.getAttribute("user")!=null){%>
+
 <%@include file="WEB-INF/User/Menu.jsp" %>
 <%@include file="WEB-INF/User/Edit.jsp" %>
-<% }else
-	response.sendRedirect("login");%>
+
 </body>
 </html>

@@ -8,16 +8,11 @@
 <title>Episode Panel OTAKUS anime website</title>
 </head>
 <body>
-<% Visitor visit;
-if (session.getAttribute("user")!=null){
-	visit=(Visitor)session.getAttribute("user");
-if(!visit.getType().equals("user")){%>
 
 <%@include file="WEB-INF/Admin/Menu.jsp" %>
 
 <%@include file="WEB-INF/Admin/Episode.jsp"%>
-<% }}else
-	response.sendRedirect("login");%>
+
 
 
 

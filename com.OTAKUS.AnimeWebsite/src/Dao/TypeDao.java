@@ -22,12 +22,12 @@ public class TypeDao implements IDaoID<Type, String>{
     	  if (anime.getAnimeId()==0)
     		anime.setId(DaoConnection.getConnection().queryForInt("select max(id_anime) from anime"));
     	  for(Type type : anime.getGenre())
-    		rs=  DaoConnection.getConnection().update("insert into kind values(?,?)",anime.getAnimeId(),DaoConnection.getConnection().queryForInt("select id_type from type where name=?",type.getType()));
+    		rs=  DaoConnection.getConnection().update("insert into kind values(?,?)",anime.getAnimeId(),DaoConnection.getConnection().queryForInt("select id_type from type where type=?",type.getType()));
               return DaoTools.getResult(rs);    
     }
 	@Override
-	public boolean delete(String typename) throws DataAccessException, ClassNotFoundException, SQLException {
-		 int rs= DaoConnection.getConnection().update("delete from type where name=?",typename);
+	public boolean delete(String type) throws DataAccessException, ClassNotFoundException, SQLException {
+		 int rs= DaoConnection.getConnection().update("delete from type where type=?",type);
 		return DaoTools.getResult(rs);
 	}
 	public boolean deleteKind(int idAnime) throws DataAccessException, ClassNotFoundException, SQLException{
@@ -40,6 +40,6 @@ public class TypeDao implements IDaoID<Type, String>{
 	}
      
 	public List<Type> getAll() throws DataAccessException, ClassNotFoundException, SQLException { 
-		return (List<Type>)DaoConnection.getConnection().query("select * from type order by name",new Type()); 
+		return (List<Type>)DaoConnection.getConnection().query("select * from type order by type",new Type()); 
 	}
 }

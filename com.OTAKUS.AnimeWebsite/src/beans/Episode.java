@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public class Episode implements RowMapper<Episode>{
-private int Episodeid,episode,seasonId;
-private String name,link,imageLink,type;
+private int Episodeid,episode,seasonId,type;
+private String name,link,imageLink;
 
 
 public Episode() {
 	super();
 }
-public Episode(int episode, int seasonId, String name, String link, String imageLink, String type) {
+public Episode(int episode, int seasonId, String name, String link, String imageLink, int type) {
 	super();
 	this.episode = episode;
 	this.seasonId = seasonId;
@@ -22,7 +22,7 @@ public Episode(int episode, int seasonId, String name, String link, String image
 	this.imageLink = imageLink;
 	this.type = type;
 }
-public Episode(int episodeid, int episode, int seasonId, String name, String link, String imageLink, String type) {
+public Episode(int episodeid, int episode, int seasonId, String name, String link, String imageLink, int type) {
 	super();
 	Episodeid = episodeid;
 	this.episode = episode;
@@ -68,10 +68,10 @@ public String getImageLink() {
 public void setImageLink(String imageLink) {
 	this.imageLink = imageLink;
 }
-public String getType() {
+public int getType() {
 	return type;
 }
-public void setType(String type) {
+public void setType(int type) {
 	this.type = type;
 }
 @Override
@@ -81,9 +81,9 @@ public Episode mapRow(ResultSet rs, int arg1) throws SQLException {
 	episode.setEpisode(rs.getInt("num_episode"));
 	episode.setName(rs.getString("name"));
 	episode.setLink(rs.getString("link"));
-	episode.setImageLink(rs.getString("link_img"));
+	episode.setImageLink(rs.getString("image_link"));
 	episode.setSeasonId(rs.getInt("id_season"));
-	episode.setType(rs.getString("type"));
+	episode.setType(rs.getInt("type"));
 	return episode;
 }
 

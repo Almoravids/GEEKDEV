@@ -8,16 +8,11 @@
 </head>
 <body>
 
-<% Visitor visit;
-if (session.getAttribute("user")!=null){
-	visit=(Visitor)session.getAttribute("user");
-if(!visit.getType().equals("user")){%>
+
 
 <%@include file="WEB-INF/Admin/Menu.jsp" %>
 
 <%@include file="WEB-INF/Admin/Season.jsp" %>
-<% }}else
-	response.sendRedirect("login");
-	%>
+
 </body>
 </html>

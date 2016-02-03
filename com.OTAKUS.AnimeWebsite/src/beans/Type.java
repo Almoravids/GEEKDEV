@@ -36,7 +36,7 @@ public void setType(String type) {
 public Type mapRow(ResultSet rs, int arg1) throws SQLException {
 	Type type=new Type();
 	type.setTypeId(rs.getInt("id_type"));
-	type.setType(rs.getString("name"));
+	type.setType(rs.getString("type"));
 	return type;
 }
 

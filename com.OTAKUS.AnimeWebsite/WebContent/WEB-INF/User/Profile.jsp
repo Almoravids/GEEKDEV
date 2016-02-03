@@ -1,5 +1,5 @@
-<%@page import="pack.Method"%>
-<%@page import="pack.Visitor"%>
+<%@page import="beans.Visitor"%>
+
 
 
 <html>
@@ -420,7 +420,7 @@ Visitor visitor=(Visitor)session.getAttribute("user"); %>
 <body>
   <header id="profile">
 <h3>WELCOME</h3><h1><%=visitor.getUserName() %></h1><br>
-  <h4 style="margin-left:130px;"><%=visitor.getName() %></h4><h4 style="margin-right:50px;"><%=visitor.getLastName()%></h4><a href="edit"><img src="Image/edit.png" alt=""><h5>edit</h5></a>
+  <h4 style="margin-left:130px;"><%=visitor.getFirstName()%></h4><h4 style="margin-right:50px;"><%=visitor.getLastName()%></h4><h5><a href="edit"><img src="Image/edit.png" alt="">edit</a></h5>
   </header>
    <form id="uploadImg">
       <img class="imgs" src="Image/link.png" id="linkNav"/> <img id="uploadNav" class="imgs" src="Image/upload.png"/> <img id="avatarNav" class="imgs" src="Image/anonym.png"/>

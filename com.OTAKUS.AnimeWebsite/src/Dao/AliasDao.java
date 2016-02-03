@@ -21,7 +21,7 @@ public class AliasDao implements IDaoID<Alias,Integer>{
 
 	@Override
 	public boolean insert(Alias Alias) throws DataAccessException, ClassNotFoundException, SQLException {
-	       int rs=DaoConnection.getConnection().update("insert into alias values(alias_seq.nextval,?,?)",Alias.getAlias(),Alias.getAnimeId());
+	       int rs=DaoConnection.getConnection().update("insert into alias values(?,?)",Alias.getAnimeId(),Alias.getAlias());
            return DaoTools.getResult(rs);
 	}
 

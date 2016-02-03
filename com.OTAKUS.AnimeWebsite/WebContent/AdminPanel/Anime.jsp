@@ -1,8 +1,8 @@
-<%@page import="pack.Visitor"%>
+
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Enumeration"%>
-<%@page import="pack.Anime"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="org.springframework.context.*" %>
@@ -16,16 +16,9 @@
 </head>
 <body>
 
-<% Visitor visit;
-if (session.getAttribute("user")!=null){
-	visit=(Visitor)session.getAttribute("user");
-if(!visit.getType().equals("user")){%>
 
-<%@include file="WEB-INF/Admin/Menu.jsp" %>
-<%@include file="WEB-INF/Admin/Anime.jsp" %>
+<%@include file="../WEB-INF/Admin/Menu.jsp" %>
 
-<% }}else
-	response.sendRedirect("../home");
-	%>
+
 </body>
 </html>

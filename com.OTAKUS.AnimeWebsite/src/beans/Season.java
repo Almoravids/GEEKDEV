@@ -1,62 +1,67 @@
 package beans;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
-public class Season {
-private int seasonId,season,animeId,statueId;
-private Timestamp time;
+import org.springframework.jdbc.core.RowMapper;
 
-public Season() {
-	// TODO Auto-generated constructor stub
-}
+public class Season implements RowMapper<Season>{
+	private int seasonId, season, animeId;
+	private Timestamp time;
 
-public Season(int seasonId, int season, int animeId, int statueId, Timestamp time) {
-	super();
-	this.seasonId = seasonId;
-	this.season = season;
-	this.animeId = animeId;
-	this.statueId = statueId;
-	this.time = time;
-}
+	public Season() {
+		// TODO Auto-generated constructor stub
+	}
 
-public int getSeasonId() {
-	return seasonId;
-}
+	public Season(int seasonId, int season, int animeId, int statueId, Timestamp time) {
+		super();
+		this.seasonId = seasonId;
+		this.season = season;
+		this.animeId = animeId;
+		this.time = time;
+	}
 
-public void setSeasonId(int seasonId) {
-	this.seasonId = seasonId;
-}
+	public int getSeasonId() {
+		return seasonId;
+	}
 
-public int getSeason() {
-	return season;
-}
+	public void setSeasonId(int seasonId) {
+		this.seasonId = seasonId;
+	}
 
-public void setSeason(int season) {
-	this.season = season;
-}
+	public int getSeason() {
+		return season;
+	}
 
-public int getAnimeId() {
-	return animeId;
-}
+	public void setSeason(int season) {
+		this.season = season;
+	}
 
-public void setAnimeId(int animeId) {
-	this.animeId = animeId;
-}
+	public int getAnimeId() {
+		return animeId;
+	}
 
-public int getStatueId() {
-	return statueId;
-}
+	public void setAnimeId(int animeId) {
+		this.animeId = animeId;
+	}
 
-public void setStatueId(int statueId) {
-	this.statueId = statueId;
-}
+	public Timestamp getTime() {
+		return time;
+	}
 
-public Timestamp getTime() {
-	return time;
-}
+	public void setTime(Timestamp time) {
+		this.time = time;
+	}
 
-public void setTime(Timestamp time) {
-	this.time = time;
-}
+	@Override
+	public Season mapRow(ResultSet rs, int arg1) throws SQLException {
+		Season season=new Season();
+		season.setSeasonId(rs.getInt("id_season"));
+		season.setSeason(rs.getInt("num_season"));
+		season.setTime(rs.getTimestamp("time_season"));
+		season.setAnimeId(rs.getInt("id_anime"));
+		return  season;
+	}
 
 }

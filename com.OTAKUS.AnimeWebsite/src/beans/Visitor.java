@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public class Visitor implements RowMapper<Visitor>{
-private String userName,name,lastName,imageLink,email,password,type;
+private String userName,firstName,lastName,imageLink,email,password,type;
 
 
 
@@ -14,10 +14,10 @@ public Visitor() {
 	super();
 }
 
-public Visitor(String userName, String name, String lastName, String imageLink, String email, String password) {
+public Visitor(String userName, String firstName, String lastName, String imageLink, String email, String password) {
 	super();
 	this.userName = userName;
-	this.name = name;
+	this.firstName = firstName;
 	this.lastName = lastName;
 	this.imageLink = imageLink;
 	this.email = email;
@@ -32,12 +32,12 @@ public void setUserName(String userName) {
 	this.userName = userName;
 }
 
-public String getName() {
-	return name;
+public String getFirstName() {
+	return firstName;
 }
 
-public void setName(String name) {
-	this.name = name;
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
 }
 
 public String getLastName() {
@@ -84,11 +84,11 @@ public void setType(String type) {
 public Visitor mapRow(ResultSet rs, int arg1) throws SQLException {
 	Visitor visitor=new Visitor();
 	visitor.userName = rs.getString("username");
-	visitor.name = rs.getString("name");
+	visitor.firstName = rs.getString("first_name");
 	visitor.lastName = rs.getString("last_name");
 	visitor.email = rs.getString("email");
 	visitor.password = rs.getString("password");
-	visitor.type=rs.getString("type_user");
+	visitor.type=rs.getString("type");
 	visitor.imageLink = rs.getString("image_link");
 	return visitor;
 }
