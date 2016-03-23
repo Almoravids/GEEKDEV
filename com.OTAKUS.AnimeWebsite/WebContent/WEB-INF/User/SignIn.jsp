@@ -82,13 +82,13 @@
 			<h3>Login </h3>
 			<hr>
 			
-			<form  method="post">
+			<form action="SignIn" method="post">
 				<table>
 					<tr><td><input type="text" name="username" id="username" placeholder="Username" /></td></tr>
-					<tr><td><input type="password" name="pass" id="pass" placeholder="Password" /></td></tr>
+					<tr><td><input type="password" name="password" id="pass" placeholder="Password" /></td></tr>
 					
 				</table>
-					<input type="submit" value="Login in">
+					<input type="submit" value="Sign In">
 			</form>
 			<a href="signup">Sign Up to Otakus</a>
 		</section>

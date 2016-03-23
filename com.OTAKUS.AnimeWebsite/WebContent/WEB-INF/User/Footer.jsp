@@ -80,12 +80,12 @@
 	<body>
 		
 		<footer id="footer">
-			<img src="Image/facebook.png" >
-			<img src="Image/twitter.png" >
-			<img src="Image/gmail.png" >
-			<img src="Image/phone.png" >
+			<img src="/Image/facebook.png" >
+			<img src="/Image/twitter.png" >
+			<img src="/Image/gmail.png" >
+			<img src="/Image/phone.png" >
 			<span id="s1">+212671424705</span><br>
-			<img src="Image/nav.png"  id="up">
+			<img src="/Image/nav.png"  id="up">
 			
 			<div id="f2">
 				<p id="team">Created with &#10084 By Otakus team</p>

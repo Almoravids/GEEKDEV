@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import Dao.Interfaces.IDaoID;
-import Dao.Interfaces.IDaoIUDG;
-import Dao.Interfaces.IDaoIUDGGA;
 import beans.Alias;
 
 public class AliasDao implements IDaoID<Alias,Integer>{

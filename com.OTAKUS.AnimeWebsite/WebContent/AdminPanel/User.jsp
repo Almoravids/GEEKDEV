@@ -10,8 +10,8 @@
 
 
 
-<%@include file="WEB-INF/Admin/Menu.jsp" %>
-<%@include file="WEB-INF/Admin/User.jsp" %>
+<%@include file="../WEB-INF/Admin/Menu.jsp" %>
+<%@include file="../WEB-INF/Admin/User.jsp" %>
 
 </body>
 </html>

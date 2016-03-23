@@ -7,7 +7,7 @@
 <title>
 <%!Visitor visitor1;%>
 <%visitor1=(Visitor)session.getAttribute("user"); %>
-<%=visitor1.getName()%> Profile OTAKUS Anime web site</title>
+<%=visitor1.getFirstName()%> Profile OTAKUS Anime web site</title>
 </head>
 <body>
 <%@include file="WEB-INF/User/Menu.jsp" %>

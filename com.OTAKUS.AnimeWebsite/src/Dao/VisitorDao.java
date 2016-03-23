@@ -13,8 +13,8 @@ public class VisitorDao implements IDaoIUDGGA<Visitor, String> {
 
 	@Override
 	public boolean update(Visitor visitor) throws DataAccessException, ClassNotFoundException, SQLException {
-		int rs = DaoConnection.getConnection().update("update visitor set type=? where username=?",
-				visitor.getType(), visitor.getUserName());
+		int rs = DaoConnection.getConnection().update("update visitor set first_name=?,last_name=?,password=?,email=?,image_link=? where username=?",
+				visitor.getFirstName(),visitor.getLastName(),visitor.getPassword(),visitor.getEmail(),visitor.getImageLink(), visitor.getUserName());
 		return DaoTools.getResult(rs);
 	}
 
@@ -45,10 +45,10 @@ public class VisitorDao implements IDaoIUDGGA<Visitor, String> {
 		return (List<Visitor>) ListVisitor;
 	}
 
-	public boolean grade(String username, String grade)
+	public boolean grade(Visitor visitor)
 			throws DataAccessException, ClassNotFoundException, SQLException {
-		int rs = DaoConnection.getConnection().update("update visitor set type=? where username=?", grade,
-				username);
+		int rs = DaoConnection.getConnection().update("update visitor set type=? where username=?", visitor.getType(),
+				visitor.getUserName());
 		return DaoTools.getResult(rs);
 	}
 

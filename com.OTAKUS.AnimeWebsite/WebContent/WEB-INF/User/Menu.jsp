@@ -4,16 +4,16 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<link rel="stylesheet" href="Css/AdminMenu.css"/>
-<script src="Js/jquery-2.1.3.min.js"></script>
-<script src="Js/jquery-ui.min.js"></script>
-<link rel="icon" href="Image/LOGO.png" />
+<link rel="stylesheet" href="/Css/AdminMenu.css"/>
+<script src="/Js/jquery-2.1.3.min.js"></script>
+<script src="/Js/jquery-ui.min.js"></script>
+<link rel="icon" href="/Image/LOGO.png" />
 </head>
 <body>
 
 <nav id="MenuNav">
 	
-	<a href="home"><img id="logo"src="Image/LOGO.png" /></a> 
+	<a href="home"><img id="logo"src="/Image/LOGO.png" /></a> 
 	
 	<%
 	if (session.getAttribute("user")!=null) {%>
@@ -31,7 +31,7 @@
 	</ul>
 		<img id="userImg" src="<%=visitor.getImageLink()%>" />
 		
-	 	<img  id="notifications"src="Image/ringingBell.png" />
+	 	<img  id="notifications"src="/Image/ringingBell.png" />
 	<%}else{ %>
 	<ul id="ulnav" class="HiddenNav">
 	<input type="search" name="search" id="search" />
@@ -44,7 +44,7 @@
 	</ul>
 	<%} %>
 
-	<img id="Loupe" src="Image/Loupe.png" />
+	<img id="Loupe" src="/Image/Loupe.png" />
 </nav>
 <script>
 	$(document).ready(function (){

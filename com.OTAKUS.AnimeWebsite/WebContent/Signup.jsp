@@ -8,8 +8,6 @@
 </head>
 <body>
 
-<%@include file="WEB-INF/User/Menu.jsp" %>
-
 <%@include file="WEB-INF/User/Inscription.jsp" %>
 </body>
 </html>

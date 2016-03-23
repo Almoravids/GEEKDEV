@@ -33,7 +33,7 @@ public class AnimeDao implements IDaoIUDGGA<Anime, String> {
 	@Override
 	public Anime get(String animename) throws DataAccessException, ClassNotFoundException, SQLException {
 		Anime anime = (Anime) DaoConnection.getConnection()
-				.queryForObject("select a.* from anime a where a.name=" + animename, new Anime());
+				.queryForObject("select a.* from anime a where a.name='" + animename+"'", new Anime());
 		AliasDao alias = new AliasDao();
 		anime.setAlias(alias.get(anime.getAnimeId()));
 
@@ -44,7 +44,8 @@ public class AnimeDao implements IDaoIUDGGA<Anime, String> {
 
 	@Override
 	public boolean insert(Anime anime) throws DataAccessException, ClassNotFoundException, SQLException {
-		int rs = DaoConnection.getConnection().update("insert into anime values(anime_seq.nextval,?,?,?,?)",
+		int animeId=getId();
+		int rs = DaoConnection.getConnection().update("insert into anime values(?,?,?,?,?)",anime.getAnimeId(),
 				anime.getName(), anime.getDescription(), anime.getImageLink(), anime.getStatue());
 		if (rs != 0) {
 			AliasDao alias = new AliasDao();
@@ -81,5 +82,7 @@ public class AnimeDao implements IDaoIUDGGA<Anime, String> {
 
 		return listAnime;
 	}
-
+ public int getId() throws DataAccessException, ClassNotFoundException, SQLException{
+	 return  DaoConnection.getConnection().queryForObject("select anime_seq.nextval from dual",Integer.class);
+ }
 }

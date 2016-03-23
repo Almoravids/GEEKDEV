@@ -120,7 +120,7 @@
 				
 			}
 			#infoEp #h31{
-			
+			    text-transform:capitalize;
 				font-size:1.5em;
 			}
 			#infoEp #h31 + h3{
@@ -268,16 +268,15 @@
 	</head>	
 	<body>
 		<div id="infoEp">
-			<h3 id="h31">Hunter X Hunter </h3>
-			<h3>Season 1</h3><br>
-			<h3 id="h3ep">Episode 130</h3>
+		
 			
+			<h3 id="h31">${requestScope.anime.getName()}</h3>
+			<h3>Season  ${requestScope.season.getSeason()}</h3><br>
+			<h3 id="h3ep">Episode  ${requestScope.episode.getEpisode()}</h3>
 		</div>
 		
 		<section id="secP">
-			<iframe id="videoy"  src="http://www.youtube.com/embed/mFVJL5lDILg" 
-			frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
-			</iframe>
+			<iframe id="videoy" src="${requestScope.episode.getLink()}" frameborder="0" allowfullscreen></iframe>
 			<aside id="episodes">
 				
 				<ul>
@@ -316,7 +315,7 @@
 			<input type="button" />
 			<hr>
 			<article>
-				<img src="Image/Avatars/001.png" id="img3" />
+				<img src="/Image/Avatars/001.png" id="img3" />
 					
 				<div id="infocom">
 					<span>Wassim</span><span>5 Day ago</span>
@@ -326,7 +325,7 @@
 				</div>
 			</article>
 						<article>
-				<img src="Image/Avatars/002.png" id="img3" />
+				<img src="/Image/Avatars/002.png" id="img3" />
 					
 				<div id="infocom">
 					<span>Mahdi</span><span>5 Day ago</span>
@@ -336,7 +335,7 @@
 				</div>
 			</article>
 			<article>
-				<img src="Image/Avatars/003.png" id="img3" />
+				<img src="/Image/Avatars/003.png" id="img3" />
 					
 				<div id="infocom">
 					<span>Anas</span><span>7 Day ago</span>
@@ -349,11 +348,7 @@
 		
 	</body>
 	<script>
-		var a="https://www.youtube.com/watch?v=mFVJL5lDILg";
-		var b=a.split('=');
-		var out="http://www.youtube.com/embed/"+b[1];
-		
-		document.getElementById("videoy").src=out;
+	
 		
 		$(document).ready(function (){
 			$("#imgcom").click(function (){

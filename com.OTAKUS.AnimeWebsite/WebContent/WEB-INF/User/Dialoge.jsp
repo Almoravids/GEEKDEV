@@ -5,9 +5,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<link rel="Stylesheet" href="Css/dialoge.css">
-		<script src="Js/jquery-2.1.3.min.js"></script>
-		<script src="Js/jquery-ui.min.js"></script>
+		<link rel="Stylesheet" href="/Css/dialoge.css">
+		<script src="/Js/jquery-2.1.3.min.js"></script>
+		<script src="/Js/jquery-ui.min.js"></script>
 	</head>
 	<%
 	if (request.getParameter("username")!=null&&request.getParameter("username")!=""&&request.getParameter("password")!=null
@@ -24,9 +24,9 @@
 	<body>
 
 	
-		<form id="background" method="get">
+		<form action="SignIn"id="background" method="post">
 			<div id="dg">
-				<img src="Image/closeDialog.png">
+				<img src="/Image/closeDialog.png">
 				<center>
 			
 				<h2>Login</h2>

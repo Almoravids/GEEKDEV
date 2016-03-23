@@ -85,7 +85,6 @@ public class Anime implements RowMapper<Anime>{
 	}
 
 	public void setAlias(List<Alias> alias) {
-		this.name = alias.get(0).getAlias();
 		this.alias = alias;
 	}
 
@@ -104,7 +103,7 @@ public class Anime implements RowMapper<Anime>{
 		a.setName(rs.getString("name"));
 		a.setDescription(rs.getString("description"));
 		a.setImageLink(rs.getString("image_link"));
-		a.setStatue(rs.getInt("id_statue"));
+		a.setStatue(rs.getInt("statue"));
 
 		return a;
 	}

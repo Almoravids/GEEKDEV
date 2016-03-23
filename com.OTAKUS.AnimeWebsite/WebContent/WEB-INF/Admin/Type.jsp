@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<%@page import="pack.Type"%>
+<%@page import="beans.Type"%>
+<%@page import="Dao.TypeDao"%>
 <%@page import="java.util.List"%>
-<%@page import="pack.Method"%>
 <html>
 <head>
   <link rel="stylesheet" href="../Css/AdminStyleM.css"/>
   <script src="../Js/Menu.js"></script>
 </head>
 <body>
-
+<%!TypeDao typeDao=new TypeDao(); %>
 <%
 if (request.getParameter("DelOp")!=null){
 if (request.getParameter("DelOp").equals("add")){
 	try{
-Method h=(Method)Method.getcontext();
-h.insertGenre(request.getParameter("type"));
+
+typeDao.insert(new Type(request.getParameter("type")));
 }catch(Exception e){}
 }else if (request.getParameter("DelOp").equals("del")){
 	try{
-	Method h=(Method)Method.getcontext();
-	h.deleteGenre(request.getParameter("type"));
+	typeDao.delete(request.getParameter("type"));
 	}catch(Exception e){
 		out.print(e.getMessage());
 	}
@@ -59,8 +58,8 @@ h.insertGenre(request.getParameter("type"));
       <td><select  id="type" name="type" />
       <%
 try{
-Method h=(Method)Method.getcontext();
-List<Type> typeList=h.getTypes();
+
+List<Type> typeList=typeDao.getAll();
 
 for (Type type: typeList){
 %>

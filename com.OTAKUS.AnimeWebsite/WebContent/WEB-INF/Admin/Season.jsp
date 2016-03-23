@@ -1,4 +1,4 @@
-<%@page import="pack.Statue"%>
+<%@page import="beans.Statue"%>
 <html lang="en">
 	<head>
 		<title>AddEpisode</title>
@@ -40,7 +40,7 @@ try{
 Statue[] statues=Statue.values();
 for (Statue statue: statues){
 %>
-<option value="<%=statue.getId()%>" ><%=statue.getStatue()%></option>
+<option value="<%=statue.getStatueId()%>" ><%=statue.getStatue()%></option>
 <%;}}catch (Exception e){
 	out.print(e.getMessage());
 } %>
@@ -69,7 +69,7 @@ try{
 Statue[] statues=Statue.values();
 for (Statue statue: statues){
 %>
-<option value="<%=statue.getId()%>" ><%=statue.getStatue()%></option>
+<option value="<%=statue.getStatueId()%>" ><%=statue.getStatue()%></option>
 <%;}}catch (Exception e){
 	out.print(e.getMessage());
 } %>

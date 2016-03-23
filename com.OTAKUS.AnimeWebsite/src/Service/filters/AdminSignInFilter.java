@@ -37,10 +37,16 @@ public class AdminSignInFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("FILTER");
+		HttpServletRequest httpRequest=(HttpServletRequest)request;
+		HttpServletResponse httpResponse=(HttpServletResponse)response;
+		Visitor visitor=(Visitor)httpRequest.getSession().getAttribute("user");
+		if (visitor.getType().equals("user"))
+			httpResponse.sendRedirect("/signin");
+		else 
+			chain.doFilter(request, response);
 	
-		
-		chain.doFilter(request, response);
+			
+			
 	}
 
 	/**

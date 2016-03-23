@@ -15,10 +15,7 @@
 
 </head>
 <body>
-
-
 <%@include file="../WEB-INF/Admin/Menu.jsp" %>
-
-
+<%@include file="../WEB-INF/Admin/Anime.jsp" %>
 </body>
 </html>

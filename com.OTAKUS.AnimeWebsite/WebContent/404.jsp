@@ -84,7 +84,7 @@ footer img{
 </style>
 </head>
 <body>
-<header><img src="Image/404.png" alt="404"></header>
+<header><img src="/Image/404.png" alt="404"></header>
 <footer>
   <h6>Find Animes</h6>
   <form method="post">
@@ -94,10 +94,10 @@ footer img{
   <%if(session.getAttribute("user")!=null){ %>
   <p><a href="profile">PROFILE</a></p><%}
   else{
-	  %><p><a href="login">LOGIN</a></p><% 
+	  %><p><a href="signin">LOGIN</a></p><% 
   }
   %>
-  <a href="home"><img src="Image/WLOGO.png" alt="OTAKUS LOGO"></a>
+  <a href="home"><img src="/Image/WLOGO.png" alt="OTAKUS LOGO"></a>
 </footer>
 </body>
 </html>

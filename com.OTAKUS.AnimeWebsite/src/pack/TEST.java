@@ -1,35 +1,21 @@
 package pack;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import org.springframework.dao.DataAccessException;
-
-import Dao.AnimeDao;
-import beans.Alias;
-import beans.Anime;
-import beans.Type;
+import Dao.VisitorDao;
+import beans.Visitor;
 
 public class TEST {
 public static void main(String[] args) {
-AnimeDao animeDao=new AnimeDao();
-Anime anime=new Anime();
-anime.setName("hunter");
-anime.setDescription("desc");
-anime.setImageLink("image");
-anime.setStatue(1);
-ArrayList<Alias> aliasList=new ArrayList<>();
-aliasList.add(new Alias(anime.getAnimeId(),"HXH"));
-anime.setAlias(aliasList);
 
-ArrayList<Type> typesList=new ArrayList<>();
-typesList.add(new Type("Horror"));
-try {
-	animeDao.insert(anime);
 	
-} catch (DataAccessException | ClassNotFoundException | SQLException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
+	VisitorDao visitorDao =new VisitorDao();
+	try {
+		Visitor visitor=visitorDao.get("Mr Mahdi");
+		visitor.setFirstName("oussim");
+		boolean visit=visitorDao.update(visitor);
+		System.out.println(visit);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} }
 }
-}}
                             

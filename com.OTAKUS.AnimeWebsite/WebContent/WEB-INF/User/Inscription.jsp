@@ -1,5 +1,5 @@
-<%@page import="pack.Method"%>
-<%@page import="pack.Visitor"%>
+<%@page import="beans.Visitor"%>
+<%@page import="Dao.VisitorDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!doctype HTML>
@@ -10,6 +10,34 @@
 		<script src="../Js/jquery-2.1.3.min.js"></script>
 		<script src="../Js/jquery-ui.min.js"></script>
 		<style>
+		
+			/*scroll */
+			
+			/* Let's get this party started */
+			::-webkit-scrollbar {
+				width: 10px;
+			}
+			 
+			/* Track */
+			::-webkit-scrollbar-track {
+				-webkit-box-shadow: inset 0 0 6px rgba(10,10,10,0.8); 
+				-webkit-border-radius: 10px;
+				 border-radius: 10px;
+			}
+			 
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				-webkit-border-radius: 10px;
+				border-radius: 10px;
+				background:#008563; 
+			}
+			
+			
+::-webkit-scrollbar-thumb:window-inactive {
+				background: rgb(10,10,10); 
+				-webkit-box-shadow: inset 0 0 6px #008563; 
+			}
+		
 			body{
 				
 				-webkit-touch-callout: none;
@@ -58,7 +86,6 @@
 				background-color:#003326;
 				color:white;
 				margin:5px;
-				padding:5px;
 				margin-top:15px;
 				padding:10px;
 				padding-left:20px;
@@ -82,7 +109,7 @@
 				color:black;
 				margin-top:30px;
 				margin-bottom:30px;				
-				min-height:74%;
+				min-height:100%;
 			}
 		
 			#form form hr{
@@ -169,35 +196,17 @@
 	
 		</style>
 	</head>
-	<%
-	if (request.getParameter("name")!=null){
-		Method h=(Method)Method.getcontext();
-		Visitor visitor=new Visitor();
-		visitor.setUserName(request.getParameter("username"));
-		visitor.setName(request.getParameter("name"));
-		visitor.setLastName(request.getParameter("lastName"));
-		visitor.setEmail(request.getParameter("email"));
-		visitor.setPassword(request.getParameter("password"));
-		if (request.getParameter("avatar")!=null)
-		visitor.setImageLink(request.getParameter("avatar"));
-		else if (request.getParameter("upload")!=null)
-		visitor.setImageLink(request.getParameter("upload"));
-		else if (request.getParameter("link")!=null)
-			visitor.setImageLink(request.getParameter("link"));
-		visitor.setType(request.getParameter("type"));
-		h.insertUser(visitor);
-	}
-	%>
+	
 	<body>
 	
-		<section id="form"  method="get">
-			<form>
+		<section id="form" >
+			<form action="SignUp"  method="post">
 				<center>
 				<h1><%="Inscription"%></h1>
 				<hr>
 				<table>
 					<tr><td><label>Username:<sup>*</sup></label></td><td><input type="text" name="username" required></td></tr>
-					<tr><td><label>Name:<sup>*</sup></label></td><td><input type="text" name="name" required></td></tr>
+					<tr><td><label>First Name:<sup>*</sup></label></td><td><input type="text" name="firstName" required></td></tr>
 					<tr><td><label>Last Name:<sup>*</sup></label></td><td><input type="text" name="lastName" required></td></tr>
 					<tr><td><label>Email:<sup>*</sup></label></td><td><input type="email" name="email" required></td></tr>
 					<tr><td><label>Password:<sup>*</sup></label></td><td><input type="password" name="password" required></td></tr>
@@ -237,7 +246,7 @@
 					</td></tr>
 				</table>	
 				<input type="reset" value="Clear" />
-				<input type="submit" value="Sing in" />
+				<input type="submit" value="Sing up" />
 				</center>
 				
 			</form>
@@ -263,7 +272,7 @@
 		$("#form #avatar figure img").click(function (){
 			$("#form #avatar figure img").css('box-shadow','inset 0 0 20px rgba(0,0,0,.7)');
 			$(this).css('box-shadow','0 0 25px  #008563 inset');
-		    $("#form #avatar input[type='hidden']").val($("#form #avatar figure img").attr('src'));
+		    $("#form #avatar input[type='hidden']").val($(this).attr('src'));
 		});
 		$("#form #radios input[type='radio']").change(function(){
 			$("#form #avatar").css('display','none');

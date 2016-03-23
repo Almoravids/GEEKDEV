@@ -36,11 +36,15 @@ public class UserSignInFilter implements Filter {
 	 */
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+	
 		HttpServletRequest httpRequest=(HttpServletRequest)request;
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
-		if (httpRequest.getSession().getAttribute("user")==null)
-			httpResponse.sendRedirect("login");
-		chain.doFilter(request, response);
+		if (httpRequest.getSession().getAttribute("user")==null){
+			httpResponse.sendRedirect("/signin");
+			}
+		else 
+			chain.doFilter(request, response);
 	}
 
 	/**

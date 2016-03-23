@@ -15,50 +15,55 @@ import beans.Visitor;
 /**
  * Servlet implementation class SignIn
  */
-@WebServlet("/SignIn")
+
 public class SignIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SignIn() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public SignIn() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		if (username!=null&&username!=""&&password!=null)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.sendRedirect("/");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		if (username != null && username != "" && password != null)
 			try {
-				logIn(request.getParameter("username"),request.getParameter("password"));
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				if (logIn(request, request.getParameter("username"), request.getParameter("password")))
+					doGet(request, response);
+				else
+					response.sendRedirect("/signin");
+			} catch (Exception e) {
+				response.sendRedirect("/signin");
 			}
-		doGet(request, response);
+
 	}
-	public boolean logIn(String user,String password) throws ClassNotFoundException, SQLException{
-		VisitorDao visitorDao=new VisitorDao();
-		Visitor visitor=visitorDao.get(user);
-		if (visitor!=null&&visitor.getPassword().equals(password))
-		return true;
-		else 
-	    return false;
+
+	public boolean logIn(HttpServletRequest request, String user, String password)
+			throws ClassNotFoundException, SQLException {
+		VisitorDao visitorDao = new VisitorDao();
+		Visitor visitor = visitorDao.get(user);
+		if (visitor != null && visitor.getPassword().equals(password)) {
+			request.getSession().setAttribute("user", visitor);
+			return true;
+		} else
+			return false;
 	}
 }

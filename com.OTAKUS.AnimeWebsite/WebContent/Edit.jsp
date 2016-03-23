@@ -6,10 +6,7 @@
 <title>Edit Profile OTAKUS anime website</title>
 </head>
 <body>
-
-
 <%@include file="WEB-INF/User/Menu.jsp" %>
 <%@include file="WEB-INF/User/Edit.jsp" %>
-
 </body>
 </html>

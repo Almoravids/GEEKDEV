@@ -1,7 +1,7 @@
 <!DOCTYPE html>
+<%@page import="Dao.VisitorDao"%>
+<%@page import="beans.Visitor"%>
 <%@page import="java.util.List"%>
-<%@page import="pack.Method"%>
-<%@page import="pack.Visitor"%>
 <html>
 <head>
   <meta charset="utf-8">
@@ -11,17 +11,18 @@
   
 </head>
 <body>
-
+<%!Visitor visitor;
+VisitorDao visitorDao=new VisitorDao();%>
 <%
-Method  method=(Method)Method.getcontext();
+
 if (request.getParameter("op")!=null){
 if (request.getParameter("op").equals("upg")&&request.getParameter("username")!=null){
-	Visitor visitor=new Visitor();
+	visitor=new Visitor();
 	visitor.setUserName(request.getParameter("username"));
 	visitor.setType(request.getParameter("grade"));
-	method.GradeUser(visitor);
+	visitorDao.grade(visitor);
 	}else if (request.getParameter("op").equals("del")&&request.getParameter("username")!=null){
-	method.deleteUser(request.getParameter("username"));
+		visitorDao.delete((String)request.getParameter("username"));
 	}}
 %>
   <center>
@@ -44,7 +45,7 @@ if (request.getParameter("op").equals("upg")&&request.getParameter("username")!=
       
        <option selected disabled value="">Select User</option> 
         <%
-        List<Visitor> listVisitor=method.getUsers();
+        List<Visitor> listVisitor=visitorDao.getAll();
       for (Visitor visitor:listVisitor){%>
     	 <option value="<%=visitor.getUserName()%>"><%=visitor.getUserName()%></option>  
       <%}%>

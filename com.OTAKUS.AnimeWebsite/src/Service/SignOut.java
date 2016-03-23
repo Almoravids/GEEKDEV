@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class singOut
  */
-@WebServlet("/singOut")
-public class SingOut extends HttpServlet {
+@WebServlet
+public class SignOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SingOut() {
+    public SignOut() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,14 +27,13 @@ public class SingOut extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("/");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().invalidate();
 		doGet(request, response);
 	}
 
