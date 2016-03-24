@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import Dao.Interfaces.IDaoIUDGGA;
-import beans.Anime;
 import beans.Visitor;
 
 public class VisitorDao implements IDaoIUDGGA<Visitor, String> {

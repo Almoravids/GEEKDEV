@@ -1,17 +1,23 @@
+<%@page import="beans.Season"%>
+<%@page import="beans.Anime"%>
+<%@page import="beans.Episode"%>
+<%@page import="beans.Type"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
  <head>
  
- <script src="../Js/jquery-2.1.3.min.js"></script>
-		<script src="../Js/jquery-ui.min.js"></script>
+ <script src="/Js/jquery-2.1.3.min.js"></script>
+		<script src="/Js/jquery-ui.min.js"></script>
   		<style>
 		body{
 		/*
+		http://images2.alphacoders.com/568/568200.jpg
 		http://img15.hostingpics.net/pics/224122canalmanga4820.jpg
 		*/
-			background:url('http://images2.alphacoders.com/568/568200.jpg') center top fixed;
+			background:url('${anime.imageLink}') center top fixed,rgba(0,0,0,.8);
 			color:white;
 			font-family:Palatino Linotype;
 			}
@@ -197,20 +203,30 @@
 }
 		</style>
 </head>
+<%!
+String link;
+%>
 <body>
 
 
 
 <header id="animeInfos">
 <div>
-	<h2>Dragon Ball Z</h2>        
-		<img id="fav" src="Image/noFav.png"><span>ongoing</span>
-		<h3>HXH , hunter x hunter</h3>
-		<p id="desc">Anime is a diverse art form with distinctive 
-		production methods and techniques that have been adapted 
-		over time in response to emergent technologies.</p>
+	<h2>${anime.name}</h2>        
+		<img id="fav" src="/Image/noFav.png"><span>${anime.stringStatue}</span>
+		
+		<h3>${anime.alias[0].alias}</h3>
+		<p id="desc">${anime.description}</p>
 </div>
-<div id="genre"><h6 class="blocks">#action</h6><h6 class="blocks">#adventure</h6><h6 class="blocks">#horror</h6></div>
+<div id="genre">
+<%
+				List<Type> types = (List<Type>) request.getAttribute("types");
+				for (Type type : types) {
+			%><h6 class="blocks">#<%=type.getType()%></h6>
+			<%
+				}
+			%>
+</div>
 </header>
 
          <nav id="navanime">
@@ -221,272 +237,24 @@
 			</ul>
 			
 		</nav>
-		<form id="searchForm" action="" method=""><input type="text" class="blocks" placeholder="EP 1-24"/><img src="Image/targetLoupe.png"></form>
+		<div id="searchForm" ><input type="text" class="blocks" placeholder="EP 1-${episodes.size() }"/><img src="/Image/targetLoupe.png"></div>
 		<hr>
 		
 		<section id="EpsSec" class="blocks">
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			 
-			  <p class="AnimeLbl">episode 1</p><p class="EpLbl">1 month ago</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" aalt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
 		
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			 
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" aalt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
+		<%
 		
+		List<Episode> episodes=(List<Episode>)request.getAttribute("episodes");
+		for (Episode episode : episodes){ 
+			link = "/watch/" + ((Anime) request.getAttribute("anime")).getName().replace(" ","_") + "/season_1"+"/episode_"
+					+ episode.getEpisode();
+		%>
 		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
+			  <a href="<%=link%>"><img src="<%=episode.getImageLink()%>" alt="Episode image"></a>
+			 
+			  <p class="AnimeLbl">episode <%=episode.getEpisode() %></p><p class="EpLbl"><%=episode.getName()%></p>
 		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-			<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-			<figure id="12">
-			  <img  src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 12</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-			<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-			<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-			<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-			<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-			<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 1</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
-		<figure id="24">
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="Episode image">
-			  
-			  <p class="AnimeLbl">EPISODE 24</p><p class="EpLbl">ONE DAY AGO</p>
-		</figure>
+		<%} %>
 </section>
 <hr>
 

@@ -59,7 +59,13 @@ public class Anime implements RowMapper<Anime>{
 	public int getStatue() {
 		return statue;
 	}
-
+	public String getStringStatue() {
+		String statue="";
+		for(Statue statues:Statue.values())
+			if (statues.getStatueId()==getStatue())
+				statue=statues.getStatue();
+		return statue;
+	}
 	public void setStatue(int statue) {
 		this.statue = statue;
 	}

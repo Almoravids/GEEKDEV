@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-      														<!-- WELCOME FILE-->
   <welcome-file-list>
     <welcome-file>/Home.jsp</welcome-file>
   </welcome-file-list>
-      														<!-- USER PAGES-->
   <servlet>
     <servlet-name>home</servlet-name>
     <jsp-file>/Home.jsp</jsp-file>
@@ -37,7 +35,6 @@
     <servlet-name>signIn</servlet-name>
     <jsp-file>/SignIn.jsp</jsp-file>
   </servlet>
-      														<!-- ADMIN PAGES -->
   <servlet>
     <servlet-name>anime</servlet-name>
     <jsp-file>/AdminPanel/Anime.jsp</jsp-file>
@@ -70,8 +67,6 @@
     <servlet-name>SignOut</servlet-name>
     <servlet-class>Service.SignOut</servlet-class>
   </servlet>
-  
-      														<!-- USER PAGES MAPPING-->
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
     <url-pattern>/SignUp</url-pattern>
@@ -90,7 +85,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>list</servlet-name>
-    <url-pattern>/list</url-pattern>
+    <url-pattern>/search</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>signup</servlet-name>
@@ -110,7 +105,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>portail</servlet-name>
-    <url-pattern>/portail</url-pattern>
+    <url-pattern>/anime/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>signIn</servlet-name>
@@ -118,7 +113,6 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>episode</servlet-name>
-    														<!-- ADMIN PAGES MAPPING-->
     <url-pattern>/panel/episode</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
@@ -137,36 +131,32 @@
     <servlet-name>user</servlet-name>
     <url-pattern>/panel/user</url-pattern>
   </servlet-mapping>
-  
-  														<!-- ERROR PAGES -->
   <error-page>
     <error-code>404</error-code>
     <location>/404.jsp</location>
   </error-page>
-  
-  
-  															<!-- FILTERS -->
   <filter>
     <filter-name>userSignIn</filter-name>
     <filter-class>Service.filters.UserSignInFilter</filter-class>
   </filter>
-  
   <filter>
     <filter-name>adminSignIn</filter-name>
     <filter-class>Service.filters.AdminSignInFilter</filter-class>
   </filter>
-  
   <filter>
     <filter-name>alreadySigned</filter-name>
     <filter-class>Service.filters.AlreadySignedFilter</filter-class>
   </filter>
-  
   <filter>
     <filter-name>watchFilter</filter-name>
     <filter-class>Service.filters.WatchFilter</filter-class>
   </filter>
   
-  												<!-- .::|	 FILTER MAPPER 	|::. -->
+    <filter>
+    <filter-name>animeFilter</filter-name>
+    <filter-class>Service.filters.AnimeFilter</filter-class>
+  </filter>
+  
   <filter-mapping>
     <filter-name>userSignIn</filter-name>
     <url-pattern>/profile</url-pattern>
@@ -191,10 +181,13 @@
     <filter-name>adminSignIn</filter-name>
     <url-pattern>/panel/*</url-pattern>
   </filter-mapping>
-  
-    <filter-mapping>
+  <filter-mapping>
     <filter-name>watchFilter</filter-name>
     <url-pattern>/watch/*</url-pattern>
   </filter-mapping>
   
+  <filter-mapping>
+    <filter-name>animeFilter</filter-name>
+    <url-pattern>/anime/*</url-pattern>
+  </filter-mapping>
 </web-app>

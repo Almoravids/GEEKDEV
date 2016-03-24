@@ -90,7 +90,7 @@ footer img{
   <form method="post">
   <input type="search"  ><input type="submit" value="search">
   </form>
-  <p class="fstP"><a href="home">HOME</a></p>-<p><a href="list">LIST</a></p>-
+  <p class="fstP"><a href="home">HOME</a></p>-<p><a href="search">SEARCH</a></p>-
   <%if(session.getAttribute("user")!=null){ %>
   <p><a href="profile">PROFILE</a></p><%}
   else{

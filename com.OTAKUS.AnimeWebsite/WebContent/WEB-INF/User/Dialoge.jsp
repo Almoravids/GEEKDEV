@@ -52,7 +52,7 @@
 				$("#background").css('visibility','hidden');
 			});	
 			$("#signup").click(function (){
-				window.open('signup','_top');
+				window.open('/signup','_top');
 			});	
 				
 				

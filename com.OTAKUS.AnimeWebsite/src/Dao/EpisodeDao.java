@@ -2,11 +2,10 @@ package Dao;
 
 import java.sql.SQLException;
 import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 
-import beans.Anime;
 import beans.Episode;
-import beans.Season;
 
 public class EpisodeDao {
 
@@ -33,7 +32,7 @@ public class EpisodeDao {
 	}
 
 	public List<Episode> getAll(int seasonId) throws DataAccessException, ClassNotFoundException, SQLException {
-		
+
 		return DaoConnection.getConnection()
 				.query("select e.* from episode e" + " where e.id_season='" + seasonId + "'", new Episode());
 	}
