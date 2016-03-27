@@ -57,15 +57,15 @@
   </servlet>
   <servlet>
     <servlet-name>SignUp</servlet-name>
-    <servlet-class>Service.SignUp</servlet-class>
+    <servlet-class>controllers.SignUp</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>SignIn</servlet-name>
-    <servlet-class>Service.SignIn</servlet-class>
+    <servlet-class>controllers.SignIn</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>SignOut</servlet-name>
-    <servlet-class>Service.SignOut</servlet-class>
+    <servlet-class>controllers.SignOut</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
@@ -137,24 +137,24 @@
   </error-page>
   <filter>
     <filter-name>userSignIn</filter-name>
-    <filter-class>Service.filters.UserSignInFilter</filter-class>
+    <filter-class>controllers.filters.UserSignInFilter</filter-class>
   </filter>
   <filter>
     <filter-name>adminSignIn</filter-name>
-    <filter-class>Service.filters.AdminSignInFilter</filter-class>
+    <filter-class>controllers.filters.AdminSignInFilter</filter-class>
   </filter>
   <filter>
     <filter-name>alreadySigned</filter-name>
-    <filter-class>Service.filters.AlreadySignedFilter</filter-class>
+    <filter-class>controllers.filters.AlreadySignedFilter</filter-class>
   </filter>
   <filter>
     <filter-name>watchFilter</filter-name>
-    <filter-class>Service.filters.WatchFilter</filter-class>
+    <filter-class>controllers.filters.WatchFilter</filter-class>
   </filter>
   
     <filter>
     <filter-name>animeFilter</filter-name>
-    <filter-class>Service.filters.AnimeFilter</filter-class>
+    <filter-class>controllers.filters.AnimeFilter</filter-class>
   </filter>
   
   <filter-mapping>

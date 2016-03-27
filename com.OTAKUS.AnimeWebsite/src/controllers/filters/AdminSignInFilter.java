@@ -1,4 +1,4 @@
-package Service.filters;
+package controllers.filters;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -11,15 +11,18 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Visitor;
+
 /**
- * Servlet Filter implementation class AlreadySignedFilter
+ * Servlet Filter implementation class AdminSignInFilter
  */
-public class AlreadySignedFilter implements Filter {
+
+public class AdminSignInFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public AlreadySignedFilter() {
+    public AdminSignInFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -34,12 +37,16 @@ public class AlreadySignedFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpRequest=(HttpServletRequest) request;
+		HttpServletRequest httpRequest=(HttpServletRequest)request;
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
-		if (httpRequest.getSession().getAttribute("user")!=null)
-			httpResponse.sendRedirect("/");
-		else
+		Visitor visitor=(Visitor)httpRequest.getSession().getAttribute("user");
+		if (visitor.getType().equals("user"))
+			httpResponse.sendRedirect("/signin");
+		else 
 			chain.doFilter(request, response);
+	
+			
+			
 	}
 
 	/**

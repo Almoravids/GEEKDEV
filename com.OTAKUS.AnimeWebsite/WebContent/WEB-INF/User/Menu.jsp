@@ -37,7 +37,7 @@
 	<input type="search" name="search" id="search" />
 	<div>
 		<li>Home</li>
-		<li>List</li>
+		<li>Search</li>
 		<li>Login</li>
 	</div>
 	
@@ -55,7 +55,7 @@
 		});
 		
 		$('.HiddenNav li').click(function(){
-			if($(this).text().toLowerCase()=='list'||$(this).text().toLowerCase()=='home')
+			if($(this).text().toLowerCase()=='search'||$(this).text().toLowerCase()=='home')
 			window.open("/"+$(this).text().toLowerCase(),'_top');
 			else if($(this).text().toLowerCase()=='login')
 				$('#background').css('visibility','visible');

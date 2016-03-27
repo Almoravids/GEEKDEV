@@ -299,7 +299,7 @@ body {
 	</div>
 	<c:set var="found" value="false" />
 	<section id="secP"> <iframe id="videoy"
-		src="https://r2---sn-25g7sm76.googlevideo.com/videoplayback?id=89d395a2388ddb63&itag=22&source=picasa&begin=0&requiressl=yes&mm=30&mn=sn-25g7sm76&ms=nxu&mv=m&nh=EAY&pl=21&mime=video/mp4&lmt=1441850950717088&mt=1458851951&ip=41.251.191.94&ipbits=8&expire=1458880792&sparams=ip,ipbits,expire,id,itag,source,requiressl,mm,mn,ms,mv,nh,pl,mime,lmt&signature=2183BD68D0F6528105AAD2229535AA7BCE496947.620DDAE926447F2581EF419D32C137F1CA85E96B&key=ck2" frameborder="0"
+		src="${requestScope.episode.getLink()}" frameborder="0"
 		allowfullscreen></iframe> <aside id="episodes">
 
 	<ul>
