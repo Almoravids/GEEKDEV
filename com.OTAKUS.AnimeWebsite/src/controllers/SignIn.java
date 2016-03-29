@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dao.VisitorDao;
+import Service.UserImpl;
 import beans.Visitor;
 
 /**
@@ -50,7 +51,9 @@ public class SignIn extends HttpServlet {
 					doGet(request, response);
 				else
 					response.sendRedirect("/signin");
-			} catch (Exception e) {
+			} catch (SQLException e) {
+				response.sendError(404);
+			}catch (Exception e) {
 				response.sendRedirect("/signin");
 			}
 
@@ -58,8 +61,8 @@ public class SignIn extends HttpServlet {
 
 	public boolean logIn(HttpServletRequest request, String user, String password)
 			throws ClassNotFoundException, SQLException {
-		VisitorDao visitorDao = new VisitorDao();
-		Visitor visitor = visitorDao.get(user);
+		UserImpl visitorImpl = new UserImpl();
+		Visitor visitor = visitorImpl.get(user);
 		if (visitor != null && visitor.getPassword().equals(password)) {
 			request.getSession().setAttribute("user", visitor);
 			return true;

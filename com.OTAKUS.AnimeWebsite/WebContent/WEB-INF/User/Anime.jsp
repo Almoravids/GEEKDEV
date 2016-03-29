@@ -13,13 +13,13 @@
 <script src="/Js/jquery-2.1.3.min.js"></script>
 <script src="/Js/jquery-ui.min.js"></script>
 <style>
-body {
+
 	/*
 		http://images2.alphacoders.com/568/568200.jpg
 		http://img15.hostingpics.net/pics/224122canalmanga4820.jpg
 		*/
-	background: url('${anime.imageLink}') center top fixed,
-		rgba(0, 0, 0, .8);
+body {
+	background: url('${anime.imageLink}') center top fixed,rgba(0, 0, 0, .8);
 	color: white;
 	font-family: Palatino Linotype;
 }
@@ -38,17 +38,18 @@ body {
 }
 
 #animeInfos > div:not(#genre){
-border-radius : 4px;
-box-shadow: inset 0 0 200px black;
-padding: 10px;
+	border-radius: 4px;
+	box-shadow: inset 0 0 200px black;
+	padding: 10px;
 }
+
 #animeInfos span {
 	text-transform: capitalize;
 	float: right;
 	padding-top: 20px;
 }
 
-#fav, #animeInfos h2 {
+#fav , #animeInfos h2 {
 	display: inline;
 	vertical-align: middle;
 }
@@ -207,7 +208,7 @@ hr {
 }
 
 #EpsSec .EpLbl {
-	width: 60%;
+	width: 58%;
 	text-align: right;
 }
 
@@ -218,7 +219,7 @@ hr {
 
 @font-face {
 	font-family: Label;
-	src: url('Fonts/Aspex.ttf');
+	src: url('/Fonts/Aspex.ttf');
 }
 </style>
 </head>
@@ -244,33 +245,46 @@ hr {
 
 		</div>
 	</header>
-
+	
 	<nav id="navanime">
-		<c:forEach var="season" items="${seasons}">
-			<ul>
+	<ul>
+	<c:choose>
+	<c:when test="${seasons.size()>1}">
+		
+			<c:forEach var="season" items="${seasons}">
 				<li>season ${season.season}</li>
-			</ul>
-		</c:forEach>
+			</c:forEach>
+	
+	
+	</c:when>
+	<c:otherwise><li>Episodes</li></c:otherwise>
+	</c:choose>
+		</ul>
 	</nav>
 	<div id="searchForm">
 		<input type="text" class="blocks"
-			placeholder="EP 1-${episodes.size() }" /><img
+			placeholder="EP 1-${episodes.size()}" /><img
 			src="/Image/targetLoupe.png">
 	</div>
 	<hr>
 
 	<section id="EpsSec" class="blocks">
+	<c:choose>
+	<c:when test="${episodes.size()!=null}">
 		<c:forEach var="episode" items="${episodes}">
 			<c:set var="link"
 				value="/watch/${anime.name.replace(' ', '_')}/season_1/episode_${episode.episode}" />
-			<figure>
+			<figure id="${episode.episode}">
+			
 				<a href="${link}"><img src="${episode.imageLink}"
-					id="${episode.episode}" alt="Episode image"></a>
+					 alt="Episode image">${link }</a>
 				<p class="AnimeLbl">episode ${episode.episode}</p>
 				<p class="EpLbl">${episode.episode}</p>
 			</figure>
 		</c:forEach>
-
+		</c:when>
+		<c:otherwise>There's no Episode for this Anime yet !!</c:otherwise>
+		</c:choose>
 	</section>
 	<hr>
 

@@ -175,32 +175,80 @@ body {
 	opacity: 0.8;
 }
 
-#comments #img2 {
-	position: relative;
-	top: 65px;
-	left: -180px;
+
+
+
+.CommentHeader{
+margin-top:0;
+padding-top:2%;
+width:100%;
+}
+
+.CommentHeader #anonym,.CommentHeader a,.CommentHeader span{
+vertical-align:top;
+}
+.CommentHeader #anonym{
+margin-left:47%;
+}
+.CommentHeader #anonym {
+/* 	position: relative; */
+/* 	top: 0px; */
+/* 	left: 400px; */
+}
+
+.CommentHeader #anonym:hover {
+	cursor: pointer;
+}
+
+
+.CommentHeader a{
+	color: white;
+	font-size: 1em;
+	text-decoration:none;
+	}
+.CommentHeader a.login {
+margin-left: 4%;
+}
+.CommentHeader a.homePage {
+margin-left: 4%;
+}
+.CommentHeader span {
+/* 	position: relative; */
+/* 	top: 0px; */
+/* 	left: 20px; */
+	color: white;
+	font-size: 1em;
+}
+
+.CommentHeader #userImage,
+.CommentHeader input[type="textarea"],
+.CommentHeader input[type="button"]{
+    margin-top:2%;
+    vertical-align:middle;
+}
+.CommentHeader #userImage {
+/* 	position: relative; */
+/* 	top: 65px; */
 	width: 50px;
 	height: 50px;
 	border-radius: 5px;
 }
+.CommentHeader input[type="textarea"] {
 
-#comments input[type="textarea"] {
-	position: relative;
 	width: 520px;
 	height: 50px;
 	font-size: 1.2em;
 	border-radius: 5px;
-	top: 10px;
-	left: 100px;
+/* 	top: 10px; */
+/* 	left: 100px; */
 	color: #008563;
 }
 
-#comments input[type="button"] {
-	margin-left: 640px;
-	margin-top: -35px;
-	height: 40px;
-	padding-left: 20px;
-	padding-right: 20px;
+.CommentHeader input[type="button"] {
+/* 	margin-left: 640px; */
+/* 	margin-top: -35px; */
+
+	padding:12px 20px;
 	border: 1px solid white;
 	border-radius: 0 0 2px 2px;
 	background:
@@ -210,80 +258,58 @@ body {
 	border-radius: 5px;
 }
 
-#comments input[type="button"]:hover {
+.CommentHeader input[type="button"]:hover {
 	cursor: pointer;
 }
 
-#comments #img1 {
-	position: relative;
-	top: 0px;
-	left: 400px;
-}
-
-#comments #img1:hover {
-	cursor: pointer;
-}
-
-#comments span:nth-child(3) {
-	position: relative;
-	top: 0px;
-	left: 500px;
-	color: white;
-	font-size: 1em;
-}
-
-#comments span:nth-child(1) {
-	position: relative;
-	top: 0px;
-	left: 20px;
-	color: white;
-	font-size: 1em;
-}
-
-#comments span:nth-child(2) {
-	position: relative;
-	top: 0px;
-	left: 30px;
-	color: white;
-	font-size: 1em;
-}
-
-#comments hr {
+.CommentHeader hr {
 	margin-top: 30px;
+	margin-left:0;
 	border: 2px solid #111;
-	width: 96%;
+	width: 85%;
 }
+.Comment{
 
-#comments #img3 {
+    color:white;
+margin-left:5%;
+}
+.Comment img,
+.Comment div{
+vertical-align:top;
+display:inline-block;
+}
+.Comment img {
 	float: left;
 	width: 70px;
 	height: 70px;
 }
 
-#comments #infocom {
-	width: 550px;
+.Comment img  {
 	min-height: 70px;
 	max-height: 500px;
 	overflow: hidden;
 	color: white;
 }
-
-#comments  #infocom p {
+.Comment  div{
+	max-width:85% }
+.Comment  div p {
 	margin-left: 30px;
 }
 
-#comments article {
+.Comment article {
 	margin: 20px;
 	border-bottom: 1px solid #008563;
 }
 
-#comments article #infocom span:nth-child(1) {
+.Comment .leftSpan {
 	color: #008563;
+	margin-left:5%;
 }
 
-#comments article #infocom span:nth-child(2) {
+.Comment .rightSpan {
 	opacity: 0.8;
 	font-size: 0.8em;
+	margin-left:10%;
 }
 </style>
 </head>
@@ -313,7 +339,7 @@ body {
 			</c:if>
 
 		</c:forEach>
-		<c:if test="${found==false}">
+		<c:if test="${!found}">
 			<li><a href="#"> No Other Episodes </a>
 				<p>${anime.name}</p></li>
 		</c:if>
@@ -329,23 +355,57 @@ body {
 			src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-32.png"
 			id="imgcom" />
 	</div>
-	<section id="comments"> <span>3 Comments</span> <span>Otakus</span>
-	<span>Login</span> <img
+	
+	<section id="comments"> 
+	
+	
+	<!-- ,
+.CommentHeader a.login -->
+	
+	<figure class="CommentHeader">
+	<span>3 Comments</span> <a href="/" class="homePage">OTAKUS</a>
+	<img
 		src="http://icons.iconarchive.com/icons/hopstarter/malware/32/Notification-icon.png"
-		id="img1" /> <img
-		src="http://1.gravatar.com/avatar/
-			d8b77337f59c435c2588af2c26561357?s=256&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D256&r=G"
-		id="img2" /> <input type="textarea" placeholder="Join the discussion" />
-	<br>
+		id="anonym" />
+	<c:if test="${user==null}">
+	<a href="/signin" class="login">Login</a> 
+	</c:if>
+	<br/>
+	 
+		<img
+		src="/${user.imageLink}"
+		id="userImage" /> <input type="textarea" placeholder="Join the discussion" />
+	
 	<input type="button" />
+	
 	<hr>
-	<article> <img src="/Image/Avatars/001.png" id="img3" />
+	</figure>
+	
+	
+	
+	
+	
+	
+	<article class="Comment"> <img src="/Image/Avatars/001.png"  />
 
-	<div id="infocom">
-		<span>Wassim</span><span>5 Day ago</span>
-		<p>Nice Episode</p>
+	<div >
+		<span class="leftSpan">Wassim</span><span class="rightSpan">5 Day ago</span>
+		<p>Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>
+		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice EpisodeEpisodeNice EpisodeEpisodeNice Episode<br/>
+		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>
+		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>
+		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode</p>
 	</div>
-	</article> <article> <img src="/Image/Avatars/002.png" id="img3" />
+	</article>
+	<article class="Comment"> <img src="/Image/Avatars/001.png"  />
+
+	<div >
+		<span class="leftSpan">Wassim</span><span class="rightSpan">5 Day ago</span>
+		<p>awesome nice episode</p>
+	</div>
+	</article>
+	
+	<!-- <article> <img src="/Image/Avatars/002.png" id="img3" />
 
 	<div id="infocom">
 		<span>Mahdi</span><span>5 Day ago</span>
@@ -357,7 +417,7 @@ body {
 		<span>Anas</span><span>7 Day ago</span>
 		<p>i hate tokyo goul</p>
 	</div>
-	</article> </section>
+	</article> -->  </section>
 
 </body>
 <script>

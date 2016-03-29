@@ -2,7 +2,6 @@ package controllers.filters;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +22,6 @@ import Dao.EpisodeDao;
 import Dao.SeasonDao;
 import Dao.TypeDao;
 import beans.Anime;
-import beans.Type;
 
 /**
  * Servlet Filter implementation class animeFilter
@@ -53,9 +51,11 @@ public class AnimeFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		Matcher matcher = Pattern.compile("^/anime/(\\w*)/?$").matcher(httpRequest.getRequestURI());
+	
 		if (matcher.find()) {
-
 			try {
+
+				
 				Anime anime = new AnimeDao().get(matcher.group(1).replace("_", " ").toLowerCase());
 				request.setAttribute("anime", anime);
 				TypeDao typeDao = new TypeDao();
@@ -63,7 +63,11 @@ public class AnimeFilter implements Filter {
 				request.setAttribute("seasons", new SeasonDao().getAll(anime.getAnimeId()));
 				request.setAttribute("episodes",new EpisodeDao().getAll(SeasonDao.switchNumSeasonToId(1, anime.getAnimeId())));
 				chain.doFilter(request, response);
-			} catch (DataAccessException | ClassNotFoundException | SQLException e) {
+			} catch ( SQLException e) {
+				httpResponse.sendError(500);
+			}catch(DataAccessException e){
+				chain.doFilter(request, response);
+			}catch (Exception e) {
 				httpResponse.sendError(404);
 			}
 

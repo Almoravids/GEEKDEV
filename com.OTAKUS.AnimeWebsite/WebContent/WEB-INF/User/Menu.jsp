@@ -1,5 +1,7 @@
 
 <%@page import="beans.Visitor"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="Dialoge.jsp" %>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -15,24 +17,21 @@
 	
 	<a href="/home"><img id="logo"src="/Image/LOGO.png" /></a> 
 	
-	<%
-	if (session.getAttribute("user")!=null) {%>
+	<c:choose>
+	<c:when test="${user!=null}">
 	 <ul id="userNav" class="HiddenNav">
 		<input type="search" name="search" id="search" />
 	<div>
-	
-	<%  
-	Visitor visitor=(Visitor)session.getAttribute("user");
-	%>
-		<li><%=visitor.getUserName()%></li>
+		<li>${user.userName}</li>
 		<li>Search</li>
 		<li>Home</li>
 	</div>
 	</ul>
-		<img id="userImg" src="/<%=visitor.getImageLink()%>" />
+		<img id="userImg" src="/${user.imageLink}" />
 		
 	 	<img  id="notifications"src="/Image/ringingBell.png" />
-	<%}else{ %>
+	</c:when>
+	<c:otherwise>
 	<ul id="ulnav" class="HiddenNav">
 	<input type="search" name="search" id="search" />
 	<div>
@@ -42,7 +41,8 @@
 	</div>
 	
 	</ul>
-	<%} %>
+	</c:otherwise>
+	</c:choose>
 
 	<img id="Loupe" src="/Image/Loupe.png" />
 </nav>
@@ -73,6 +73,5 @@
 		});
 
 </script>
-<%@include file="Dialoge.jsp" %>
 </body>
 </html>

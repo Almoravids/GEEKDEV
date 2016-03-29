@@ -61,16 +61,16 @@ public class WatchFilter implements Filter {
 				Anime anime=new AnimeDao().get(matcher.group(1).replace("_", " ").toLowerCase());
 				request.setAttribute("anime", anime);
 				
-				
 				Season season=new SeasonDao().get(SeasonDao.switchNumSeasonToId(seasonNum, anime.getAnimeId()));
 				request.setAttribute("season", season);
 				
 				episodeNum=Integer.parseInt(matcher.group(4));
 				EpisodeDao episodeDao=new EpisodeDao();
-				Episode episode=episodeDao.get(EpisodeDao.switchNumEpisodeToId(seasonNum,episodeNum));
+				Episode episode=episodeDao.get(EpisodeDao.switchNumEpisodeToId(season.getSeasonId(),episodeNum));
 				request.setAttribute("episode", episode);
 				
-				List<Episode> seasonEpisodes=episodeDao.getAll(SeasonDao.switchNumSeasonToId(seasonNum, anime.getAnimeId()));
+				List<Episode> seasonEpisodes=episodeDao.getAll(season.getSeasonId());
+				
 				request.setAttribute("allEpisodes", seasonEpisodes);
 				
 				chain.doFilter(httpRequest, response);
