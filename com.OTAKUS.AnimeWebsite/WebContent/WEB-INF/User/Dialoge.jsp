@@ -24,7 +24,7 @@
 	<body>
 
 	
-		<form action="SignIn"id="background" method="post">
+		<form action="/SignIn"id="background" method="post">
 			<div id="dg">
 				<img src="/Image/closeDialog.png">
 				<center>

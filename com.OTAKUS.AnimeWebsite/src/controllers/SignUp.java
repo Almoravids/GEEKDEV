@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.dao.DataAccessException;
 
 import Dao.VisitorDao;
+import Service.UserImpl;
 import beans.Visitor;
 
 /**
@@ -42,7 +43,7 @@ public class SignUp extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	VisitorDao visitorDao=new VisitorDao();
+	UserImpl userImpl=new UserImpl();
 	
 		if (request.getParameter("username")!=null){
 			Visitor visitor=new Visitor();
@@ -62,7 +63,7 @@ public class SignUp extends HttpServlet {
 			
 			visitor.setType(request.getParameter("type"));
 			try {
-				if (visitorDao.insert(visitor))doGet(request, response);
+				if (userImpl.insert(visitor))doGet(request, response);
 			} catch (DataAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

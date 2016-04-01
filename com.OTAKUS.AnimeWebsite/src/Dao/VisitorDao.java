@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import Dao.Interfaces.IDaoIUDGGA;
+import Dao.Interfaces.IDaoUser;
 import beans.Visitor;
 
-public class VisitorDao implements IDaoIUDGGA<Visitor, String> {
+public class VisitorDao implements IDaoUser<Visitor, String> {
 
 	@Override
 	public boolean update(Visitor visitor) throws DataAccessException, ClassNotFoundException, SQLException {
@@ -43,7 +43,7 @@ public class VisitorDao implements IDaoIUDGGA<Visitor, String> {
 		List<Visitor> ListVisitor = DaoConnection.getConnection().query("select * from visitor", new Visitor());
 		return (List<Visitor>) ListVisitor;
 	}
-
+	@Override
 	public boolean grade(Visitor visitor)
 			throws DataAccessException, ClassNotFoundException, SQLException {
 		int rs = DaoConnection.getConnection().update("update visitor set type=? where username=?", visitor.getType(),

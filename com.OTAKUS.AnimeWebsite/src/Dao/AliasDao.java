@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import Dao.Interfaces.IDaoID;
+import Dao.Interfaces.IDaoAlias;
 import beans.Alias;
 
-public class AliasDao implements IDaoID<Alias,Integer>{
+public class AliasDao implements IDaoAlias<Alias,Integer>{
 
-	
-	public List<Alias> get(Integer aliasId) throws DataAccessException, ClassNotFoundException, SQLException {
-		return (List<Alias>)DaoConnection.getConnection().query("select * from alias where id_anime="+aliasId,new Alias());
+	@Override
+	public List<Alias> get(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
+		return (List<Alias>)DaoConnection.getConnection().query("select * from alias where id_anime="+animeId,new Alias());
 	}
 
 
@@ -31,7 +31,7 @@ public class AliasDao implements IDaoID<Alias,Integer>{
 	    return DaoTools.getResult(rs);
 	}
 
-	
+	@Override
 	public boolean update(Alias alias) throws DataAccessException, ClassNotFoundException, SQLException {
 		boolean rs=false;
 		if(delete(alias.getAnimeId())&&insert(alias))
@@ -40,27 +40,9 @@ public class AliasDao implements IDaoID<Alias,Integer>{
 	}
 
 
-	public boolean insertAll(List<Alias> ListAlias) throws DataAccessException, ClassNotFoundException, SQLException {
-		int rs=0;
-		for (Alias alias:ListAlias)
-			if(insert(alias))
-				rs++;
-		if (rs==ListAlias.size())
-		return true;
-		else 
-		return false;
-	}
 
 
-	public boolean updateAll(List<Alias> ListAlias) throws DataAccessException, ClassNotFoundException, SQLException {
-		boolean rs=false;
-		for (Alias alias :ListAlias)
-			delete(alias.getAnimeId());
-			if(insertAll(ListAlias))
-				rs=true;
-			return rs;
-	}
-
+	
 
 
 }

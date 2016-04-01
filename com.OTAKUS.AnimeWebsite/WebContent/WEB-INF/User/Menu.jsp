@@ -1,7 +1,8 @@
-
 <%@page import="beans.Visitor"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${user eq null}">
 <%@include file="Dialoge.jsp" %>
+</c:if>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -27,7 +28,7 @@
 		<li>Home</li>
 	</div>
 	</ul>
-		<img id="userImg" src="/${user.imageLink}" />
+		<img id="userImg" src="${user.imageLink}" />
 		
 	 	<img  id="notifications"src="/Image/ringingBell.png" />
 	</c:when>

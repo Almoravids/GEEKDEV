@@ -4,10 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>
-<%!Visitor visitor1;%>
-<%visitor1=(Visitor)session.getAttribute("user"); %>
-<%=visitor1.getFirstName()%> Profile OTAKUS Anime web site</title>
+<title>${user.firstName} Profile OTAKUS Anime web site</title>
 </head>
 <body>
 <%@include file="WEB-INF/User/Menu.jsp" %>

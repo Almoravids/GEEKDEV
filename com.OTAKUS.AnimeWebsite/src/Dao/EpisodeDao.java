@@ -5,10 +5,11 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import Dao.Interfaces.IDaoEpisode;
 import beans.Episode;
 
-public class EpisodeDao {
-
+public class EpisodeDao implements IDaoEpisode<Episode, Integer>{
+     @Override
 	public boolean update(Episode episode) throws DataAccessException, ClassNotFoundException, SQLException {
 
 		int rs = DaoConnection.getConnection().update(
@@ -17,27 +18,27 @@ public class EpisodeDao {
 				episode.getEpisodeid());
 		return DaoTools.getResult(rs);
 	}
-
+     @Override
 	public boolean insert(Episode episode) throws DataAccessException, ClassNotFoundException, SQLException {
 		int rs = DaoConnection.getConnection().update("insert into episode values(episode_seq.nextval,?,?,?,?,?,?)",
 				episode.getEpisode(), episode.getName(), episode.getLink(), episode.getImageLink(),
 				episode.getSeasonId(), episode.getType());
 		return DaoTools.getResult(rs);
 	}
-
-	public boolean delete(Episode episode) throws DataAccessException, ClassNotFoundException, SQLException {
-		int rs = DaoConnection.getConnection().update("delete from episode e where e.num_episode=? and e.id_season =?",
-				episode.getEpisode(), episode.getSeasonId());
+     @Override
+	public boolean delete(Integer episodeId) throws DataAccessException, ClassNotFoundException, SQLException {
+		int rs = DaoConnection.getConnection().update("delete from episode e where e.id_episode=?",
+				episodeId);
 		return DaoTools.getResult(rs);
 	}
-
-	public List<Episode> getAll(int seasonId) throws DataAccessException, ClassNotFoundException, SQLException {
+     @Override
+	public List<Episode> getAll(Integer seasonId) throws DataAccessException, ClassNotFoundException, SQLException {
 
 		return DaoConnection.getConnection()
 				.query("select e.* from episode e" + " where e.id_season='" + seasonId + "'", new Episode());
 	}
-
-	public Episode get(int id_episode) throws ClassNotFoundException, SQLException {
+     @Override
+	public Episode get(Integer id_episode) throws ClassNotFoundException, SQLException {
 
 		return DaoConnection.getConnection().queryForObject(
 				"select e.* from episode e " + " where  " + " e.id_episode=" + id_episode, new Episode());

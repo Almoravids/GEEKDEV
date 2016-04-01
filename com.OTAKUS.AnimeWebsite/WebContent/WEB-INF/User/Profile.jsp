@@ -5,6 +5,7 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="/Js/classes-ajax.js"></script>
 <style>
 #profile h1,#profile h3,#profile h4,#profile h5{
   display:inline-block;
@@ -666,9 +667,11 @@ $('#eps #rightArrow').click(function(){
 	<script>
 	var $sl=$("#uploadImg #avatar figure");
 	var s;
+	
 		var length=$("#uploadImg #avatar figure img").length;
 		var c=1;
 		function slideleft(){
+			
 			if(c<length-5){
 				c++;
 			$sl.animate({'margin-left' : '-='+s+'px'},100);
@@ -682,11 +685,12 @@ $('#eps #rightArrow').click(function(){
 		}
 		
 		$('#photoProfile  + img').click(function (){
-
+			
 				$('#uploadImg').fadeToggle();
-
-				//document.querySelector('#uploadImg #avatar figure img').offsetWidth+=4.5;
-			});
+     s=document.querySelector('#uploadImg #avatar figure img').offsetWidth+=4.5;
+     ajaxConnection(urlMaker("UpdateImgProfile", [new Params('img', $("#photoProfile").attr('src'))]), "GET");
+     $("#userImg").attr('src',$("#photoProfile").attr('src'));
+		});
 		$("#uploadImg #avatar figure img").click(function (){
 			$("#uploadImg #avatar figure img").css('box-shadow','inset 0 0 20px rgba(0,0,0,.7)');
 			$(this).css('box-shadow','0 0 25px  #008563 inset');

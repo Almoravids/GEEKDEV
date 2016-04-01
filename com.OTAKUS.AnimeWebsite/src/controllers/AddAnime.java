@@ -48,7 +48,7 @@ public class AddAnime extends HttpServlet {
 			Anime anime=new Anime();
 			AnimeDao animeDao=new AnimeDao();
 			try {
-				anime.setId(animeDao.getId());
+				anime.setId(animeDao.getAnimeId());
 			} catch (DataAccessException | ClassNotFoundException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

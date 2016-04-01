@@ -269,14 +269,16 @@ margin-left: 4%;
 	width: 85%;
 }
 .Comment{
-
+ margin:0 5% ;
     color:white;
-margin-left:5%;
+	border-bottom: 1px solid #008563;
 }
 .Comment img,
 .Comment div{
 vertical-align:top;
 display:inline-block;
+
+    margin:2% 0;
 }
 .Comment img {
 	float: left;
@@ -296,10 +298,6 @@ display:inline-block;
 	margin-left: 30px;
 }
 
-.Comment article {
-	margin: 20px;
-	border-bottom: 1px solid #008563;
-}
 
 .Comment .leftSpan {
 	color: #008563;
@@ -388,7 +386,7 @@ display:inline-block;
 	
 	<article class="Comment"> <img src="/Image/Avatars/001.png"  />
 
-	<div >
+	<div>
 		<span class="leftSpan">Wassim</span><span class="rightSpan">5 Day ago</span>
 		<p>Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>
 		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice EpisodeEpisodeNice EpisodeEpisodeNice Episode<br/>

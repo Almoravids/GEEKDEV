@@ -24,56 +24,7 @@
 </script>
 </head>
 <body>
-	<!-- <%/*
-if (request.getParameter("op")!=null)
-{
-	if (request.getParameter("op").equals("add")&&request.getParameter("name")!=null){
-	Anime anime;
-	List list=new ArrayList<ALias>();
-	list.add(new ALias(a.getId(),request.getParameter("name")));
-	String[] alias=request.getParameter("allias").split(",");
-	for (String alia : alias)
-		list.add(new ALias(a.getId(),alia));
-		a.setAlias(list);
-	
-		list=new ArrayList<Type>();
-		String[] types=request.getParameter("types").split(",");
-		for (String type : types)
-		list.add(new Type(type));
-		a.setGenre(list);
-	a.setDesc(request.getParameter("desc"));
-	a.setImageLink(request.getParameter("imgLink"));
-	a.setStatue(Integer.parseInt(request.getParameter("statue")));
-	h.insertAnime(a);
-	System.out.println("ffhh");
-	}
-	else if (request.getParameter("op").equals("mod")){
-		 h=(Method)Method.getcontext();
-		Anime a=new Anime();
-		a.setId(Integer.parseInt(request.getParameter("id")));
-		List list=new ArrayList<String>();
-		
-		String[] alias=request.getParameter("allias").split(",");
-		for (String alia : alias)
-		list.add(alia);
-		a.setAlias(list);
-		
-		list=new ArrayList<String>();
-		String[] types=request.getParameter("types").split(",");
-		for (String type : types)
-		list.add(type);
-		a.setGenre(list);
-		a.setDesc(request.getParameter("desc"));
-		a.setImageLink(request.getParameter("imgLink"));
-		a.setStatue(Integer.parseInt(request.getParameter("statue")));
-		h.updateAnime(a);}
-	else if (request.getParameter("op").equals("del")){
-		 h=(Method)Method.getcontext();
-		h.deleteAnime(request.getParameter("animename"));
-	}
-	
-}*/
-%> -->
+
 <%!AnimeDao animeDao=new AnimeDao(); %>
 	<center>
 		<header id="nav">
