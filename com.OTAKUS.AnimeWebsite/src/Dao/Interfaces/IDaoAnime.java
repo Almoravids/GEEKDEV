@@ -10,9 +10,9 @@ public interface IDaoAnime<T, S> {
 
 	public boolean update(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
 
-	public boolean delete(S animeId) throws DataAccessException, ClassNotFoundException, SQLException;
+	public boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException;
 
-	public T get(S animeId) throws DataAccessException, ClassNotFoundException, SQLException;
+	public T get(String animeName) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public List<T> getAll() throws DataAccessException, ClassNotFoundException, SQLException;
 

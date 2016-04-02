@@ -7,6 +7,5 @@
 <%@include file="WEB-INF/User/Slider.jsp" %>
 <%@include file="WEB-INF/User/Home.jsp" %>
 <%@include file="WEB-INF/User/Footer.jsp" %>
-
 </body>
 </html>

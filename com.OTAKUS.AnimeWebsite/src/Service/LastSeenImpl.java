@@ -5,27 +5,32 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import Dao.LastSeenDao;
 import Service.interfaces.ILastSeen;
 import beans.LastSeen;
 
 public class LastSeenImpl implements ILastSeen<LastSeen,String> {
-
+    private LastSeenDao lastSeenDao;
+    {
+    	lastSeenDao=new LastSeenDao();
+    }
 	@Override
-	public boolean insert(LastSeen Comment) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insert(LastSeen comment) throws DataAccessException, ClassNotFoundException, SQLException {
+		boolean rs;
+		rs=lastSeenDao.insert(comment);
+		return rs;
 	}
 
 	@Override
 	public boolean delete(String commentId) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		boolean rs;
+		rs=lastSeenDao.delete(commentId);
+		return rs;
 	}
 
 	@Override
 	public List<LastSeen> get(String username) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return lastSeenDao.get(username);
 	}
 
 }

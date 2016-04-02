@@ -38,13 +38,8 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 	}
 
 	@Override
-	public boolean delete(String animename) throws DataAccessException, ClassNotFoundException, SQLException {
-		Anime anime = get(animename);
-		AliasDao alias = new AliasDao();
-		alias.delete(anime.getAnimeId());
-		TypeDao type = new TypeDao();
-		type.deleteKind(anime.getAnimeId());
-		int rs = DaoConnection.getConnection().update("delete from anime where id_anime=" + anime.getAnimeId());
+	public boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
+		int rs = DaoConnection.getConnection().update("delete from anime where id_anime=" + animeId);
 		return DaoTools.getResult(rs);
 	}
 
@@ -71,13 +66,11 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 
 	@Override
 	public List<Anime> getAllByAlias(String aliasId) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Anime> getAllByType(String typeId) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

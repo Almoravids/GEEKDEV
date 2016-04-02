@@ -9,52 +9,50 @@ import Dao.AnimeDao;
 import Service.interfaces.IAnime;
 import beans.Anime;
 
-public class AnimeImpl implements IAnime<Anime,Integer>{
+public class AnimeImpl implements IAnime<Anime,String>{
     private AnimeDao animeDao;
     
     {
     	animeDao=new AnimeDao();
     }
 	@Override
-	public boolean insert(Anime Anime) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insert(Anime anime) throws DataAccessException, ClassNotFoundException, SQLException {
+		boolean rs;
+		rs=animeDao.insert(anime);
+		return rs;
 	}
 
 	@Override
-	public boolean update(Anime Anime) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean update(Anime anime) throws DataAccessException, ClassNotFoundException, SQLException {
+		boolean rs;
+		rs=animeDao.insert(anime);
+		return rs;
 	}
 
 	@Override
 	public boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		boolean rs;
+		rs=animeDao.delete(animeId);
+		return rs;
 	}
 
 	@Override
-	public Anime get(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public Anime get(String animeName) throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.get(animeName);
 	}
 
-	@Override
+	@Override 
 	public List<Anime> getAll() throws DataAccessException, ClassNotFoundException, SQLException {
-		List<Anime> list;
-		list=animeDao.getAll();
-		return list;
+		return animeDao.getAll();
 	}
 
 	@Override
-	public List<Anime> getAllByAlias(Integer aliasId) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Anime> getAllByAlias(String alias) throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getAllByAlias(alias);
 	}
 
 	@Override
-	public List<Anime> getAllByType(Integer aliasId) throws DataAccessException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+	public List<Anime> getAllByType(String type) throws DataAccessException, ClassNotFoundException, SQLException {
 		return null;
 	}
 

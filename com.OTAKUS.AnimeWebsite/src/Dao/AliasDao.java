@@ -26,8 +26,8 @@ public class AliasDao implements IDaoAlias<Alias,Integer>{
 	
 
 	@Override
-	public boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
-		int rs=DaoConnection.getConnection().update("delete from alias where id_anime="+animeId);
+	public boolean delete(Integer aliasId) throws DataAccessException, ClassNotFoundException, SQLException {
+		int rs=DaoConnection.getConnection().update("delete from alias where id_anime="+aliasId);
 	    return DaoTools.getResult(rs);
 	}
 
