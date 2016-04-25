@@ -1,0 +1,87 @@
+/*
+requirment a.Anime||a.FloatingAnime img p  p
+*/
+.Anime, .FloatingAnime {
+	display: inline-block;
+	margin: .1%;
+	min-width: 225px;
+}
+
+.Anime img, .FloatingAnime img {
+	height: 100%;
+	width: 100%;
+}
+
+.Anime p, .FloatingAnime p {
+	color: white;
+	font-family: Label;
+	font-size: 80%;
+	display: inline-block;
+	position: relative;
+	bottom: .4em;
+	margin: 0;
+	padding: 10px 2%;
+}
+
+.FloatingAnime p {
+	background: rgba(0, 0, 0, .7);
+	bottom: 3em;
+}
+
+.Anime p:nth-child(2), .FloatingAnime p:nth-child(2) {
+	text-align: left;
+	width: 66%;
+}
+
+.Anime p:nth-child(3), .FloatingAnime p:nth-child(3) {
+	width: 26%;
+	text-align: right;
+	margin: 0;
+}
+
+/*POPUP  Notification*/
+.Alert {
+	background: #008563;
+	opacity: .9;
+	width: 18%;
+	box-shadow: inset 5px 5px 30px #003326;
+	/*
+  box-shadow:inset 0 0 20px 50px #003326;
+  */
+	border: 1px solid #00CC99;
+	border-radius: 6px;
+	position: fixed;
+	bottom: 4%;
+	right: 2%;
+	z-index: 20;
+}
+
+.Alert img, .Alert div {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.Alert img {
+	width: 15%;
+	padding: 3%;
+}
+
+.Alert div>span {
+	display: block;
+	width: 100%;
+	margin-left: 8%;
+}
+
+.Alert div span:nth-child(1) {
+	color: white;
+	text-transform: capitalize;
+	font-size: 100%;
+}
+
+.Alert div span:nth-child(2) {
+	color: black;
+	text-indent: 5px;
+	text-transform: capitalize;
+	font-size: 90%;
+	margin-top: 2%;
+}

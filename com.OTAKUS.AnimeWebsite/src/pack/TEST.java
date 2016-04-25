@@ -1,20 +1,26 @@
 package pack;
 
-import javax.annotation.PostConstruct;
+import java.sql.SQLException;
+
+import org.springframework.dao.DataAccessException;
+
+import Service.FavoriteImpl;
+import beans.Favorite;
 
 public class TEST {
-	{
-		System.out.println("BLock");
-	}
-	
-	public TEST() {
-		System.out.println("Const");	}
-	@PostConstruct
-	void init(){
-		System.out.println("pConst");
-	}
+
 public static void main(String[] args) {
-new TEST();
-	}
+Favorite fav=new Favorite();
+fav.setAnimeId(2);
+fav.setUsername("Mr Mahdi");
+FavoriteImpl favImpl=new FavoriteImpl();
+try {
+	System.out.println(favImpl.delete(fav));
+	System.out.println(favImpl.check(fav));
+	
+	System.out.println(favImpl.getAll(fav.getUsername()).size());
+} catch (DataAccessException | ClassNotFoundException | SQLException e) {
+}
+}
 }
                             

@@ -9,18 +9,7 @@
 		<script src="/Js/jquery-2.1.3.min.js"></script>
 		<script src="/Js/jquery-ui.min.js"></script>
 	</head>
-	<%
-	if (request.getParameter("username")!=null&&request.getParameter("username")!=""&&request.getParameter("password")!=null
-			&&request.getParameter("password")!=""&&request.getParameter("email")==null){
-		VisitorDao visitorDao=new VisitorDao();
-	Visitor visitor=visitorDao.get(request.getParameter("username"));
-	if (visitor.getPassword().equals(request.getParameter("password"))){
-		session.setAttribute("user", visitor);
-	           response.sendRedirect("home");
-	           
-	       }
-	}
-	%>
+
 	<body>
 
 	

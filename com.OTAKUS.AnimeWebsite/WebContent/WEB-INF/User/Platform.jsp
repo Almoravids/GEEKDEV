@@ -1,6 +1,5 @@
 <%@page import="beans.Season"%>
 <%@page import="beans.Anime"%>
-<%@page import="com.sun.org.apache.xpath.internal.FoundIndex"%>
 <%@page import="java.util.List"%>
 <%@page import="beans.Episode"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -239,8 +238,6 @@ margin-left: 4%;
 	height: 50px;
 	font-size: 1.2em;
 	border-radius: 5px;
-/* 	top: 10px; */
-/* 	left: 100px; */
 	color: #008563;
 }
 
@@ -282,8 +279,8 @@ display:inline-block;
 }
 .Comment img {
 	float: left;
-	width: 70px;
-	height: 70px;
+	width: 10%;
+	height: 10%;
 }
 
 .Comment img  {
@@ -293,21 +290,26 @@ display:inline-block;
 	color: white;
 }
 .Comment  div{
-	max-width:85% }
+	width:85% ;
+	}
 .Comment  div p {
 	margin-left: 30px;
+	width:100%;
 }
 
+.Comment .leftSpan,
+.Comment .rightSpan{
+display:inline;
 
+	margin-left:3%;
+}
 .Comment .leftSpan {
 	color: #008563;
-	margin-left:5%;
 }
 
 .Comment .rightSpan {
 	opacity: 0.8;
 	font-size: 0.8em;
-	margin-left:10%;
 }
 </style>
 </head>
@@ -360,8 +362,8 @@ display:inline-block;
 	<!-- ,
 .CommentHeader a.login -->
 	
-	<figure class="CommentHeader">
-	<span>3 Comments</span> <a href="/" class="homePage">OTAKUS</a>
+	<figure class="CommentHeader" id="${episode.episodeid}">
+	<span>${comments.size()} Comments</span> <a href="/" class="homePage">OTAKUS</a>
 	<img
 		src="http://icons.iconarchive.com/icons/hopstarter/malware/32/Notification-icon.png"
 		id="anonym" />
@@ -372,9 +374,9 @@ display:inline-block;
 	 
 		<img
 		src="/${user.imageLink}"
-		id="userImage" /> <input type="textarea" placeholder="Join the discussion" />
+		id="userImage" /> <input type="textarea" placeholder="Join the discussion" rows="2"/>
 	
-	<input type="button" />
+	<input type="button"  onclick="comment()"/>
 	
 	<hr>
 	</figure>
@@ -382,26 +384,23 @@ display:inline-block;
 	
 	
 	
-	
-	
-	<article class="Comment"> <img src="/Image/Avatars/001.png"  />
-
-	<div>
-		<span class="leftSpan">Wassim</span><span class="rightSpan">5 Day ago</span>
-		<p>Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>
-		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice EpisodeEpisodeNice EpisodeEpisodeNice Episode<br/>
-		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>
-		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>
-		Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode<br/>Nice EpisodeNice EpisodeNice EpisodeNice EpisodeNice Episode</p>
+	<c:choose >
+	<c:when test="${comments.size() ne 0}">
+	<c:forEach var="comment" items="${comments}">
+	<article class="Comment"> <img src="${comment.user.imageLink}"  />
+<jsp:useBean  id="tools" class="Service.Tools" />
+	<div id="${comment.id}">
+		<span class="leftSpan">${comment.user.userName}</span><span class="rightSpan">${tools.dateToString(comment.time)}</span>
+		<p>${comment.comment}</p>
 	</div>
 	</article>
-	<article class="Comment"> <img src="/Image/Avatars/001.png"  />
-
-	<div >
-		<span class="leftSpan">Wassim</span><span class="rightSpan">5 Day ago</span>
-		<p>awesome nice episode</p>
-	</div>
-	</article>
+	
+	</c:forEach>
+	</c:when>
+	<c:otherwise>
+	</c:otherwise>
+	</c:choose>
+	
 	
 	<!-- <article> <img src="/Image/Avatars/002.png" id="img3" />
 
@@ -426,7 +425,10 @@ display:inline-block;
 				scrollTop : 100
 			}, 800);
 		});
-
+    
 	});
+	 function comment(){
+		location.href="/AddComment?comment="+$(".CommentHeader input[type='textarea']").val()+"&episode="+$(".CommentHeader").attr("id")+"&op=true";
+         }
 </script>
 </html>

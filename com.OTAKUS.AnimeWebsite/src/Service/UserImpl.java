@@ -10,6 +10,8 @@ import Service.interfaces.IUser;
 import beans.Visitor;
 
 public class UserImpl implements IUser<Visitor, String> {
+	
+	//TODO password Cryptage
 	VisitorDao visitorDao;
 
 	{

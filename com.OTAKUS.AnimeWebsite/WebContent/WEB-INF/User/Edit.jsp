@@ -103,7 +103,7 @@ body {
 		<h1>Edit Profile</h1>
 		<ul>
 			<li><span></span> <header id="div11">
-					First Name<b><%=visitor.getFirstName()%></b><span>edit</span>
+					First Name<b>${sessionScope.user.firstName}</b><span>edit</span>
 				</header>
 				<form id="div1" action="Edit" method="post">
 					<table>
@@ -121,7 +121,7 @@ body {
 				</form></li>
 
 			<li><span></span> <header id="div12">
-					Last Name<b><%=visitor.getLastName()%></b><span>edit</span>
+					Last Name<b>${sessionScope.user.lastName}</b><span>edit</span>
 				</header>
 				<form id="div2" action="Edit" method="post">
 					<table>
@@ -138,7 +138,7 @@ body {
 					<input type="submit" value="Save" />
 				</form></li>
 			<li><span></span> <header id="div13">
-					Email<b><%=visitor.getEmail()%></b><span>edit 
+					Email<b>${sessionScope.user.email}</b><span>edit 
 				</header>
 				<form id="div3" action="Edit" method="post">
 					<table>

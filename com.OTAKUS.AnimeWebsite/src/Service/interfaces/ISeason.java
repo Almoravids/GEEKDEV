@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 public interface ISeason<T, S> {
-	public boolean insert(T Season) throws DataAccessException, ClassNotFoundException, SQLException;
+	public boolean insert(T season) throws DataAccessException, ClassNotFoundException, SQLException;
 
-	public boolean update(T Season) throws DataAccessException, ClassNotFoundException, SQLException;
+	public boolean update(T season) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public boolean delete(S seasonId) throws DataAccessException, ClassNotFoundException, SQLException;
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 	<head>
@@ -162,39 +164,22 @@
 		</nav>
 		
 		<div id="allsec">
-		
+		<c:forEach  var="anime" items="${animes}">
 		<section id="infoanime">
-			<img src ="http://usercontent2.hubimg.com/12348073.jpg" id="imganime" />
-			<article id="desc"><h3>Hunter x Hunter</h3><h6>completed</h6><br>
-                   <h5>HXH</h5><h5>9anas</h5>                     
-  <p>Seven kids are transported to the Digital World, a strange place where digital creatures called "Digimon" reside. A group of Digimon soon befriend them and keep the kids out of harm's way. The children then discover they are the Chosen Children, which protect the Digital World from evil Digimon like Devimon and Vamdemon.</p>
-  <h6>action</h6><h6>adventure</h6>
+			<img src ="${anime.imageLink}" id="imganime" />
+			<article id="desc"><h3>${anime.name}</h3><h6>${anime.stringStatue}</h6><br>
+			<c:forEach var="alias" items="${anime.alias}" >
+                   <h5>${alias.alias}</h5>
+             </c:forEach>                   
+  <p>${anime.description}</p>
+ <c:forEach var="genre" items="${anime.genre}" >
+                   <h5>genre.type</h5>
+             </c:forEach>  
   </article>
 			<img  src ="Image/fav.png" id="favimg" />				
 			
 		</section>
-		<section id="infoanime">
-			<img src ="Image/slider/img3.png" id="imganime" />
-			<article id="desc"><h3>Hunter x Hunter</h3><h6>completed</h6><br>
-                   <h5>HXH</h5><h5>9anas</h5>                     
-  <p>Seven kids are transported to the Digital World, a strange place where digital creatures called "Digimon" reside. A group of Digimon soon befriend them and keep the kids out of harm's way. The children then discover they are the Chosen Children, which protect the Digital World from evil Digimon like Devimon and Vamdemon.</p>
-  <h6>action</h6><h6>adventure</h6>
-  </article>
-			<img src ="Image/fav.png" id="favimg" />				
-			
-		
-			
-		</section>
-		<section id="infoanime">
-			<img src ="Image/slider/img4.jpg" id="imganime" />
-			<article id="desc"><h3>Digimon</h3><h6>ongoing</h6><br>
-                   <h5>digimon</h5><h5>digital Heros</h5>                     
-  <p>Seven kids are transported to the Digital World, a strange place where digital creatures called "Digimon" reside. A group of Digimon soon befriend them and keep the kids out of harm's way. The children then discover they are the Chosen Children, which protect the Digital World from evil Digimon like Devimon and Vamdemon.</p>
-  <h6>action</h6><h6>adventure</h6>
-  </article>
-			<img src ="Image/noFav.png" id="favimg" />				
-			
-		</section>
+		</c:forEach>
 		</div>
 	
 	

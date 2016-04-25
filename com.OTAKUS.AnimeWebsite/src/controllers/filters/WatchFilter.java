@@ -20,7 +20,9 @@ import org.springframework.dao.DataAccessException;
 import Dao.AnimeDao;
 import Dao.EpisodeDao;
 import Dao.SeasonDao;
+import Service.CommentImpl;
 import beans.Anime;
+import beans.Comment;
 import beans.Episode;
 import beans.Season;
 
@@ -73,11 +75,13 @@ public class WatchFilter implements Filter {
 				
 				request.setAttribute("allEpisodes", seasonEpisodes);
 				
+				List<Comment> comments=new CommentImpl().get(episode.getEpisodeid());
+				request.setAttribute("comments", comments);
 				chain.doFilter(httpRequest, response);
-			} catch (DataAccessException | ClassNotFoundException | SQLException e) {
-
+			} catch (DataAccessException | ClassNotFoundException e) {
 				httpResponse.sendError(404);
-			}
+			}catch (SQLException e){
+			httpResponse.sendError(500);}
 		}else 
 		httpResponse.sendError(404);
 		

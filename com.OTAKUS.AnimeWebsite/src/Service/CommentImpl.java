@@ -40,4 +40,9 @@ public class CommentImpl implements IComment<Comment,Integer> {
 		return commentDao.getAll(episodeId);
 	}
 
+	@Override
+	public int getNextCommentId() throws DataAccessException, ClassNotFoundException, SQLException {
+		return commentDao.getNextCommentId();
+	}
+
 }

@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import Dao.FavoriteDao;
 import Service.interfaces.IFavorite;
+import beans.Anime;
 import beans.Favorite;
 
 public class FavoriteImpl implements IFavorite {
@@ -22,21 +23,26 @@ public class FavoriteImpl implements IFavorite {
 	}
 
 	@Override
-	public boolean delete(int animeId, String username)
+	public boolean delete(Favorite favorite)
 			throws DataAccessException, ClassNotFoundException, SQLException {
 		boolean rs;
-		rs=favoriteDao. delete(animeId, username);
+		rs=favoriteDao. delete(favorite);
 		return rs;
 	}
 
+//	@Override
+//	public boolean get(Favorite favorite) throws DataAccessException, ClassNotFoundException, SQLException {
+//		return favoriteDao.get(favorite);
+//	}
+
 	@Override
-	public boolean get(int animeId, String username) throws DataAccessException, ClassNotFoundException, SQLException {
-		return favoriteDao.get(animeId, username);
+	public List<Anime> getAll(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return favoriteDao.getAll(username);
 	}
 
 	@Override
-	public List<Favorite> getAll(String username) throws DataAccessException, ClassNotFoundException, SQLException {
-		return favoriteDao.getAll(username);
+	public boolean check(Favorite favorite) throws DataAccessException, ClassNotFoundException, SQLException {
+		return favoriteDao.check(favorite);
 	}
 
 }

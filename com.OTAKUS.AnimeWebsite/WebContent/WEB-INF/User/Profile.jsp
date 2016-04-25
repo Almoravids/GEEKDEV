@@ -416,32 +416,30 @@ color:white;
 }
 </style>
 </head>
-<%
-Visitor visitor=(Visitor)session.getAttribute("user"); %>
 <body>
   <header id="profile">
-<h3>WELCOME</h3><h1><%=visitor.getUserName() %></h1><br>
-  <h4 style="margin-left:130px;"><%=visitor.getFirstName()%></h4><h4 style="margin-right:50px;"><%=visitor.getLastName()%></h4><h5><a href="edit"><img src="Image/edit.png" alt="">edit</a></h5>
+<h3>WELCOME</h3><h1>${sessionScope.user.userName}</h1><br>
+  <h4 style="margin-left:130px;">${sessionScope.user.firstName}</h4><h4 style="margin-right:50px;">${sessionScope.user.lastName}</h4><h5><a href="edit"><img src="/Image/edit.png" alt="">edit</a></h5>
   </header>
    <form id="uploadImg">
-      <img class="imgs" src="Image/link.png" id="linkNav"/> <img id="uploadNav" class="imgs" src="Image/upload.png"/> <img id="avatarNav" class="imgs" src="Image/anonym.png"/>
+      <img class="imgs" src="/Image/link.png" id="linkNav"/> <img id="uploadNav" class="imgs" src="/Image/upload.png"/> <img id="avatarNav" class="imgs" src="/Image/anonym.png"/>
       <div id="avatar">
 								<figure>
-								<img src="Image/Avatars/001.png" alt="avatar"/>
-								<img src="Image/Avatars/002.png" alt="avatar"/>
-								<img src="Image/Avatars/003.png" alt="avatar"/>
-								<img src="Image/Avatars/004.png" alt="avatar"/>
-								<img src="Image/Avatars/005.png" alt="avatar"/>
-								<img src="Image/Avatars/006.png" alt="avatar"/>
-								<img src="Image/Avatars/007.png" alt="avatar"/>
-								<img src="Image/Avatars/008.png" alt="avatar"/>
-								<img src="Image/Avatars/009.png" alt="avatar"/>
-								<img src="Image/Avatars/010.png" alt="avatar"/>
-								<img src="Image/Avatars/011.png" alt="avatar"/>
-								<img src="Image/Avatars/0012.png" alt="avatar"/>
-								<img src="Image/Avatars/0013.png" alt="avatar"/>
-								<img src="Image/Avatars/0014.png" alt="avatar"/>
-								<img src="Image/Avatars/0015.png" alt="avatar"/>
+								<img src="/Image/Avatars/001.png" alt="avatar"/>
+								<img src="/Image/Avatars/002.png" alt="avatar"/>
+								<img src="/Image/Avatars/003.png" alt="avatar"/>
+								<img src="/Image/Avatars/004.png" alt="avatar"/>
+								<img src="/Image/Avatars/005.png" alt="avatar"/>
+								<img src="/Image/Avatars/006.png" alt="avatar"/>
+								<img src="/Image/Avatars/007.png" alt="avatar"/>
+								<img src="/Image/Avatars/008.png" alt="avatar"/>
+								<img src="/Image/Avatars/009.png" alt="avatar"/>
+								<img src="/Image/Avatars/010.png" alt="avatar"/>
+								<img src="/Image/Avatars/011.png" alt="avatar"/>
+								<img src="/Image/Avatars/0012.png" alt="avatar"/>
+								<img src="/Image/Avatars/0013.png" alt="avatar"/>
+								<img src="/Image/Avatars/0014.png" alt="avatar"/>
+								<img src="/Image/Avatars/0015.png" alt="avatar"/>
 								</figure>				
 		</div>
 		<img  class="arrow" id="leftArrow" src="Image/left-slider.png" alt="" onclick="slideright()" >
@@ -450,10 +448,10 @@ Visitor visitor=(Visitor)session.getAttribute("user"); %>
 		<input type="file" name="upload" id="upload">
 		<input type="text" name="link" id="link" placeholder="Image Link">
       </form>
-  <img id="photoProfile"src="<%=visitor.getImageLink()%>"/>
-  <img src="Image/camera.png"/>
+  <img id="photoProfile"src="${sessionScope.user.imageLink}"/>
+  <img src="/Image/camera.png"/>
     <article id="statsArticle" class="blocks">
-        <span >Stats</span> <img src="Image/upDown.png" alt="">
+        <span >Stats</span> <img src="/Image/upDown.png" alt="">
       </article>
       
   
@@ -497,7 +495,7 @@ Visitor visitor=(Visitor)session.getAttribute("user"); %>
       <h5>Episodes : 5</h5>
         <h5>Genre : "Action" , "Adventure"</h5>
         </aside>
-        <img class="closeImg"src="Image/closeDialog.png" alt="close">
+        <img class="closeImg"src="/Image/closeDialog.png" alt="close">
     </header>
     
     <footer>

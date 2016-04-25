@@ -6,23 +6,23 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 
 public abstract class ParentClass implements RowMapper<ParentClass>{
-	private int id;
+	private int episode;
 	private String username;
 	
 	public ParentClass() {
 		super();
 	}
-	public ParentClass(int id, String username) {
+	public ParentClass(int episode, String username) {
 		super();
-		this.id = id;
+		this.episode = episode;
 		this.username = username;
 	}
 	
-	public int getId() {
-		return id;
+	public int getEpisode() {
+		return episode;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setEpisode(int episode) {
+		this.episode = episode;
 	}
 	public String getUsername() {
 		return username;

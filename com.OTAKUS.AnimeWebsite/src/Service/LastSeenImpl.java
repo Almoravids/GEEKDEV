@@ -15,9 +15,9 @@ public class LastSeenImpl implements ILastSeen<LastSeen,String> {
     	lastSeenDao=new LastSeenDao();
     }
 	@Override
-	public boolean insert(LastSeen comment) throws DataAccessException, ClassNotFoundException, SQLException {
+	public boolean insert(LastSeen lastSeen) throws DataAccessException, ClassNotFoundException, SQLException {
 		boolean rs;
-		rs=lastSeenDao.insert(comment);
+		rs=lastSeenDao.insert(lastSeen);
 		return rs;
 	}
 

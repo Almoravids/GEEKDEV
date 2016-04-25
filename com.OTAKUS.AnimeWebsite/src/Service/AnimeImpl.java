@@ -14,6 +14,7 @@ public class AnimeImpl implements IAnime<Anime,String>{
     
     {
     	animeDao=new AnimeDao();
+    	
     }
 	@Override
 	public boolean insert(Anime anime) throws DataAccessException, ClassNotFoundException, SQLException {

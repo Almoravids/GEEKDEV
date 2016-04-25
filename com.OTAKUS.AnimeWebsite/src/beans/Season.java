@@ -11,7 +11,6 @@ public class Season implements RowMapper<Season>{
 	private Timestamp time;
 
 	public Season() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Season(int seasonId, int season, int animeId, int statueId, Timestamp time) {

@@ -22,6 +22,19 @@ function Episode(id, name, episode, imageLink, link, season) {
 	this.link = link;
 	this.season = season;
 }
+function User(userName,firstName,lastName,imageLink) {
+	this.userName = userName;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.imageLink = imageLink;
+}
+function Comment(id,episode,comment,user,time){
+	this.id=id;
+	this.episode=episode;
+	this.comment=comment;
+	this.user=user;
+	this.time=time;
+}
 
 function ajaxConnection(url,method) {
 	var xhttp = new XMLHttpRequest();

@@ -10,4 +10,5 @@ public interface IComment <T,S>{
 	public  boolean delete(S commentId) throws DataAccessException, ClassNotFoundException, SQLException;
 	public  boolean update(T Comment) throws DataAccessException, ClassNotFoundException, SQLException;
 	public  List<T> get(S episodeId) throws DataAccessException, ClassNotFoundException, SQLException;
+	public int getNextCommentId() throws DataAccessException, ClassNotFoundException, SQLException;
 }

@@ -47,30 +47,27 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 	public List<Anime> getAll() throws DataAccessException, ClassNotFoundException, SQLException {
 		List<Anime> listAnime = (List<Anime>) DaoConnection.getConnection().query("select a.* from anime a",
 				new Anime());
-		AliasDao alias;
-		TypeDao type;
-		for (Anime anime : listAnime) {
-			alias = new AliasDao();
-			anime.setAlias(alias.get(anime.getAnimeId()));
-			type = new TypeDao();
-			anime.setGenre(type.get(anime.getAnimeId()));
-		}
-
 		return listAnime;
 	}
 
+	/*
+	 * AliasDao alias; TypeDao type; for (Anime anime : listAnime) { alias = new
+	 * AliasDao(); anime.setAlias(alias.get(anime.getAnimeId())); type = new
+	 * TypeDao(); anime.setGenre(type.get(anime.getAnimeId())); }
+	 */
 	@Override
 	public int getAnimeId() throws DataAccessException, ClassNotFoundException, SQLException {
 		return DaoConnection.getConnection().queryForObject("select anime_seq.nextval from dual", Integer.class);
 	}
 
 	@Override
-	public List<Anime> getAllByAlias(String aliasId) throws DataAccessException, ClassNotFoundException, SQLException {
-		return null;
+	public List<Anime> getAllByAlias(String alias) throws DataAccessException, ClassNotFoundException, SQLException {
+		return (List<Anime>) DaoConnection.getConnection().query("select a.* from anime a inner join on a.id_anime=al.id_anime  alias al where a.name like '?"+alias+"?' or al.alias like '?"+alias+"?'",
+				new Anime());
 	}
 
 	@Override
-	public List<Anime> getAllByType(String typeId) throws DataAccessException, ClassNotFoundException, SQLException {
+	public List<Anime> getAllByType(String type) throws DataAccessException, ClassNotFoundException, SQLException {
 		return null;
 	}
 }
