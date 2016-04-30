@@ -98,6 +98,10 @@ body {
 	margin-left: 5px;
 	display: inline-block;
 }
+#genre h6 a{
+text-decoration:none;
+color:white;
+}
 
 #genre h6:hover {
 	cursor: pointer;
@@ -240,7 +244,7 @@ hr {
 		<div id="genre">
 
 			<c:forEach var="type" items="${types}">
-				<h6 class="blocks">#${type.type}</h6>
+				<h6 class="blocks"><a href="/search?tag=${type.type}">#${type.type}</a></h6>
 			</c:forEach>
 
 		</div>
@@ -270,14 +274,14 @@ hr {
 
 	<section id="EpsSec" class="blocks">
 	<c:choose>
-	<c:when test="${episodes.size()!=null}">
+	<c:when test="${episodes.size() ne null}">
 		<c:forEach var="episode" items="${episodes}">
 			<c:set var="link"
 				value="/watch/${anime.name.replace(' ', '_')}/season_1/episode_${episode.episode}" />
 			<figure id="${episode.episode}">
 			
 				<a href="${link}"><img src="${episode.imageLink}"
-					 alt="Episode image">${link }</a>
+					 alt="Episode image"></a>
 				<p class="AnimeLbl">episode ${episode.episode}</p>
 				<p class="EpLbl">${episode.episode}</p>
 			</figure>

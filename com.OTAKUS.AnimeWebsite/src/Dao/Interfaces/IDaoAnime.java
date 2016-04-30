@@ -20,5 +20,11 @@ public interface IDaoAnime<T, S> {
 
 	public List<T> getAllByType(S typeId) throws DataAccessException, ClassNotFoundException, SQLException;
 
+	public List<T> getRecommended() throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getPopular() throws DataAccessException, ClassNotFoundException, SQLException;
+	
+	public List<T> getRecently() throws DataAccessException, ClassNotFoundException, SQLException;
+
 	public int getAnimeId() throws DataAccessException, ClassNotFoundException, SQLException;
 }

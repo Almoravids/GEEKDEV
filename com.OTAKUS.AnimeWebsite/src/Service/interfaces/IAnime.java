@@ -5,12 +5,24 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-public interface IAnime<T,S> {
-	public  boolean insert(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  boolean update(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  T get(S animeId) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  List<T> getAll() throws DataAccessException, ClassNotFoundException, SQLException;
-	public  List<T> getAllByAlias(S alias) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  List<T> getAllByType(S type) throws DataAccessException, ClassNotFoundException, SQLException;
+public interface IAnime<T, S> {
+	public boolean insert(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public boolean update(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public T get(S animeId) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getAll() throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getAllByAlias(S alias) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getAllByType(S type) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getRecommended() throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getPopular() throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getRecently() throws DataAccessException, ClassNotFoundException, SQLException;
 }

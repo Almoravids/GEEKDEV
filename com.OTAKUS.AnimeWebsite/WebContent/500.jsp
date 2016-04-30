@@ -90,14 +90,14 @@ footer img{
   <form method="post">
   <input type="search"  ><input type="submit" value="search">
   </form>
-  <p class="fstP"><a href="home">HOME</a></p>-<p><a href="search">SEARCH</a></p>-
+  <p class="fstP"><a href="/home">HOME</a></p>-<p><a href="search">SEARCH</a></p>-
   <%if(session.getAttribute("user")!=null){ %>
-  <p><a href="profile">PROFILE</a></p><%}
+  <p><a href="/profile">PROFILE</a></p><%}
   else{
-	  %><p><a href="signin">LOGIN</a></p><% 
+	  %><p><a href="/signin">LOGIN</a></p><% 
   }
   %>
-  <a href="home"><img src="/Image/WLOGO.png" alt="OTAKUS LOGO"></a>
+  <a href="/home"><img src="/Image/WLOGO.png" alt="OTAKUS LOGO"></a>
 </footer>
 </body>
 </html>

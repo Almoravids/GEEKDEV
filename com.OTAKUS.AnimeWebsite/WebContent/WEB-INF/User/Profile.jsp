@@ -458,9 +458,10 @@ color:white;
   <section id="Stats" class="blocks">
     <center>
     <figure class="blocks2">
+    <jsp:useBean id="favorite" class="Service.FavoriteImpl"/>
       <h6>Favoris</h6>
       <hr class="hr">
-      <p>10</p>
+      <p>${favorite.getAll(user.userName).size()}</p>
     </figure>
     <figure class="blocks2">
       <h6>Watching</h6>

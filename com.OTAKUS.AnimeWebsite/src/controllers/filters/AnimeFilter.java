@@ -51,23 +51,23 @@ public class AnimeFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		Matcher matcher = Pattern.compile("^/anime/(\\w*)/?$").matcher(httpRequest.getRequestURI());
-	
+
 		if (matcher.find()) {
 			try {
 
-				
 				Anime anime = new AnimeDao().get(matcher.group(1).replace("_", " ").toLowerCase());
 				request.setAttribute("anime", anime);
 				TypeDao typeDao = new TypeDao();
 				request.setAttribute("types", typeDao.get(anime.getAnimeId()));
 				request.setAttribute("seasons", new SeasonDao().getAll(anime.getAnimeId()));
-				request.setAttribute("episodes",new EpisodeDao().getAll(SeasonDao.switchNumSeasonToId(1, anime.getAnimeId())));
+				request.setAttribute("episodes",
+						new EpisodeDao().getAll(SeasonDao.switchNumSeasonToId(1, anime.getAnimeId())));
 				chain.doFilter(request, response);
-			} catch ( SQLException e) {
+			} catch (SQLException e) {
 				httpResponse.sendError(500);
-			}catch(DataAccessException e){
+			} catch (DataAccessException e) {
 				chain.doFilter(request, response);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				httpResponse.sendError(404);
 			}
 
@@ -75,11 +75,7 @@ public class AnimeFilter implements Filter {
 			httpResponse.sendError(404);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

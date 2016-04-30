@@ -54,7 +54,22 @@ public class AnimeImpl implements IAnime<Anime,String>{
 
 	@Override
 	public List<Anime> getAllByType(String type) throws DataAccessException, ClassNotFoundException, SQLException {
-		return null;
+		return animeDao.getAllByType(type);
+	}
+
+	@Override
+	public List<Anime> getRecommended() throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getRecommended();
+	}
+
+	@Override
+	public List<Anime> getPopular() throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getPopular();
+	}
+
+	@Override
+	public List<Anime> getRecently() throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getRecently();
 	}
 
 	

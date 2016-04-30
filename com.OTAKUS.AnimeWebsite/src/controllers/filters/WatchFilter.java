@@ -21,10 +21,12 @@ import Dao.AnimeDao;
 import Dao.EpisodeDao;
 import Dao.SeasonDao;
 import Service.CommentImpl;
+import Service.LastSeenImpl;
 import beans.Anime;
 import beans.Comment;
 import beans.Episode;
 import beans.Season;
+import beans.Visitor;
 
 /**
  * Servlet Filter implementation class WatchFilter
@@ -54,32 +56,40 @@ public class WatchFilter implements Filter {
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
 		int seasonNum=1,episodeNum;
 		
+		
 		Matcher matcher=Pattern.compile("^/watch/(\\w*)(/season_(\\d*))?/episode_(\\d*)/?$").matcher(httpRequest.getRequestURI());
 		if (matcher.find()){
 			if (matcher.group(2)!=null)
 				seasonNum=Integer.parseInt(matcher.group(3));
 			try {
-				
 				Anime anime=new AnimeDao().get(matcher.group(1).replace("_", " ").toLowerCase());
 				request.setAttribute("anime", anime);
 				
 				Season season=new SeasonDao().get(SeasonDao.switchNumSeasonToId(seasonNum, anime.getAnimeId()));
 				request.setAttribute("season", season);
-				
 				episodeNum=Integer.parseInt(matcher.group(4));
 				EpisodeDao episodeDao=new EpisodeDao();
 				Episode episode=episodeDao.get(EpisodeDao.switchNumEpisodeToId(season.getSeasonId(),episodeNum));
 				request.setAttribute("episode", episode);
-				
 				List<Episode> seasonEpisodes=episodeDao.getAll(season.getSeasonId());
 				
 				request.setAttribute("allEpisodes", seasonEpisodes);
 				
+				//COmment 
 				List<Comment> comments=new CommentImpl().get(episode.getEpisodeid());
 				request.setAttribute("comments", comments);
+				
+				//LASTSEEEEN
+				if ( httpRequest.getSession().getAttribute("user")!=null){
+				LastSeenImpl lastSeenImpl=new LastSeenImpl();
+				Visitor visitor=(Visitor) httpRequest.getSession().getAttribute("user");
+						lastSeenImpl.save(episode.getEpisodeid(), episode.getSeasonId(),visitor.getUserName());
+						}
 				chain.doFilter(httpRequest, response);
 			} catch (DataAccessException | ClassNotFoundException e) {
 				httpResponse.sendError(404);
+
+				e.printStackTrace();
 			}catch (SQLException e){
 			httpResponse.sendError(500);}
 		}else 

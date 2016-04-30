@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!doctype HTML>
 <html>
 <head>
@@ -111,110 +112,39 @@ width:60%;
 	<header class="blocks">
 		<p class="head">Popular </p> <br>
 		<hr>
+		<jsp:useBean id="animes" class="Service.AnimeImpl"></jsp:useBean>
+		<c:forEach var="anime" items="${animes.popular}">
 		<figure>
-			  <img src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
+			  <a href="anime/${anime.name.replace(' ','_')}"> <img src="${anime.imageLink}" alt=""></a>
 			   
-			  <p class="AnimeLbl">HUNTER X HUNTER</p><p class="EpLbl">Episode:12</p>
+			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">Episode:12</p>
 		</figure>
-
-		  <figure>
-			  <img src="Image/slider/img1.jpg" alt="">
-			   
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			   
-			  <p class="AnimeLbl">HUNTER X HUNTER</p><p class="EpLbl">Ep : 12</p>
-	    </figure>
-		<figure>
-			  <img src="Image/slider/img2.jpg" alt="">
-			   
-			  <p class="AnimeLbl">Dragon Ball Super</p><p class="EpLbl">Episode : 12</p>
-		</figure>
+</c:forEach>
+		 
 </header>
+<jsp:useBean id="episodes" class="Service.EpisodeImpl"></jsp:useBean>
 <section class="blocks">
 			  <p class="head">Recently Added </p><br>
 			  <hr>
+		<c:forEach var="episode" items="${episodes.recent}">
 		<figure>
-			  <img src="Image/slider/img1.jpg" alt="">
-			 
-			  <p class="AnimeLbl">HUNTER X HUNTER</p><p class="EpLbl">Ep : 12</p>
+			  <a href="watch/${episode.anime.name.replace(' ','_')}/season_${episode.season.season}/episode_${episode.episode}"><img src="${episode.imageLink}" alt="${episode.anime.name}"></a>
+			   
+			  <p class="AnimeLbl">${episode.anime.name}</p><p class="EpLbl">Episode ${episode.episode}</p>
 		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="Image/slider/img3.png" alt="">
-			  
-			  <p class="AnimeLbl">HUNTER X HUNTER</p><p class="EpLbl">Ep : 12</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="Image/slider/img2.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="Image/slider/img4.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-			<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="Image/slider/img5.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="https://i.ytimg.com/vi/6F9cDSEizFM/maxresdefault.jpg" alt="">
-			  
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
+</c:forEach>
+		
 </section>
 <aside class="blocks">
 			<p class="head">New Animes </p><br>
 			<hr>
+		<c:forEach var="anime" items="${animes.recently}">
 		<figure>
-			  <img src="Image/slider/img2.jpg" alt="">
+			   <a href="anime/${anime.name.replace(' ','_')}"><img src="${anime.imageLink}" alt=""></a>
 			   
-			  <p class="AnimeLbl">HUNTER X HUNTER</p><p class="EpLbl">Ep : 12</p>
+			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">Episode:12</p>
 		</figure>
-			  <figure>
-			  <img src="Image/slider/img3.png" alt="">
-			   
-			  <p class="AnimeLbl">Dragon Ball z</p><p class="EpLbl">Episode : 12</p>
-		</figure>
-		<figure>
-			  <img src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="AnimeLbl">HUNTER X HUNTER</p><p class="EpLbl">Episode:12</p>
-		</figure>
+</c:forEach>
 </aside>
 </center>
 </body>

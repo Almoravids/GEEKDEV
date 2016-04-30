@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/Css/" />
 <script src="/Js/jquery-2.1.3.min.js"></script>
 <script src="/Js/jquery-ui.min.js"></script>
+<script src="/Js/classes-ajax.js"></script>
 <style>
 
 /*scroll */
@@ -373,7 +374,7 @@ display:inline;
 	<br/>
 	 
 		<img
-		src="/${user.imageLink}"
+		src="${user.imageLink}"
 		id="userImage" /> <input type="textarea" placeholder="Join the discussion" rows="2"/>
 	
 	<input type="button"  onclick="comment()"/>
@@ -428,7 +429,7 @@ display:inline;
     
 	});
 	 function comment(){
-		location.href="/AddComment?comment="+$(".CommentHeader input[type='textarea']").val()+"&episode="+$(".CommentHeader").attr("id")+"&op=true";
+		 ajaxConnection("/AddComment?comment="+$(".CommentHeader input[type='textarea']").val()+"&episode="+$(".CommentHeader").attr("id")+"&op=true", "post");
          }
 </script>
 </html>

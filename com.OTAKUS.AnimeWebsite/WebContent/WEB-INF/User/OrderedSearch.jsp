@@ -121,42 +121,8 @@ animes.stream().sorted();
         <figure>
       <a href=""><span class="AnimeName">Hunter x Hunter [3]</span></a> 
       <span>completed</span>           
-      </figure> <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
       </figure>
-    <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
-     <h3 id="b">b</h3>
    
-       <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
-    <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
-      
-        <h3 id="c">c</h3>
-   
-       <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
-    <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
-      <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure><figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
   </article>
   
   <article class="AnimeList">
@@ -166,10 +132,7 @@ animes.stream().sorted();
       <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
       <span>copmleted</span>           
       </figure>
-    <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
-
+   
+     
    
   </article>

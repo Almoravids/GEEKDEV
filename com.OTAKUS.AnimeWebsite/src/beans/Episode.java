@@ -9,7 +9,8 @@ import org.springframework.jdbc.core.RowMapper;
 public class Episode implements RowMapper<Episode> {
 	private int Episodeid, episode, seasonId, type;
 	private String name, link, imageLink;
-
+	private Anime anime;
+	private Season season;
 	// FIXME WASSIM
 	private Timestamp time;
 
@@ -102,16 +103,44 @@ public class Episode implements RowMapper<Episode> {
 		this.time = time;
 	}
 
+	public Anime getAnime() {
+		return anime;
+	}
+
+	
+	public void setAnime(Anime anime) {
+		this.anime = anime;
+	}
+
+	
+	public Season getSeason() {
+		return season;
+	}
+
+
+	public void setSeason(Season season) {
+		this.season = season;
+	}
+
 	@Override
 	public Episode mapRow(ResultSet rs, int arg1) throws SQLException {
 		Episode episode = new Episode();
 		episode.setEpisodeid(rs.getInt("id_episode"));
 		episode.setEpisode(rs.getInt("num_episode"));
-		episode.setName(rs.getString("name"));
+		episode.setName(rs.getString("episode_name"));
 		episode.setLink(rs.getString("link"));
 		episode.setImageLink(rs.getString("image_link"));
 		episode.setSeasonId(rs.getInt("id_season"));
 		episode.setType(rs.getInt("type"));
+		if (!rs.getMetaData().getColumnLabel(rs.getMetaData().getColumnCount()).equals("TYPE")){
+		Anime anime=new Anime();
+		anime=anime.mapRow(rs, arg1);
+		episode.setAnime(anime);
+			Season season=new Season();
+			season=season.mapRow(rs, arg1);
+			episode.setSeason(season);
+			
+		}
 		return episode;
 	}
 

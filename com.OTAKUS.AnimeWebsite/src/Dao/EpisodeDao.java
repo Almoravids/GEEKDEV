@@ -35,18 +35,26 @@ public class EpisodeDao implements IDaoEpisode<Episode, Integer>{
 	public List<Episode> getAll(Integer seasonId) throws DataAccessException, ClassNotFoundException, SQLException {
 
 		return DaoConnection.getConnection()
-				.query("select e.* from episode e" + " where e.id_season='" + seasonId + "'", new Episode());
+				.query("select e.* from episode e  where e.id_season=" + seasonId , new Episode());
 	}
      @Override
 	public Episode get(Integer id_episode) throws ClassNotFoundException, SQLException {
 
 		return DaoConnection.getConnection().queryForObject(
-				"select e.* from episode e " + " where  " + " e.id_episode=" + id_episode, new Episode());
+				"select e.* from episode e  where  e.id_episode=" + id_episode, new Episode());
 	}
 
 	public static int switchNumEpisodeToId(Integer seasonId, int episode_num)
 			throws DataAccessException, ClassNotFoundException, SQLException {
 		return DaoConnection.getConnection().queryForObject("select e.id_episode from episode e where e.num_episode="
 				+ episode_num + " and e.id_season=" + seasonId, Integer.class);
+	}
+	@Override
+	public Episode getLast(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
+		return DaoConnection.getConnection().queryForObject("select e.* from episode e , season s ,anime a where e.id_season=s.id_season and s.id_anime=a.id_anime ", new Episode());
+	}
+	@Override
+	public List<Episode> getRecent() throws DataAccessException, ClassNotFoundException, SQLException {
+		return DaoConnection.getConnection().query("select  e.* ,s.*,a.* from episode e , season s ,anime a where e.id_season=s.id_season and s.id_anime=a.id_anime and rownum<=12 order by e.id_episode", new Episode());
 	}
 }

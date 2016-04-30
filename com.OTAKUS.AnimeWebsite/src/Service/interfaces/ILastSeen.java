@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-public interface ILastSeen <T,S>{
+import beans.Episode;
 
-	public  boolean insert(T Comment) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  boolean delete(S commentId) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  List<T> get(S username) throws DataAccessException, ClassNotFoundException, SQLException;
+public interface ILastSeen {
+
+	public void save(int id_episode,int id_season,String username) throws DataAccessException, ClassNotFoundException, SQLException;
+	public List<Episode> getAll(String username) throws DataAccessException, ClassNotFoundException, SQLException ;
 }

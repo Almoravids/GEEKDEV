@@ -105,10 +105,10 @@ public class Anime implements RowMapper<Anime>{
 	public Anime mapRow(ResultSet rs, int arg1) throws SQLException {
 		Anime a = new Anime();
 		a.setId(rs.getInt("id_anime"));
-		a.setName(rs.getString("name"));
+		a.setName(rs.getString("anime_name"));
 		a.setDescription(rs.getString("description"));
 		a.setImageLink(rs.getString("image_link"));
-		a.setStatue(rs.getInt("statue"));
+		a.setStatue(rs.getInt("anime_statue"));
 
 		return a;
 	}

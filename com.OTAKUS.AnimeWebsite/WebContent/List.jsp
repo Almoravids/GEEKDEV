@@ -4,7 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>List OTAKUS anime website</title>
+<c:choose>
+<c:when test="${param.search ne null}">
+
+<title>${param.search} Search Result | OTAKUS anime website</title>
+</c:when>
+<c:when test="${param.tag ne null}">
+
+<title>${param.tag} Search Result | OTAKUS anime website</title>
+</c:when>
+</c:choose>
 </head>
 <body>
 

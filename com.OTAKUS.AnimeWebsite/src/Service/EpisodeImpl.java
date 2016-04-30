@@ -49,4 +49,14 @@ public class EpisodeImpl implements IEpisode<Episode, Integer> {
 			throws DataAccessException, ClassNotFoundException, SQLException {
 		return EpisodeDao.switchNumEpisodeToId(seasonId, episode_num);
 	}
+
+	@Override
+	public Episode getLast(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException {
+		return episodeDao.getLast(animeId);
+	}
+
+	@Override
+	public List<Episode> getRecent() throws DataAccessException, ClassNotFoundException, SQLException {
+		return episodeDao.getRecent();
+	}
 }

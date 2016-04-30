@@ -7,30 +7,23 @@ import org.springframework.dao.DataAccessException;
 
 import Dao.LastSeenDao;
 import Service.interfaces.ILastSeen;
-import beans.LastSeen;
+import beans.Episode;
 
-public class LastSeenImpl implements ILastSeen<LastSeen,String> {
+public class LastSeenImpl implements ILastSeen{
     private LastSeenDao lastSeenDao;
     {
     	lastSeenDao=new LastSeenDao();
     }
 	@Override
-	public boolean insert(LastSeen lastSeen) throws DataAccessException, ClassNotFoundException, SQLException {
-		boolean rs;
-		rs=lastSeenDao.insert(lastSeen);
-		return rs;
+	public void save(int episodeId,int seasonId,String username) throws DataAccessException, ClassNotFoundException, SQLException{
+		lastSeenDao.save(episodeId,seasonId,username);
 	}
 
-	@Override
-	public boolean delete(String commentId) throws DataAccessException, ClassNotFoundException, SQLException {
-		boolean rs;
-		rs=lastSeenDao.delete(commentId);
-		return rs;
-	}
+	
 
 	@Override
-	public List<LastSeen> get(String username) throws DataAccessException, ClassNotFoundException, SQLException {
-		return lastSeenDao.get(username);
+	public List<Episode> getAll(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return lastSeenDao.getAll(username);
 	}
 
 }

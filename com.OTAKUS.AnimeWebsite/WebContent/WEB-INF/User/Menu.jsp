@@ -34,7 +34,9 @@
 	</c:when>
 	<c:otherwise>
 	<ul id="ulnav" class="HiddenNav">
+	<form action="/search">
 	<input type="search" name="search" id="search" />
+	</form>
 	<div>
 		<li>Home</li>
 		<li>Search</li>

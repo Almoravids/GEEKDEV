@@ -5,14 +5,11 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import beans.Anime;
 import beans.Episode;
 
-public interface IDaoLastSeen <T,S>{
+public interface IDaoLastSeen {
 
-	public  boolean insert(T lastSeen) throws DataAccessException, ClassNotFoundException, SQLException;
-	public  boolean delete(S username) throws DataAccessException, ClassNotFoundException, SQLException;
-//	public List<Anime> get(T lastSeen) throws DataAccessException, ClassNotFoundException, SQLException ;
-	public List<Episode> getAll(S username) throws DataAccessException, ClassNotFoundException, SQLException ;
+	public void save(int id_episode,int id_season,String username) throws DataAccessException, ClassNotFoundException, SQLException;
+	public List<Episode> getAll(String username) throws DataAccessException, ClassNotFoundException, SQLException ;
 
 }

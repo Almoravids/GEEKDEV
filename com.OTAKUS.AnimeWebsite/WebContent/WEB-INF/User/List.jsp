@@ -71,20 +71,24 @@
 			#allsec{
 				
 				margin-left:200px;
-				border:2px solid #008563;
 				width:70%;
+				border-top:3px solid #008563;
+				border-bottom:3px solid #008563;
 				margin-top:-16px;
 				margin-bottom:20px;
 				
 			}
 			#infoanime{
+			
+			background:black;
+			border-radius:4px;
 				width:100%;
 				height:160px;
-				border:1px solid #008563;
-				margin:0;
+				margin:.3% 0;
 				padding:0;
 			}
 			#infoanime,#desc,#favanime{
+			
 				display:inline-block;
 				vertical-align:top;
 				
@@ -164,8 +168,11 @@
 		</nav>
 		
 		<div id="allsec">
+		<c:if test="${animes.size() eq 0}">
+		<c:out value="Result Not Found"></c:out>
+		</c:if>
 		<c:forEach  var="anime" items="${animes}">
-		<section id="infoanime">
+		<a id="infoanime" href="anime/${anime.name.replace(' ','_')}">
 			<img src ="${anime.imageLink}" id="imganime" />
 			<article id="desc"><h3>${anime.name}</h3><h6>${anime.stringStatue}</h6><br>
 			<c:forEach var="alias" items="${anime.alias}" >
@@ -178,7 +185,7 @@
   </article>
 			<img  src ="Image/fav.png" id="favimg" />				
 			
-		</section>
+		</a>
 		</c:forEach>
 		</div>
 	
