@@ -58,8 +58,8 @@ public class AnimeImpl implements IAnime<Anime,String>{
 	}
 
 	@Override
-	public List<Anime> getRecommended() throws DataAccessException, ClassNotFoundException, SQLException {
-		return animeDao.getRecommended();
+	public List<Anime> getRecommanded(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getRecommanded(username);
 	}
 
 	@Override
@@ -70,6 +70,26 @@ public class AnimeImpl implements IAnime<Anime,String>{
 	@Override
 	public List<Anime> getRecently() throws DataAccessException, ClassNotFoundException, SQLException {
 		return animeDao.getRecently();
+	}
+
+	@Override
+	public List<Anime> getByStatus(Integer status) throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getByStatus(status);
+	}
+
+	@Override
+	public List<Anime> getWatched(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getWatched(username);
+	}
+
+	@Override
+	public List<Anime> getWatching(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getWatching(username);
+	}
+
+	@Override
+	public List<Anime> getQueued(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return animeDao.getQueued(username);
 	}
 
 	

@@ -7,6 +7,8 @@
 		<style>
 		#footer{
 				margin-top:50px;
+				position:relative;
+				bottom:0;
 				padding:0;
 				background:black;
 				width:99.74%;

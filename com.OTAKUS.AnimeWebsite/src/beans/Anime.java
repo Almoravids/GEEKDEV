@@ -2,13 +2,13 @@ package beans;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
 
+
 public class Anime implements RowMapper<Anime>{
-	private int animeId, statue;
+	private int animeId, status;
 	private String name, description, imageLink;
 	private List<Type> genre;
 	private List<Alias> alias;
@@ -18,21 +18,20 @@ public class Anime implements RowMapper<Anime>{
 
 	}
 
-	public Anime(String name, int statue, String description, String imageLink, List<Alias> alias, List<Type> genre) {
+	public Anime(String name, int status, String description, String imageLink, List<Alias> alias, List<Type> genre) {
 		super();
 		this.name = name;
-		this.statue = statue;
+		this.status = status;
 		this.description = description;
 		this.imageLink = imageLink;
 		this.alias = alias;
 		this.genre = genre;
 	}
 
-	public Anime(int animeId, int statue, String description, String imageLink, List<Alias> alias, List<Type> genre) {
+	public Anime(int animeId, int status, String description, String imageLink, List<Alias> alias, List<Type> genre) {
 		super();
 		this.animeId = animeId;
-		this.name = ((ArrayList<Alias>) alias).get(0).getAlias();
-		this.statue = statue;
+		this.status = status;
 		this.description = description;
 		this.imageLink = imageLink;
 		this.alias = alias;
@@ -43,7 +42,7 @@ public class Anime implements RowMapper<Anime>{
 		return animeId;
 	}
 
-	public void setId(int animeId) {
+	public void setAnimeId(int animeId) {
 		this.animeId = animeId;
 	}
 
@@ -55,18 +54,18 @@ public class Anime implements RowMapper<Anime>{
 		return name;
 	}
 
-	public int getStatue() {
-		return statue;
+	public int getStatus() {
+		return status;
 	}
-	public String getStringStatue() {
-		String statue="";
-		for(Statue statues:Statue.values())
-			if (statues.getStatueId()==getStatue())
-				statue=statues.getStatue();
-		return statue;
+	public String getStringStatus() {
+		String status="";
+		for(Status statues:Status.values())
+			if (statues.getStatusId()==getStatus())
+				status=statues.getStatus();
+		return status;
 	}
-	public void setStatue(int statue) {
-		this.statue = statue;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public String getDescription() {
@@ -104,11 +103,11 @@ public class Anime implements RowMapper<Anime>{
 	@Override
 	public Anime mapRow(ResultSet rs, int arg1) throws SQLException {
 		Anime a = new Anime();
-		a.setId(rs.getInt("id_anime"));
+		a.setAnimeId(rs.getInt("id_anime"));
 		a.setName(rs.getString("anime_name"));
 		a.setDescription(rs.getString("description"));
-		a.setImageLink(rs.getString("image_link"));
-		a.setStatue(rs.getInt("anime_statue"));
+		a.setImageLink(rs.getString("anime_image_link"));
+		a.setStatus(rs.getInt("anime_status"));
 
 		return a;
 	}

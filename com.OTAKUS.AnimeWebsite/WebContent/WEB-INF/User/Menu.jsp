@@ -21,7 +21,9 @@
 	<c:choose>
 	<c:when test="${user!=null}">
 	 <ul id="userNav" class="HiddenNav">
-		<input type="search" name="search" id="search" />
+		<form action="/search">
+	<input type="search" name="search" id="search" />
+	</form>
 	<div>
 		<li>${user.userName}</li>
 		<li>Search</li>

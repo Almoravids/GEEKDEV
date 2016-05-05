@@ -22,9 +22,11 @@ public class DaoConnection {
 		   
 		  }
 		public static JdbcTemplate  getConnection() throws SQLException, ClassNotFoundException{
+			if (jdbcT==null)
 			jdbcT=new JdbcTemplate();
 			ApplicationContext context = new ClassPathXmlApplicationContext("springConf.xml");
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
+			 if (dataSource==null)
 			 dataSource.getConnection();
 			 jdbcT.setDataSource(dataSource);
 			 return jdbcT;

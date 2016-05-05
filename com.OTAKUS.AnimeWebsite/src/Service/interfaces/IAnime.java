@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import beans.Anime;
+
 public interface IAnime<T, S> {
 	public boolean insert(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
 
@@ -20,9 +22,17 @@ public interface IAnime<T, S> {
 
 	public List<T> getAllByType(S type) throws DataAccessException, ClassNotFoundException, SQLException;
 
-	public List<T> getRecommended() throws DataAccessException, ClassNotFoundException, SQLException;
+	public List<T> getByStatus(Integer status) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<Anime> getRecommanded(String username) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public List<T> getPopular() throws DataAccessException, ClassNotFoundException, SQLException;
 
+	public List<T> getWatched(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getWatching(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+	
+	public List<Anime> getQueued(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+	
 	public List<T> getRecently() throws DataAccessException, ClassNotFoundException, SQLException;
 }

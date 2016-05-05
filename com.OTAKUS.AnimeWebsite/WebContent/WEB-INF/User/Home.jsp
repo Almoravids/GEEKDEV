@@ -28,7 +28,7 @@ background: rgba(0,0,0,.8);
 header{
 padding:0px;
 margin-bottom:30px;
-width:80%;
+max-width:80%;
 height:170px;
 }
 section{
@@ -107,22 +107,23 @@ width:60%;
 			
 </style>
 </head>
+
+		<jsp:useBean id="animes" class="Service.AnimeImpl"></jsp:useBean>
+        <jsp:useBean id="episodes" class="Service.EpisodeImpl"></jsp:useBean>
 <body>
 <center>
 	<header class="blocks">
 		<p class="head">Popular </p> <br>
 		<hr>
-		<jsp:useBean id="animes" class="Service.AnimeImpl"></jsp:useBean>
 		<c:forEach var="anime" items="${animes.popular}">
 		<figure>
 			  <a href="anime/${anime.name.replace(' ','_')}"> <img src="${anime.imageLink}" alt=""></a>
 			   
-			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">Episode:12</p>
+			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">epiosde ${episodes.getLast(anime.animeId).episode}</p>
 		</figure>
 </c:forEach>
 		 
 </header>
-<jsp:useBean id="episodes" class="Service.EpisodeImpl"></jsp:useBean>
 <section class="blocks">
 			  <p class="head">Recently Added </p><br>
 			  <hr>
@@ -130,7 +131,7 @@ width:60%;
 		<figure>
 			  <a href="watch/${episode.anime.name.replace(' ','_')}/season_${episode.season.season}/episode_${episode.episode}"><img src="${episode.imageLink}" alt="${episode.anime.name}"></a>
 			   
-			  <p class="AnimeLbl">${episode.anime.name}</p><p class="EpLbl">Episode ${episode.episode}</p>
+			  <p class="AnimeLbl">${episode.anime.name}</p><p class="EpLbl">episode ${episode.episode}</p>
 		</figure>
 </c:forEach>
 		
@@ -142,7 +143,7 @@ width:60%;
 		<figure>
 			   <a href="anime/${anime.name.replace(' ','_')}"><img src="${anime.imageLink}" alt=""></a>
 			   
-			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">Episode:12</p>
+			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">epiosde: ${episodes.getLast(anime.animeId).episode}</p>
 		</figure>
 </c:forEach>
 </aside>

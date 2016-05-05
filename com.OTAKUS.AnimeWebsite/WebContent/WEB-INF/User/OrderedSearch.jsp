@@ -2,6 +2,7 @@
 <%@page import="Service.AnimeImpl"%>
 <%@page import="beans.Anime"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <style >
 body{
   background:rgb(10,10,10);
@@ -53,7 +54,7 @@ article.AnimeList h3{
         font-weight:normal;
 				border:2px #008563 solid;
 				border-radius:2px;
-        padding: 2.4% 0;
+        padding: 1% 0;
         margin: 0;
 }
 
@@ -61,7 +62,7 @@ article.AnimeList h3{
 
 article.AnimeList figure{
   margin: 0;
-  padding:.5% 5%;
+  padding:.8% 5%;
   border-bottom:1px solid rba(10,10,10);
 }
 article.AnimeList figure a{
@@ -73,66 +74,69 @@ article.AnimeList figure span.AnimeName{
 article.AnimeList figure a+span{
    color:gray;
   font-size:12px;
+  float:right;
    margin: 0;
    padding:0;
 }
 </style>
 
-<% AnimeImpl animeImpl=new AnimeImpl();
-List<Anime> animes=animeImpl.getAll();
-animes.stream().sorted();
-%>
-<c:out value="${animes.size()}"></c:out>
-<c:forEach var="anime" items="${animes}" >
-<c:out value="${anime.name}"></c:out>
-</c:forEach>
   <ul id="alphaNav">
     
-    <a href="##"><li>#</li></a>
-   <a href="#a"><li>a</li></a>
-    <a href="#b"><li>b</li></a>
-    <a href="#c"><li>c</li></a>
-    <a href=""><li>d</li></a>
-    <a href=""><li>e</li></a>
-    <a href=""><li>f</li></a>
-    <a href=""><li>g</li></a>
-    <a href=""><li>h</li></a>
-    <a href=""><li>i</li></a>
-    <a href=""><li>j</li></a>
-    <a href=""><li>k</li></a>
-    <a href=""><li>l</li></a>
-    <a href=""><li>m</li></a>
-    <a href=""><li>n</li></a>
-    <a href=""><li>o</li></a>
-    <a href=""><li>p</li></a>
-    <a href=""><li>q</li></a>
-    <a href=""><li>r</li></a>
-    <a href=""><li>s</li></a>
-    <a href=""><li>t</li></a>
-    <a href=""><li>u</li></a>
-    <a href=""><li>v</li></a>
-    <a href=""><li>w</li></a>
-    <a href=""><li>x</li></a>
-    <a href=""><li>y</li></a>
-    <li><a href="">z</a></li>
+    <li><a href="##">#</a></li>
+   <li><a href="#a">a</a></li>
+    <li><a href="#b">b</a></li>
+    <li><a href="#c">c</a></li>
+    <li><a href="#d">d</a></li>
+    <li><a href="#e">e</a></li>
+    <li><a href="#f">f</a></li>
+    <li><a href="#g">g</a></li>
+    <li><a href="#h">h</a></li>
+    <li><a href="#i">i</a></li>
+    <li><a href="#j">j</a></li>
+    <li><a href="#k">k</a></li>
+    <li><a href="#l">l</a></li>
+    <li><a href="#m">m</a></li>
+    <li><a href="#n">n</a></li>
+    <li><a href="#o">o</a></li>
+    <li><a href="#p">p</a></li>
+    <li><a href="#q">q</a></li>
+    <li><a href="#r">r</a></li>
+    <li><a href="#s">s</a></li>
+    <li><a href="#t">t</a></li>
+    <li><a href="#u">u</a></li>
+    <li><a href="#v">v</a></li>
+    <li><a href="#w">w</a></li>
+    <li><a href="#x">x</a></li>
+    <li><a href="#y">y</a></li>
+    <li><a href="z">z</a></li>
   </ul>
-  <article class="AnimeList">
-    <h3 id="#">#</h3>
+  <jsp:useBean id="animeImpl" class="Service.AnimeImpl" />
+  <jsp:useBean id="episodeImpl" class="Service.EpisodeImpl" />
+  <c:set var="letter" value=""  target="String"/>
+<c:forEach var="anime" items="${animeImpl.all}">
+
+<c:if test="${!letter.equals(anime.name.charAt(0))}">
+
+<c:if test="${!letter.equals('')}">
+  </article>
+</c:if>
+<article class="AnimeList">
+</c:if>
+  <c:choose>
+  <c:when test="${anime.name.matches('^[a-zA-Z].*$')}">
+  <c:set var="letter" value="${anime.name.charAt(0)} " target="String"/>
+  </c:when>
+  <c:otherwise>
+  <c:set var="letter" value="#" target="String"/>
+  </c:otherwise>
+  </c:choose> 
+    <h3 id="${letter}">${letter}</h3>
         <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter [3]</span></a> 
-      <span>completed</span>           
+      <a href="/anime/${anime.name.replace(' ','_')}"><span class="AnimeName">${anime.name} [${episodeImpl.getLast(anime.animeId).episode}]</span></a> 
+      <span>${anime.stringStatus}</span>           
       </figure>
    
-  </article>
+    
   
-  <article class="AnimeList">
-    <h3 id="a">a</h3>
-   
-       <figure>
-      <a href=""><span class="AnimeName">Hunter x Hunter</span></a> 
-      <span>copmleted</span>           
-      </figure>
-   
-     
-   
-  </article>
+ </c:forEach>
+       </article>

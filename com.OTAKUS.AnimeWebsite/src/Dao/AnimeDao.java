@@ -13,15 +13,15 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 	@Override
 	public boolean update(Anime anime) throws DataAccessException, ClassNotFoundException, SQLException {
 		int rs = DaoConnection.getConnection().update(
-				"update anime set name=? description=? , image_link=? , anime_statue=? where id_anime=?", anime.getName(),
-				anime.getDescription(), anime.getImageLink(), anime.getStatue(), anime.getAnimeId());
+				"update anime set name=? description=? , anime_image_link=? , anime_status=? where id_anime=?",
+				anime.getName(), anime.getDescription(), anime.getImageLink(), anime.getStatus(), anime.getAnimeId());
 		return DaoTools.getResult(rs);
 	}
 
 	@Override
 	public Anime get(String animename) throws DataAccessException, ClassNotFoundException, SQLException {
 		Anime anime = (Anime) DaoConnection.getConnection()
-				.queryForObject("select a.* from anime a where a.anime_name='" + animename + "'", new Anime());
+				.queryForObject("select a.* from anime a where a.anime_name='" + animename + "' ", new Anime());
 		AliasDao alias = new AliasDao();
 		anime.setAlias(alias.get(anime.getAnimeId()));
 
@@ -33,7 +33,7 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 	@Override
 	public boolean insert(Anime anime) throws DataAccessException, ClassNotFoundException, SQLException {
 		int rs = DaoConnection.getConnection().update("insert into anime values(?,?,?,?,?)", anime.getAnimeId(),
-				anime.getName(), anime.getDescription(), anime.getImageLink(), anime.getStatue());
+				anime.getName(), anime.getDescription(), anime.getImageLink(), anime.getStatus());
 		return DaoTools.getResult(rs);
 	}
 
@@ -45,8 +45,8 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 
 	@Override
 	public List<Anime> getAll() throws DataAccessException, ClassNotFoundException, SQLException {
-		List<Anime> listAnime = (List<Anime>) DaoConnection.getConnection().query("select a.* from anime a",
-				new Anime());
+		List<Anime> listAnime = (List<Anime>) DaoConnection.getConnection()
+				.query("select a.* from anime a where not anime_status=1 order by a.anime_name", new Anime());
 		return listAnime;
 	}
 
@@ -77,22 +77,59 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 	}
 
 	@Override
-	public List<Anime> getRecommended() throws DataAccessException, ClassNotFoundException, SQLException {
+	public List<Anime> getRecommanded(String username)
+			throws DataAccessException, ClassNotFoundException, SQLException {
 		return DaoConnection.getConnection().query(
-				"select distinct an.* from  anime an , season se , episode ep where exists (select a.id_anime , max(ls.id_episode) from anime a,favorite f,last_seen ls ,episode e ,season s where a.id_anime=f.id_anime and f.username=ls.username and ls.id_episode=e.id_episode and e.id_season=s.id_season and s.id_anime=a.id_anime and ls.username='Mr Mahdi' and a.id_anime=an.id_anime  and an.id_anime=se.id_anime and se.id_season=ep.id_season group by a.id_anime having ep.id_episode > max(ls.id_episode));",
-				new Anime());
+				"select distinct an.* from  anime an , season se , episode ep where exists (select a.id_anime , max(ls.id_episode) from anime a,last_seen ls ,episode e ,season s where  ls.id_episode=e.id_episode and e.id_season=s.id_season and s.id_anime=a.id_anime and ls.username=? and a.id_anime=an.id_anime  and an.id_anime=se.id_anime and se.id_season=ep.id_season group by a.id_anime having ep.id_episode > max(ls.id_episode))",
+				new Anime(), username);
 	}
 
 	@Override
 	public List<Anime> getPopular() throws DataAccessException, ClassNotFoundException, SQLException {
 		return DaoConnection.getConnection().query(
-				"select a.* ,count(*) as watched from anime a,season s,episode e ,last_seen ls where a.id_anime=s.id_anime and s.id_season=e.id_season and e.id_episode=ls.id_episode group by a.id_anime,a.anime_name,a.description,a.image_link,a.anime_statue order by watched desc",
+				"select a.* ,count(*) as watched from anime a,season s,episode e ,last_seen ls where a.id_anime=s.id_anime and s.id_season=e.id_season and e.id_episode=ls.id_episode and rownum<=4 group by a.id_anime,a.anime_name,a.description,a.anime_image_link,a.anime_status order by watched desc",
 				new Anime());
 	}
 
 	@Override
 	public List<Anime> getRecently() throws DataAccessException, ClassNotFoundException, SQLException {
-		return DaoConnection.getConnection()
-				.query("select a.* from anime a order by a.id_anime desc", new Anime());
+		return DaoConnection.getConnection().query(
+				"select a.* from anime a where not anime_status =1 and rownum <4 order by a.id_anime desc",
+				new Anime());
+	}
+
+	@Override
+	public List<Anime> getByStatus(Integer status) throws DataAccessException, ClassNotFoundException, SQLException {
+		return DaoConnection.getConnection().query(
+				"select a.* from anime a where anime_status ="+status,new Anime());
+	}
+
+	@Override
+	public List<Anime> getWatched(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return DaoConnection.getConnection().query(
+				"select distinct an.* from    anime an , season se , episode ep ,last_seen ls where exists (select max(e.id_episode) from anime a , season s , episode e "
+				+ "where an.id_anime=s.id_anime and se.id_season=e.id_season and an.id_anime=se.id_anime and se.id_season=ep.id_season and ep.id_episode=ls.id_episode and ls.username=?"
+				+ " and an.anime_status=3 and an.id_anime=a.id_anime having ls.id_episode=max(e.id_episode))",
+				new Anime(),username);
+	}
+
+	@Override
+	public List<Anime> getWatching(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return DaoConnection.getConnection().query(
+				"select distinct an.* from    anime an , season se , episode ep ,last_seen ls "
+				+ "where exists (select a.anime_status,max(e.id_episode) "
+				+ "from anime a , season s , episode e"
+				+ " where an.id_anime=s.id_anime and se.id_season=e.id_season and an.id_anime=se.id_anime and se.id_season=ep.id_season and ep.id_episode=ls.id_episode and ls.username=? and not an.anime_status=1 and an.id_anime=a.id_anime"
+				+ " group by anime_status having ls.id_episode<=max(e.id_episode)and a.anime_status=2 or ls.id_episode<max(e.id_episode)and a.anime_status=3)",
+				new Anime(),username);
+	}
+
+	@Override
+	public List<Anime> getQueued(String username) throws DataAccessException, ClassNotFoundException, SQLException {
+		return DaoConnection.getConnection().query("select distinct an.* "
+				+ "from anime an ,favorite fa "
+				+ "where an.id_anime=fa.id_anime and an.id_anime not in (select distinct an.id_anime from anime an , season se , episode ep ,last_seen ls "
+				+ "where an.id_anime=se.id_anime and se.id_season=ep.id_season and ep.id_episode=ls.id_episode and ls.username=?"
+				+ ")and fa.username=?",new Anime(),username,username);
 	}
 }

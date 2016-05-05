@@ -16,7 +16,7 @@
 				margin-top:5%;
 				margin-left:20%;	
 			}
-			#navprofile form input[type="button"]{
+			#navprofile form input[type="submit"]{
 			
 				font-variant: small-caps;
 				text-transform:lowercase;
@@ -31,7 +31,7 @@
 				height:10%;
 				border-radius:5px;
 			}
-			#navprofile form input[type="button"]:hover{
+			#navprofile form input[type="submit"]:hover{
 				box-shadow: 0 0 20px 6px  #008563 inset;
 				background-color:#003326;
 				border:1px #003326 solid;
@@ -143,22 +143,24 @@
 		</style>
 		
 	</head>
+	
+	<<c:if test="${user!=null}">
 		<header id="navprofile">
-			<form>
+			<form method="get">
 				
-				<input type="button" id="lastseen" value="Last seen" />
-				<input type="button" id="watching" value="Watching" />
-				<input type="button" id="watched" value="Watched" />
-				<input type="button" id="fav" value="Favorie" />
+				<input name="action" type="submit" id="lastseen" value="Last seen" />
+				<input name="action" type="submit" id="watching" value="Watching" />
+				<input name="action" type="submit" id="watched" value="Watched" />
+				<input name="action" type="submit" id="fav" value="Favorite" />
 				<br><br>
-				<input type="button" id="recommanded" value="Recommanded" />
-				<input type="button" id="ongoing" value="Ongoing" />
-				<input type="button" id="completed" value="Completed" />
-				<input type="button" id="all" value="All" />
+				<input name="action" type="submit" id="recommanded" value="Recommanded" />
+				<input name="action" type="submit" id="ongoing" value="Ongoing" />
+				<input name="action" type="submit" id="completed" value="Completed" />
+				<input name="action" type="submit" id="all" value="All" />
 				
 			</form>
 		</header>
-		
+		</c:if>
 		<nav id="navanime">
 			
 			<ul>
@@ -174,7 +176,7 @@
 		<c:forEach  var="anime" items="${animes}">
 		<a id="infoanime" href="anime/${anime.name.replace(' ','_')}">
 			<img src ="${anime.imageLink}" id="imganime" />
-			<article id="desc"><h3>${anime.name}</h3><h6>${anime.stringStatue}</h6><br>
+			<article id="desc"><h3>${anime.name}</h3><h6>${anime.stringStatus}</h6><br>
 			<c:forEach var="alias" items="${anime.alias}" >
                    <h5>${alias.alias}</h5>
              </c:forEach>                   

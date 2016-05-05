@@ -1,5 +1,5 @@
 <%@page import="beans.Visitor"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 
 
 <html>
@@ -75,6 +75,9 @@ visibility:visible;}
   margin:0px auto;
   margin-bottom:30px;
   border-top:none;
+}
+#Stats a{
+text-decoration:none;
 }
 #statsArticle{
 width:80%;
@@ -375,6 +378,7 @@ border-radius:3px;
 background: #101010;
 
 }
+s
 hr {
 border: solid #101010 2px;
 margin:0px;
@@ -416,6 +420,10 @@ color:white;
 }
 </style>
 </head>
+
+    <jsp:useBean id="favoriteImpl" class="Service.FavoriteImpl"/>
+    <jsp:useBean id="animeImpl" class="Service.AnimeImpl"/>
+    <jsp:useBean id="episodeImpl" class="Service.EpisodeImpl"/>
 <body>
   <header id="profile">
 <h3>WELCOME</h3><h1>${sessionScope.user.userName}</h1><br>
@@ -458,25 +466,32 @@ color:white;
   <section id="Stats" class="blocks">
     <center>
     <figure class="blocks2">
-    <jsp:useBean id="favorite" class="Service.FavoriteImpl"/>
-      <h6>Favoris</h6>
+    <a href="/search?action=Favorite">
+      <h6>Favorite</h6>
       <hr class="hr">
-      <p>${favorite.getAll(user.userName).size()}</p>
+      <p>${favoriteImpl.getAll(user.userName).size()}</p>
+      </a>
     </figure>
     <figure class="blocks2">
+    <a href="/search?action=Watching">
       <h6>Watching</h6>
       <hr class="hr">
-      <p>10</p>
+      <p>${animeImpl.getWatching(user.userName).size()}</p>
+       </a>
     </figure>
     <figure class="blocks2">
-      <h6>Not Watched yet</h6>
+    <a href="/search?action=Queued">
+      <h6>Queued</h6>
       <hr class="hr">
-      <p>10</p>
+      <p>${animeImpl.getQueued(user.userName).size()}</p>
+       </a>
     </figure>
     <figure class="blocks2">
+    <a href="/search?action=Watched">
       <h6>Watched</h6>
       <hr class="hr">
-      <p>10</p>
+      <p>${animeImpl.getWatched(user.userName).size()}</p>
+       </a>
     </figure>
     </center>
   </section>
@@ -569,32 +584,14 @@ color:white;
       <h4 class="recH4">Recommendation</h4>
     <hr/>
     <div>
+    <c:forEach var="anime" items="${animeImpl.getRecommanded(user.userName)}">
     <figure>
       
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
+			  <img  src="${anime.imageLink}" alt="">
 			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
+			  <p class="fstLbl">${anime.name}</p><p class="sndLbl">episode ${episodeImpl.getLast(anime.animeId).episode}</p>
 		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			 <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			<p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			<p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-      
+   </c:forEach>
     </div>
  
       </section>

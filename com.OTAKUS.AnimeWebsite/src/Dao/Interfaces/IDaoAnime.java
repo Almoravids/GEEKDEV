@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-public interface IDaoAnime<T, S> {
-	public boolean insert(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
+import beans.Anime;
 
-	public boolean update(T Anime) throws DataAccessException, ClassNotFoundException, SQLException;
+public interface IDaoAnime<T, S> {
+	public boolean insert(Anime Anime) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public boolean update(Anime Anime) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public boolean delete(Integer animeId) throws DataAccessException, ClassNotFoundException, SQLException;
 
@@ -16,15 +18,23 @@ public interface IDaoAnime<T, S> {
 
 	public List<T> getAll() throws DataAccessException, ClassNotFoundException, SQLException;
 
-	public List<T> getAllByAlias(S aliasId) throws DataAccessException, ClassNotFoundException, SQLException;
+	public List<T> getAllByAlias(String alias) throws DataAccessException, ClassNotFoundException, SQLException;
 
-	public List<T> getAllByType(S typeId) throws DataAccessException, ClassNotFoundException, SQLException;
+	public List<T> getAllByType(String typeId) throws DataAccessException, ClassNotFoundException, SQLException;
 
-	public List<T> getRecommended() throws DataAccessException, ClassNotFoundException, SQLException;
+	public List<T> getByStatus(Integer status) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public List<T> getPopular() throws DataAccessException, ClassNotFoundException, SQLException;
-	
+
 	public List<T> getRecently() throws DataAccessException, ClassNotFoundException, SQLException;
+
+	List<Anime> getRecommanded(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getWatched(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+
+	public List<T> getWatching(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+	
+	public List<T> getQueued(String username) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public int getAnimeId() throws DataAccessException, ClassNotFoundException, SQLException;
 }

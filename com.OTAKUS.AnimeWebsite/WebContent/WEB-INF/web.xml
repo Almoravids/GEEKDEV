@@ -159,6 +159,16 @@
     <filter-name>animeFilter</filter-name>
     <filter-class>controllers.filters.AnimeFilter</filter-class>
   </filter>
+  <filter>
+    <filter-name>checkLogFilter</filter-name>
+    <filter-class>controllers.filters.CheckLogFilter</filter-class>
+  </filter>
+  
+  
+    <filter-mapping>
+    <filter-name>checkLogFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <filter-mapping>
     <filter-name>userSignIn</filter-name>
     <url-pattern>/profile</url-pattern>
@@ -191,4 +201,5 @@
     <filter-name>animeFilter</filter-name>
     <url-pattern>/anime/*</url-pattern>
   </filter-mapping>
+
 </web-app>

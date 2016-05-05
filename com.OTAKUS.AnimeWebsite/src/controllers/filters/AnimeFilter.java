@@ -21,7 +21,10 @@ import Dao.AnimeDao;
 import Dao.EpisodeDao;
 import Dao.SeasonDao;
 import Dao.TypeDao;
+import Service.FavoriteImpl;
 import beans.Anime;
+import beans.Favorite;
+import beans.Visitor;
 
 /**
  * Servlet Filter implementation class animeFilter
@@ -62,13 +65,21 @@ public class AnimeFilter implements Filter {
 				request.setAttribute("seasons", new SeasonDao().getAll(anime.getAnimeId()));
 				request.setAttribute("episodes",
 						new EpisodeDao().getAll(SeasonDao.switchNumSeasonToId(1, anime.getAnimeId())));
+                
+				Visitor user=(Visitor) httpRequest.getSession().getAttribute("user");
+				if (user!=null){
+				Favorite fav= new Favorite();
+				fav.setAnimeId(anime.getAnimeId());
+				fav.setUsername(user.getUserName());
+				request.setAttribute("favorite",new FavoriteImpl().check(fav));
+				}
 				chain.doFilter(request, response);
 			} catch (SQLException e) {
 				httpResponse.sendError(500);
-			} catch (DataAccessException e) {
-				chain.doFilter(request, response);
-			} catch (Exception e) {
+				e.printStackTrace();
+			} catch (DataAccessException | ClassNotFoundException e) {
 				httpResponse.sendError(404);
+				e.printStackTrace();
 			}
 
 		} else

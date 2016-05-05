@@ -19,7 +19,7 @@
 
 	<%@include file="WEB-INF/User/Menu.jsp"%>
 	<c:choose>
-		<c:when test="${param.search eq null and param.tag eq null}">
+		<c:when test="${param.search eq null and param.tag eq null and param.action eq null or param.action.equals('All')}">
 			<%@include file="WEB-INF/User/OrderedSearch.jsp"%>
 		</c:when>
 		<c:otherwise>

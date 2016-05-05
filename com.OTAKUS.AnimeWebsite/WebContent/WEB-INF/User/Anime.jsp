@@ -227,7 +227,6 @@ hr {
 }
 </style>
 </head>
-
 <body>
 
 
@@ -235,7 +234,17 @@ hr {
 	<header id="animeInfos">
 		<div>
 			<h2>${anime.name}</h2>
-			<img id="fav" src="/Image/noFav.png"><span>${anime.stringStatue}</span>
+			<c:if test="${user ne null}">
+				<c:choose>
+			<c:when test="${favorite}">
+			<img id="fav" src="/Image/fav.png">
+			</c:when>
+			<c:otherwise>
+			<img id="fav" src="/Image/noFav.png">
+			</c:otherwise>
+		</c:choose>
+		</c:if>
+			<span>${anime.stringStatus}</span>
 			<c:forEach var="alias" items="${anime.alias}">
 				<h3>${alias.alias}</h3>
 			</c:forEach>

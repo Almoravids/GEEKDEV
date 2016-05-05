@@ -129,7 +129,7 @@ public class Episode implements RowMapper<Episode> {
 		episode.setEpisode(rs.getInt("num_episode"));
 		episode.setName(rs.getString("episode_name"));
 		episode.setLink(rs.getString("link"));
-		episode.setImageLink(rs.getString("image_link"));
+		episode.setImageLink(rs.getString("episode_image_link"));
 		episode.setSeasonId(rs.getInt("id_season"));
 		episode.setType(rs.getInt("type"));
 		if (!rs.getMetaData().getColumnLabel(rs.getMetaData().getColumnCount()).equals("TYPE")){

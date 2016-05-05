@@ -1,16 +1,14 @@
-<!DOCTYPE html>
 
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Error Occured or Database is down please Try Again</title>
-
+  <title>Server Broken</title>
 <style >
 body{
   background:rgb(10,10,10);
   padding:0;margin:0;
   width:100%;
-  color:#008563;
+font-family:brokenFont;
 }
 header{
   margin:0;
@@ -18,86 +16,72 @@ header{
 }
 header img{
   width:100%;
-  height:24em;
+  height:28em;
   margin:0;
   padding:0;
 }
-footer {
-  width:100%;
-   margin:1% auto;
-   padding:0;
+.article{
+margin-top:20px;
+margin-right:5%;
 }
-footer h6{
-  font-size:20px;
-  margin:0 30%;
-  padding:0;
+.article ul{
+color:#73967E;
+margin-left:59%;
 }
-footer input,footer p,footer img{
-  display:block;
-  text-align:center;
+.article h3{
+color:#029653;
+text-indent:20px;
 }
-footer form{
-  margin:2% auto;
+.article h1{
+color:#00FF8B;
 }
-footer input[type="search"],footer input[type="submit"]{
-  color:#008563 ;
-  background:rgb(10,10,10);
-  opacity:.9;
-  height:3em;
-  display:inline-block;
-  
-  border:#008563  solid 1px;
+.article1 {
+float :left;
+color:white;
+width:50%;
+margin:0;
+margin-left:5%;
+margin-top:-30px;
+margin-bottom:0;
+padding:0;
+font-family:brokenFont;
 }
-footer input[type="search"]{
-  width:40%;
-   padding:0;
-  outline:none;
-  margin-left:28%;
-  border-radius:5px 10px;
+.article1 h1:first-child{
+float:left;
+font-size:7em;
+margin:0;
+margin-right:10%;
+margin-top:10%;
+color: #189348;
 }
-footer input[type="submit"]{
-  margin-left:1%;
-  border-radius:10px 5px;
-  outline:none;
+.article1 h1:nth-child(2){
+
+font-size:2.5em;
+margin:0;
+line-height: 150%;
+margin-top:15%;
+color:#9ECC96;
 }
-footer p{
-  display:inline;
-  margin:0 3%;
-  margin-top:5%;
-  padding:5% 0;
+
+@font-face {
+    font-family: brokenFont;
+    src: url(Fonts/GROBOLD.ttf);
 }
-footer p.fstP{
-  margin-left:38%;
-}
-footer p a{
-  color:#008563;
-  text-decoration:none;
-}
-footer img{
-  opacity:.6;
-  width:8%;
-  height:55px;
-  margin:2% auto;
-  padding:0;
-  margin-left:45.5%;
-}
+
 </style>
 </head>
 <body>
-<header><img src="/Image/404.png" alt="404"></header>
-<footer>
-  <h6>Find Animes</h6>
-  <form method="post">
-  <input type="search"  ><input type="submit" value="search">
-  </form>
-  <p class="fstP"><a href="/home">HOME</a></p>-<p><a href="search">SEARCH</a></p>-
-  <%if(session.getAttribute("user")!=null){ %>
-  <p><a href="/profile">PROFILE</a></p><%}
-  else{
-	  %><p><a href="/signin">LOGIN</a></p><% 
-  }
-  %>
-  <a href="/home"><img src="/Image/WLOGO.png" alt="OTAKUS LOGO"></a>
-</footer>
+<header><img src="/Image/500.png" alt="404"></header>
+<article class="article1">
+<h1 >500</h1>
+<h1>Server Broken</h1>
+</article>
+<article class="article">
+<h1>It looks like something went horribly wrong</h1>
+<h3>Now you're wondering,what to do now ?,Well...</h3>
+<ul><li>you can try refreshing the page,the problem may be temporary</li>
+<li>we've been notified of the problem and will do our best  to make sure it doesn't happen again!</li>
+</ul>
+</article>
 </body>
 </html>
