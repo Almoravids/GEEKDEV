@@ -46,6 +46,7 @@ public class CheckLogFilter implements Filter {
 	if(httpRequest.getSession().getAttribute("user")==null){
 	Cookie[] cookies=httpRequest.getCookies();
 	String user = null,secureUser=null;
+	if (cookies!=null){
 	for (Cookie cookie:cookies){
 		if (cookie.getName().equals("username"))
 			user=cookie.getValue();
@@ -70,8 +71,7 @@ public class CheckLogFilter implements Filter {
 			e.printStackTrace();
 		}
 	}
-	}
-	System.out.println();
+	}}
 		chain.doFilter(request, response);
 	}
 

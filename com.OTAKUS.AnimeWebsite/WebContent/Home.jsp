@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <html>
 <title>OTAKUS anime website</title>
+
 <body>
 <%@include file="WEB-INF/User/Menu.jsp" %>
 <%@include file="WEB-INF/User/Slider.jsp" %>

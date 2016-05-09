@@ -1,0 +1,222 @@
+body{
+
+  padding:0;
+  margin:0;
+}
+
+.Menu{
+  font-size:95%;
+  z-index:16;
+  background-color:#003326;
+   height:60px;
+  min-width:800px;
+  width:100%;
+}
+.Menu > a ,.Menu > div {
+  display:inline-block;
+  vertical-align:middle;
+ /* border:1px black solid;*/
+}
+.Menu > a{
+  
+  margin:.2% 1%;
+  margin-left:4%;
+}
+.Logo{
+  
+  /*width:6%;*/
+  height:80%; 
+}
+.Menu > div:nth-child(2) {
+  display:none;
+  width:55%;
+  height:80%;
+ /* visibility:hidden;*/
+}
+
+.Menu > div:nth-child(2) input[type="search"]{
+  color:#008563;
+  background:#003326;
+  width:55%;
+  height:60%;
+  outline:none;
+  border:none;
+  margin:1.5% 6%;
+  border-bottom: 1px solid #008563;
+}
+.Menu > div:nth-child(3) {
+  width:55%;
+  height:80%;
+ /* visibility:hidden;*/
+}
+
+
+/*Menu Child---------------------------------------------------------*/
+.Menu > div:nth-child(3) ul{
+  position:relative;
+  top:10%;
+}
+
+.Menu > div:nth-child(3) ul li{
+  list-style-type:none;
+  display:inline;
+  padding:3% 0;
+ 
+}
+.Menu .Floated li{
+  float:right;
+  position:relative;
+  top:-21px;
+}
+
+.Menu > div:nth-child(3) ul li a{
+  color:white;
+  text-decoration:none;
+  border-radius:2px;
+  padding:10px 30px;
+}
+.Menu > div:nth-child(3) ul li a:hover{
+  box-shadow:inset 0px 0px 60px black;
+}
+
+.Menu > div:nth-child(4) {
+  
+  width:10%;
+  height:80%;
+  position:relative;
+  padding:7px auto;
+  padding-left:2%;
+ /* visibility:hidden;*/
+}
+
+.Menu > div:nth-child(5) {
+  float:right;
+  width:10%;
+  height:80%;
+}
+.Profile,.Notification,.Search,.SubMenuImg{
+  width:auto;
+  height:30px;
+  display:inline-block;
+  vertical-align:middle;
+}
+.Profile,.Notification{
+  
+  padding:0;
+  margin:auto 4%;
+  vertical-align:middle;
+}
+  
+.Search,.SubMenuImg{
+  padding:12% 0;
+}
+.Profile{
+  width:auto;
+  height:52px;
+  border-radius:50%;
+  box-shadow:inset 0px 0px 25px #008563;
+  margin-left:-8%;
+}
+.Notification {
+  width:18%;
+ height:50%;
+}
+.NotSubMenu {
+  float:right;
+  position:relative;
+  right:15%;
+}
+
+.Search{
+}
+.SubMenuImg{
+  padding-left:14%;
+}
+
+
+/*SUBMENU---------------------------------------------------------*/
+.ProfileSubMenu{
+
+  display:none;
+  width:20%;
+  list-style-type:none;
+  position:absolute;
+  top:45px;
+  left:64%;
+  z-index:20;
+}
+
+.ProfileSubMenu li{
+  background-color:#008563;
+  
+  box-shadow:inset 0px 0px  .8px #00CC99;
+  padding:2% 8%;
+}
+.ProfileSubMenu li:hover{
+  box-shadow:inset 0px 0px 80px #003326;
+}
+.ProfileSubMenu a{
+  color:white;
+  opacity:.9;
+  text-decoration:none;
+}
+
+
+.NotSubMenu{
+  display:none;
+  width:20%;
+  list-style-type:none;
+  position:absolute;
+  right:8%;
+  top:45px;
+  z-index:19;
+}
+
+.NotSubMenu li {
+  
+  background-color:#008563;
+  box-shadow:inset 0px 0px  .8px #00CC99;
+  padding:0.01% 8%;
+}
+.NotSubMenu li:hover{
+  box-shadow:inset 0px 0px 100px #003326;
+}
+.NotSubMenu li p{
+  line-height:4px;
+}
+.NotSubMenu a{
+   color:white;
+  opacity:.9;
+  text-decoration:none;
+  padding:0;
+  
+}
+
+/*BOTTOMSUBMENU---------------------------------------------------------*/
+.SubMenu{
+  display:none;
+  background-color:#008563;
+  
+  list-style-type:none;
+}
+.SubMenu ul {
+  margin:0;
+  padding:.5%;
+}
+.SubMenu li{
+  font-size:90%;
+  list-style-type:none;
+  display:inline;
+  padding:.4% 1%;
+  vertical-align:baseline;
+  z-index:15;
+}
+.SubMenu li:hover{
+  border-radius:2px;
+  box-shadow:inset 0px 0px 80px #003326;}
+
+.SubMenu li a{
+  color:white;
+  opacity:.9;
+  text-decoration:none;
+}
