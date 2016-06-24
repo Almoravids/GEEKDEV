@@ -6,8 +6,11 @@ import java.sql.Timestamp;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class Episode implements RowMapper<Episode> {
-	private int Episodeid, episode, seasonId, type;
+import Service.Tools;
+import Service.interfaces.IBeanToJS;
+
+public class Episode implements RowMapper<Episode>,IBeanToJS {
+	private int episodeid, episode, seasonId, type;
 	private String name, link, imageLink;
 	private Anime anime;
 	private Season season;
@@ -30,7 +33,7 @@ public class Episode implements RowMapper<Episode> {
 
 	public Episode(int episodeid, int episode, int seasonId, String name, String link, String imageLink, int type) {
 		super();
-		Episodeid = episodeid;
+		episodeid = episodeid;
 		this.episode = episode;
 		this.seasonId = seasonId;
 		this.name = name;
@@ -40,11 +43,11 @@ public class Episode implements RowMapper<Episode> {
 	}
 
 	public int getEpisodeid() {
-		return Episodeid;
+		return episodeid;
 	}
 
 	public void setEpisodeid(int episodeid) {
-		Episodeid = episodeid;
+		episodeid = episodeid;
 	}
 
 	public int getEpisode() {
@@ -132,6 +135,7 @@ public class Episode implements RowMapper<Episode> {
 		episode.setImageLink(rs.getString("episode_image_link"));
 		episode.setSeasonId(rs.getInt("id_season"));
 		episode.setType(rs.getInt("type"));
+		episode.setTime(rs.getTimestamp("time_episode"));
 		if (!rs.getMetaData().getColumnLabel(rs.getMetaData().getColumnCount()).equals("TYPE")){
 		Anime anime=new Anime();
 		anime=anime.mapRow(rs, arg1);
@@ -139,9 +143,19 @@ public class Episode implements RowMapper<Episode> {
 			Season season=new Season();
 			season=season.mapRow(rs, arg1);
 			episode.setSeason(season);
-			
 		}
 		return episode;
+	}
+
+	@Override
+	public String toJSObject() {
+		return "function Episode(id,episode,name,type,time,link,imagelink,seasonid){"
+				+"this.id=id;this.episode=episode;this.name=name;this.type=type;this.time=time;this.link=link;this.imagelink=imagelink;this.seasonid=seasonid;};";
+	}
+
+	@Override
+	public String toJSInstance() {
+		return "new Episode ("+this.episodeid +","+this.episode+",\""+this.name+"\",\""+this.type+"\",\""+Tools.dateToString(this.time)+"\",\""+this.link+"\",\""+this.imageLink+"\","+this.seasonId+")";
 	}
 
 }

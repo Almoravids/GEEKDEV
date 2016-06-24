@@ -16,32 +16,7 @@
 <script src="/Js/classes-ajax.js"></script>
 <style>
 
-/*scroll */
 
-/* Let's get this party started */
-::-webkit-scrollbar {
-	width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(10, 10, 10, 0.8);
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	background: #008563;
-}
-
-/*
-			::-webkit-scrollbar-thumb:window-inactive {
-				background:#008563; 
-			}
-			*/
 /***************************************************/
 body {
 	background: #111;
@@ -314,20 +289,38 @@ display:inline;
 }
 </style>
 </head>
+<jsp:useBean  id="tools" class="Service.Tools" />
 <body>
 	<div id="infoEp">
 
-
+ <c:if test="${episode ne null}">
 		<h3 id="h31">${requestScope.anime.name}</h3>
 		<h3>Season ${requestScope.season.season}</h3>
 		<br>
 		<h3 id="h3ep">Episode ${requestScope.episode.episode}&nbsp; :
 			&nbsp; &nbsp; &nbsp;${requestScope.episode.name}</h3>
+			</c:if>
+			
+			 <c:if test="${movie ne null}">
+		<h3 id="h31">${requestScope.anime.name}</h3>
+<%-- 		<h3>Season ${requestScope.season.season}</h3> --%>
+		<br>
+		<h3 id="h3ep">Movie ${requestScope.movie.movie}&nbsp; :
+			&nbsp; &nbsp; &nbsp;${requestScope.movie.name}</h3>
+			</c:if>
 	</div>
 	<c:set var="found" value="false" />
-	<section id="secP"> <iframe id="videoy"
-		src="${requestScope.episode.getLink()}" frameborder="0"
-		allowfullscreen></iframe> <aside id="episodes">
+	<section id="secP">
+	 <c:if test="${episode ne null}">
+	 <iframe id="videoy"
+		src="${requestScope.episode.link}" frameborder="0"
+		allowfullscreen></iframe>
+		</c:if>
+		 <c:if test="${movie ne null}">
+		  <iframe id="videoy"
+		src="${requestScope.movie.link}" frameborder="0"
+		allowfullscreen></iframe></c:if>
+		 <aside id="episodes">
 
 	<ul>
 		<c:forEach var="episode" items="${allEpisodes}">
@@ -389,7 +382,7 @@ display:inline;
 	<c:when test="${comments.size() ne 0}">
 	<c:forEach var="comment" items="${comments}">
 	<article class="Comment"> <img src="${comment.user.imageLink}"  />
-<jsp:useBean  id="tools" class="Service.Tools" />
+
 	<div id="${comment.id}">
 		<span class="leftSpan">${comment.user.userName}</span><span class="rightSpan">${tools.dateToString(comment.time)}</span>
 		<p>${comment.comment}</p>
@@ -398,7 +391,7 @@ display:inline;
 	
 	</c:forEach>
 	</c:when>
-	<c:otherwise>
+	<c:otherwise><h5 class="NoResult">No Comment be the first and put your comment here</h5> 
 	</c:otherwise>
 	</c:choose>
 	
@@ -430,6 +423,9 @@ display:inline;
 	});
 	 function comment(){
 		 ajaxConnection("/AddComment?comment="+$(".CommentHeader input[type='textarea']").val()+"&episode="+$(".CommentHeader").attr("id")+"&op=true", "post");
-         }
+
+		 $('.CommentHeader').after("<article class='Comment'> <img src='"+$('#userImage').attr('src')+"'  /> <div id='3'> <span class='leftSpan'>${user.userName}</span><span class='rightSpan'>0 sec</span> <p>"+$('.CommentHeader  input[type="textarea"]').val()+"</p></div></article>");	 
+	 } 
+ 
 </script>
 </html>

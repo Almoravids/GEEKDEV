@@ -1,9 +1,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="notificationImpl" class="Service.NotificationImpl"></jsp:useBean>
+<c:set var="notifications" value="${notificationImpl.watchingAnimesNotification(user.userName)}" target="java.util.ArrayList"/>
 <link href="/Css/MenuStyle.css" rel="stylesheet">
+<link href="/Css/style.css" rel="stylesheet">
 <nav>
 	<div class="Menu">
 		<a href="/"><img class="Logo" alt="logo"
-			src="http://localhost:8090/Image/LOGO.png"></a>
+			src="/Image/LOGO.png"></a>
 		<div>
 		<form action="/search" method="get">
 			<input type="search" placeholder="Try new Anime" name="search" >
@@ -32,32 +35,42 @@
 		<div>
 		<c:if test="${user ne null}">
 			<img class="Profile" alt="profile"
-				src="${user.imageLink}"> <img
+				src="${user.imageLink}">
+				
+				<c:choose>
+				<c:when test="${notifications.size() eq 0}">
+				<img
 				class="Notification" alt="notification"
-				src="http://localhost:8090/Image/bell.png">
+				src="/Image/bell.png">
+				</c:when>
+				<c:otherwise>
+				<img
+				class="Notification" alt="notification"
+				src="/Image/ringingBell.png">
+				</c:otherwise>
+				</c:choose> 
 				</c:if>
 		</div>
 		<div>
 			<img class="Search" alt="search"
-				src="http://localhost:8090/Image/Loupe.png"> <img
+				src="/Image/Loupe.png"> <img
 				class="SubMenuImg" alt="subMenu"
-				src="http://localhost:8090/Image/subMenu.png">
+				src="/Image/subMenu.png">
 
 		</div>
 		<ul class="ProfileSubMenu">
 			<a href="/profile"><li>Profile</li></a>
 			<a href="/edit"><li>Edit</li></a>
+			<c:if test="${user.type ne 'user'}">
+			<a href="/panel/anime"><li>Panel</li></a>
+			</c:if>
 			<a href="/SignOut"><li>Sign out</li></a>
 		</ul>
 		<ul class="NotSubMenu">
-			<li><a href="#"><p>Dragon ball super</p>
-					<p>Episode 23</p></a></li>
-			<li><a href="#"><p>Dragon ball super</p>
-					<p>Episode 23</p></a></li>
-			<li><a href="#"><p>Dragon ball super</p>
-					<p>Episode 23</p></a></li>
-			<li><a href="#"><p>Dragon ball super</p>
-					<p>Episode 23</p></a></li>
+		<c:forEach var="notification" items="${notifications}" >
+			<li><a href="watch/${notification.anime.name.replace(' ','_')}/season_${notification.season.season}/episode_${notification.episode}"><p>${notification.anime.name}</p>
+					<p>Episode ${notification.episode}</p></a></li>
+			</c:forEach>
 		</ul>
 	</div>
 	<div class="SubMenu">
@@ -74,6 +87,8 @@
 		</ul>
 	</div>
 </nav>
+<script id="otksajax" ></script>
+<script src="/Js/classes-ajax.js" ></script>
 <script src="/Js/jquery-2.1.3.min.js"></script>
 <script src="jquery-ui.min.js"></script>
 <script src="/Js/Menu.js"></script>

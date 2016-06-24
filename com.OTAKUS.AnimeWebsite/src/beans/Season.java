@@ -3,12 +3,18 @@ package beans;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class Season implements RowMapper<Season>{
+import Service.EpisodeImpl;
+import Service.Tools;
+import Service.interfaces.IBeanToJS;
+
+public class Season implements RowMapper<Season>,IBeanToJS{
 	private int seasonId, season, animeId;
 	private Timestamp time;
+	private List<Episode>episodes;
 
 	public Season() {
 	}
@@ -53,6 +59,14 @@ public class Season implements RowMapper<Season>{
 		this.time = time;
 	}
 
+	public List<Episode> getEpisodes() {
+		return episodes;
+	}
+
+	public void setEpisodes(List<Episode> episodes) {
+		this.episodes = episodes;
+	}
+
 	@Override
 	public Season mapRow(ResultSet rs, int arg1) throws SQLException {
 		Season season=new Season();
@@ -63,4 +77,25 @@ public class Season implements RowMapper<Season>{
 		return  season;
 	}
 
+	@Override
+	public String toJSObject() {
+		return "function Season(id,season,time,anime,episodes){"
+				+ "this.id=id;"
+				+ "this.season=season;"
+				+ "this.time=time;"
+				+ "this.anime=anime;"
+				+ "this.episodes=episodes;"
+				+ "};";
+	}
+
+	@Override
+	public String toJSInstance() {
+		String jsInstance= "new Season("+this.animeId+","+this.season+",new Date(\""+this.time+"\"),"+this.animeId+",[";
+		for (int i=0;i<episodes.size();i++){
+			jsInstance+=episodes.get(i).toJSInstance();
+		if (episodes.size()-i!=1)
+			jsInstance+=",";}
+				jsInstance+="])";
+		return jsInstance;
+	}
 }

@@ -80,10 +80,26 @@ public class AnimeDao implements IDaoAnime<Anime, String> {
 	public List<Anime> getRecommanded(String username)
 			throws DataAccessException, ClassNotFoundException, SQLException {
 		return DaoConnection.getConnection().query(
-				"select distinct an.* from  anime an , season se , episode ep where exists (select a.id_anime , max(ls.id_episode) from anime a,last_seen ls ,episode e ,season s where  ls.id_episode=e.id_episode and e.id_season=s.id_season and s.id_anime=a.id_anime and ls.username=? and a.id_anime=an.id_anime  and an.id_anime=se.id_anime and se.id_season=ep.id_season group by a.id_anime having ep.id_episode > max(ls.id_episode))",
-				new Anime(), username);
+				//"select distinct an.* from  anime an , season se , episode ep where exists (select a.id_anime , max(ls.id_episode) from anime a,last_seen ls ,episode e ,season s where  ls.id_episode=e.id_episode and e.id_season=s.id_season and s.id_anime=a.id_anime and ls.username=? and a.id_anime=an.id_anime  and an.id_anime=se.id_anime and se.id_season=ep.id_season group by a.id_anime having ep.id_episode > max(ls.id_episode))",
+				"select distinct an.* from anime an ,kind k where an.id_anime=k.id_anime and k.id_type in ("
+				+ " select id_type from ("
+				+ " select id_type,count(id_type) "
+				+ " from anime an ,season se,episode ep,last_seen ls,kind k"
+				+ " where k.id_anime=an.id_anime and an.id_anime=se.id_anime and se.id_season=ep.id_season and ep.id_episode=ls.id_episode and ls.username=?"
+				+ " group by id_type"
+				+ " having count(id_type) > (select count(*) * 50/100"
+				+ " from anime an ,season se,episode ep,last_seen ls"
+				+ " where an.id_anime=se.id_anime and se.id_season=ep.id_season and ep.id_episode=ls.id_episode and ls.username=?))) "
+				+ "and an.id_anime not in ( select distinct an.id_anime from anime an , season se , episode ep ,last_seen ls "
+				+ "where an.id_anime=se.id_anime and se.id_season=ep.id_season and ep.id_episode=ls.id_episode and ls.username='Mr Mahdi')",
+				new Anime(), username,username);
 	}
 
+	public List<Anime> waiting(String username) throws DataAccessException, ClassNotFoundException, SQLException{
+		return DaoConnection.getConnection().query(
+				"select distinct an.* from  anime an , season se , episode ep where exists (select a.id_anime , max(ls.id_episode) from anime a,last_seen ls ,episode e ,season s where  ls.id_episode=e.id_episode and e.id_season=s.id_season and s.id_anime=a.id_anime and ls.username=? and a.id_anime=an.id_anime  and an.id_anime=se.id_anime and se.id_season=ep.id_season group by a.id_anime having ep.id_episode > max(ls.id_episode))",
+		new Anime(), username);
+	}
 	@Override
 	public List<Anime> getPopular() throws DataAccessException, ClassNotFoundException, SQLException {
 		return DaoConnection.getConnection().query(

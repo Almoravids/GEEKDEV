@@ -171,7 +171,7 @@
 		
 		<div id="allsec">
 		<c:if test="${animes.size() eq 0}">
-		<c:out value="Result Not Found"></c:out>
+		<h5 class="NoResult"><c:out value="No Result for ${param.search}"></c:out></h5>
 		</c:if>
 		<c:forEach  var="anime" items="${animes}">
 		<a id="infoanime" href="anime/${anime.name.replace(' ','_')}">

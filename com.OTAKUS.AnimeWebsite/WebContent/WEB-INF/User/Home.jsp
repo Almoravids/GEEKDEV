@@ -119,7 +119,7 @@ width:60%;
 		<figure>
 			  <a href="anime/${anime.name.replace(' ','_')}"> <img src="${anime.imageLink}" alt=""></a>
 			   
-			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">epiosde ${episodes.getLast(anime.animeId).episode}</p>
+			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">${episodes.getLast(anime.animeId).episode} epiosdes</p>
 		</figure>
 </c:forEach>
 		 
@@ -143,7 +143,7 @@ width:60%;
 		<figure>
 			   <a href="anime/${anime.name.replace(' ','_')}"><img src="${anime.imageLink}" alt=""></a>
 			   
-			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">epiosde: ${episodes.getLast(anime.animeId).episode}</p>
+			  <p class="AnimeLbl">${anime.name}</p><p class="EpLbl">${episodes.getLast(anime.animeId).episode} epiosdes</p>
 		</figure>
 </c:forEach>
 </aside>

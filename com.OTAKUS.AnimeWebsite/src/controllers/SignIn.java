@@ -68,15 +68,24 @@ public class SignIn extends HttpServlet {
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 		UserImpl visitorImpl = new UserImpl();
 		Visitor visitor = visitorImpl.get(user);
-		if (visitor != null && visitor.getPassword().equals(password)) {
+		MessageDigest digest = null;
+		try {
+			digest = MessageDigest.getInstance("md5");
+
+			digest.update(password.getBytes());
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (visitor != null && visitor.getPassword().equals(new BigInteger(digest.digest()).toString(16))) {
 			request.getSession().setAttribute("user", visitor);
 			Cookie cookieUsername=new Cookie("username", visitor.getUserName());
+			cookieUsername.setMaxAge(60*60*60*7);
 			response.addCookie(cookieUsername);
-			MessageDigest dig=MessageDigest.getInstance("MD5");
-			dig.digest(visitor.getUserName().getBytes());
+			digest.digest(visitor.getUserName().getBytes());
 		
-			Cookie cookieSecureUsername=new Cookie("id",new BigInteger(dig.digest()).toString(16));
-			
+			Cookie cookieSecureUsername=new Cookie("id",new BigInteger(digest.digest()).toString(16));
+			cookieSecureUsername.setMaxAge(60*60*60*7);
 			response.addCookie(cookieSecureUsername);
 			return true;
 		} else

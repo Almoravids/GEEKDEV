@@ -192,6 +192,7 @@ display:none;
 width:90%;
 }
 #uploadImg #link{
+color:#008563;
 height:28px;
 background:rgba(0,0,0,.7);
 border:1px solid #008563;
@@ -199,18 +200,18 @@ border-radius:3px;
 }
 /*RECS--------------------------------------
 */
-#rec{
+#rec,#watch{
   width:76%;
 }
-#rec figure{
+#rec figure,#watch figure{
   margin:0 auto;
 }
-#rec figure p{
+#rec figure p,#watch figure p{
   margin-top:5px; 
   padding:5px 0;
 } 
 
-#rec div{
+#rec div,#watch div{
   padding-left:11px;
   width:100%;
 }
@@ -429,8 +430,11 @@ color:white;
 <h3>WELCOME</h3><h1>${sessionScope.user.userName}</h1><br>
   <h4 style="margin-left:130px;">${sessionScope.user.firstName}</h4><h4 style="margin-right:50px;">${sessionScope.user.lastName}</h4><h5><a href="edit"><img src="/Image/edit.png" alt="">edit</a></h5>
   </header>
-   <form id="uploadImg">
+   <form id="uploadImg" action="/UploadFile" method="post" enctype="multipart/form-data">
+   
+		
       <img class="imgs" src="/Image/link.png" id="linkNav"/> <img id="uploadNav" class="imgs" src="/Image/upload.png"/> <img id="avatarNav" class="imgs" src="/Image/anonym.png"/>
+    
       <div id="avatar">
 								<figure>
 								<img src="/Image/Avatars/001.png" alt="avatar"/>
@@ -450,14 +454,17 @@ color:white;
 								<img src="/Image/Avatars/0015.png" alt="avatar"/>
 								</figure>				
 		</div>
+		
 		<img  class="arrow" id="leftArrow" src="Image/left-slider.png" alt="" onclick="slideright()" >
 		 <img class="arrow" id="rightArrow" src="Image/right-slider.png" alt="" onclick="slideleft()">
-						
-		<input type="file" name="upload" id="upload">
+		 <input type="file" name="fileUpload" id="upload">
 		<input type="text" name="link" id="link" placeholder="Image Link">
-      </form>
+		<input type="hidden" name="avatar" id="avatarImg" value="/Image/Avatars/007.png"/>
+ </form>
   <img id="photoProfile"src="${sessionScope.user.imageLink}"/>
   <img src="/Image/camera.png"/>
+
+  
     <article id="statsArticle" class="blocks">
         <span >Stats</span> <img src="/Image/upDown.png" alt="">
       </article>
@@ -502,72 +509,23 @@ color:white;
   <section id="eps" class="secRec">
     
     <header>
-      <img src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-      <aside>
-        <h5>Seasons : 5</h5>
-      <h5>Statue : Ongoing</h5>
-      <h2>Hunter x Hunter</h2>
-        <h3>HXH</h3>
-      <h5>Episodes : 5</h5>
-        <h5>Genre : "Action" , "Adventure"</h5>
-        </aside>
+<!--       <img src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt=""> -->
+<!--       <aside> -->
+<!--         <h5>Seasons : 5</h5> -->
+<!--       <h5>Statue : Ongoing</h5> -->
+<!--       <h2>Hunter x Hunter</h2> -->
+<!--         <h3>HXH</h3> -->
+<!--       <h5>Episodes : 5</h5> -->
+<!--         <h5>Genre : "Action" , "Adventure"</h5> -->
+<!--         </aside> -->
         <img class="closeImg"src="/Image/closeDialog.png" alt="close">
     </header>
     
     <footer>
   <h3 class="recH3">Last Episodes</h3>
     
-     <div>
-    <figure>
-      
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-		 <figure>
-      
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-		 <figure>
-      
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-		 <figure>
-      
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-		 <figure>
-      
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			 <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			  <p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			<p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-    <figure>
-			  <img  src="http://www.app.steparu.com/images/h/hunterxhunter/hunterxhunter1.jpg" alt="">
-			   
-			<p class="fstLbl">Episode 12</p><p class="sndLbl">1 Day Ago</p>
-		</figure>
-      
+     <div class="Episodes">
+    <!-- //# EPIODES-->
       </div>
     <img class="arrows" id="leftArrow" src="http://www.lgetg.fr/style-site/img/flech-left-img.png" alt="">
       
@@ -580,12 +538,12 @@ color:white;
   <!-------------------------->
   
   
-  <section id="rec" class="secRec blocks">
-      <h4 class="recH4">Recommendation</h4>
+  <section id="watch" class="secRec blocks">
+      <h4 class="recH4">To Watch</h4>
     <hr/>
     <div>
-    <c:forEach var="anime" items="${animeImpl.getRecommanded(user.userName)}">
-    <figure>
+    <c:forEach var="anime" items="${animeImpl.waiting(user.userName)}">
+    <figure id="${anime.name}">
       
 			  <img  src="${anime.imageLink}" alt="">
 			   
@@ -595,11 +553,28 @@ color:white;
     </div>
  
       </section>
+      
+      <section id="rec" class="secRec blocks">
+      <h4 class="recH4">Recommendation</h4>
+    <hr/>
+    <div>
+    <c:forEach var="anime" items="${animeImpl.getRecommanded(user.userName)}">
+    <figure><a href="/anime/${anime.name.replace(' ','_')}">
+      
+			  <img  src="${anime.imageLink}" alt="">
+			   
+			  <p class="fstLbl">${anime.name}</p><p class="sndLbl">episode ${episodeImpl.getLast(anime.animeId).episode}</p>
+		</a>
+		</figure>
+   </c:forEach>
+    </div>
+ 
+      </section>
   
   
   
 <script>
-var place=1,total=9,slideBoolean=false; 
+var place=1,total=0,slideBoolean=false; 
 var a=$(this).parent().children('footer div');
 //Stats Frame
 $('#statsArticle').click(function(){
@@ -617,13 +592,63 @@ else{
 });
 
 //1st FRAME
-$('#rec figure').click(function(){
+$('#watch figure').click(function(){
+	var animeName=$(this).attr("id");
+	  var request = new XMLHttpRequest();
+	  request.onreadystatechange = function() {
+	    if (request.readyState == 4 && request.status == 200) {
+
+			   var ajax= document.getElementById('otksajax');
+			   ajax.textContent="";
+			   ajax.appendChild(document.createTextNode(request.responseText));
+			  
+              total=anime.seasons[anime.seasons.length-1].episodes.length;
+              
+				  $(".Episodes").text("");
+
+				  
+				  $("#eps header").text("");
+				  var type="";
+				  var i=0;
+				  for (;i<anime.genre.length;i++){
+					  type+="\""+anime.genre[i].type+"\"";
+					  if (i<anime.genre.length-1)
+                          type+=" , ";
+				  }
+				  var alias="";
+				  for (i=0;i<anime.alias.length;i++){
+					  alias+=anime.alias[i].alias;
+					  if (i<anime.alias.length-1)
+                          alias+=" , ";
+				  }
+				  var episodes=0;
+				  anime.seasons.forEach(function(season,index,table){
+					  season.episodes.forEach(function(episode,index,table){
+						  episodes++;
+					  });
+				  });
+				   $("#eps header").append(' <img src="'+anime.imagelink+'" alt=""> <aside><h5>Seasons : '+anime.seasons.length+'</h5><h5>Statue : '+anime.status+'</h5> <h2>'+anime.name+'</h2> <h3>'+alias+'</h3> <h5>Episodes : '+episodes+'</h5><h5>Genre : '+type+'</h5> </aside> <img class="closeImg"src="/Image/closeDialog.png" onclick="closeViewer()" alt="close">');
+				  
+				   $(".Episodes").text("");
+				   
+				   
+				   anime.seasons[anime.seasons.length-1].episodes.forEach(function(episode,index,table){
+					
+	 				   $(".Episodes").append('<figure> <a href="watch/'+animeName.replace(/ /g,"_")+'/episode_'+episode.episode+'"><img  src="'+episode.imagelink+'" alt=""><p class="fstLbl">Episode '+episode.episode+'</p><p class="sndLbl">'+episode.time+'</p></a></figure>');
+	 			   });
+				  
+	    }
+	  };
+	  request.open("GET", "/Animes?anime="+escape(animeName), true);
+	  request.send();
+	  
+
  $('#eps').css('display','inline');
 });
 //SECOND FRAME 
-$('#eps header .closeImg').click(function(){
+function closeViewer(){
  $('#eps').css('display','none');
-});
+}
 
 
   if (total<4){
@@ -681,16 +706,33 @@ $('#eps #rightArrow').click(function(){
 		}
 		
 		$('#photoProfile  + img').click(function (){
-			
-				$('#uploadImg').fadeToggle();
-     s=document.querySelector('#uploadImg #avatar figure img').offsetWidth+=4.5;
-     ajaxConnection(urlMaker("UpdateImgProfile", [new Params('img', $("#photoProfile").attr('src'))]), "GET");
-     $("#userImg").attr('src',$("#photoProfile").attr('src'));
+
+if ($('#uploadImg').css('display')!='none'){
+var formElement = document.querySelector("#uploadImg");
+var request = new XMLHttpRequest();
+request.open("POST", "/UploadFile");
+request.send(new FormData(formElement));
+
+if ($("#uploadImg #upload").val()!=""){
+ //   open(location.href,"_self");
+     }
+else if ($("#uploadImg #link").val()!=""){
+    $(".Profile").attr('src',$("#uploadImg #link").val());
+$("#photoProfile").attr('src',$("#uploadImg #link").val());}
+else
+    $(".Profile").attr('src',$("#photoProfile").attr('src'));
+
+		}
+
+alert($('#avatarImg').val());
+s=document.querySelector('#uploadImg #avatar figure img').offsetWidth+=4.5;
+$('#uploadImg').fadeToggle();
 		});
 		$("#uploadImg #avatar figure img").click(function (){
 			$("#uploadImg #avatar figure img").css('box-shadow','inset 0 0 20px rgba(0,0,0,.7)');
 			$(this).css('box-shadow','0 0 25px  #008563 inset');
 		  $('#photoProfile').attr('src',$(this).attr('src'));
+		  $('#avatarImg').val($(this).attr('src'));
 		});
 		$('#avatarNav').click(function(){
 			$("#uploadImg #avatar").css('display','block');

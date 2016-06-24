@@ -11,7 +11,9 @@ import beans.Season;
 
 public class SeasonImpl implements ISeason<Season, Integer> {
 	private SeasonDao seasonDao;
-
+	{
+		seasonDao=new SeasonDao();
+	}
 	@Override
 	public boolean insert(Season season) throws DataAccessException, ClassNotFoundException, SQLException {
 		boolean rs;

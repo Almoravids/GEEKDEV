@@ -28,8 +28,9 @@ public interface IDaoAnime<T, S> {
 
 	public List<T> getRecently() throws DataAccessException, ClassNotFoundException, SQLException;
 
-	List<Anime> getRecommanded(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+	public List<Anime> getRecommanded(String username) throws DataAccessException, ClassNotFoundException, SQLException;
 
+	public List<Anime> waiting(String username) throws DataAccessException, ClassNotFoundException, SQLException;
 	public List<T> getWatched(String username) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public List<T> getWatching(String username) throws DataAccessException, ClassNotFoundException, SQLException;

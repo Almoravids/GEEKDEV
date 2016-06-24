@@ -61,6 +61,10 @@ public class AnimeImpl implements IAnime<Anime,String>{
 	public List<Anime> getRecommanded(String username) throws DataAccessException, ClassNotFoundException, SQLException {
 		return animeDao.getRecommanded(username);
 	}
+	@Override
+	public List<Anime> waiting(String username) throws DataAccessException, ClassNotFoundException, SQLException{
+		return animeDao.waiting(username);
+	}
 
 	@Override
 	public List<Anime> getPopular() throws DataAccessException, ClassNotFoundException, SQLException {

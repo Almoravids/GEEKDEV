@@ -26,13 +26,15 @@ public interface IAnime<T, S> {
 
 	public List<Anime> getRecommanded(String username) throws DataAccessException, ClassNotFoundException, SQLException;
 
+	public List<Anime> waiting(String username) throws DataAccessException, ClassNotFoundException, SQLException;
+
 	public List<T> getPopular() throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public List<T> getWatched(String username) throws DataAccessException, ClassNotFoundException, SQLException;
 
 	public List<T> getWatching(String username) throws DataAccessException, ClassNotFoundException, SQLException;
-	
+
 	public List<Anime> getQueued(String username) throws DataAccessException, ClassNotFoundException, SQLException;
-	
+
 	public List<T> getRecently() throws DataAccessException, ClassNotFoundException, SQLException;
 }

@@ -5,7 +5,10 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class Alias implements RowMapper<Alias> {
+import Service.Tools;
+import Service.interfaces.IBeanToJS;
+
+public class Alias implements RowMapper<Alias> ,IBeanToJS{
 private int animeId;
 private String alias;
 public Alias() {
@@ -36,6 +39,14 @@ public Alias mapRow(ResultSet rs, int arg1) throws SQLException {
 	alias.setAlias(rs.getString("alias"));
 	alias.setAnimeId(rs.getInt("id_anime"));
 	return alias;
+}
+@Override
+public String toJSObject() {
+	return "function Alias(id,alias){this.id=id;this.alias=alias;};";
+}
+@Override
+public String toJSInstance() {
+	return "new Alias("+this.animeId+",\""+this.alias+"\")";
 }
 
 }

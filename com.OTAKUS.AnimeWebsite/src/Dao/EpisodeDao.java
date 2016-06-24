@@ -71,4 +71,6 @@ public class EpisodeDao implements IDaoEpisode<Episode, Integer> {
 				"select  e.* ,s.*,a.* from episode e , season s ,anime a where e.id_season=s.id_season and s.id_anime=a.id_anime and rownum<=12 order by e.id_episode",
 				new Episode());
 	}
+
+
 }

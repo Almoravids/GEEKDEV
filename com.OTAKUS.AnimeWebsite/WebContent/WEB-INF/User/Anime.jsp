@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="beans.Season"%>
 <%@page import="beans.Anime"%>
 <%@page import="beans.Episode"%>
@@ -265,9 +266,17 @@ hr {
 	<c:when test="${seasons.size()>1}">
 		
 			<c:forEach var="season" items="${seasons}">
-				<li>season ${season.season}</li>
+				<li id="${season.season}">season ${season.season}</li>
 			</c:forEach>
-	
+	<script>
+	$('#navanime ul li ').click(function(){
+
+	//	alert(extractCookie(/username="(\w)";.*/).$1);
+
+			if (onglet.textContent.match("season")){
+		loadEpisode(this);
+			}
+	</script>
 	
 	</c:when>
 	<c:otherwise><li>Episodes</li></c:otherwise>
@@ -292,8 +301,10 @@ hr {
 				<a href="${link}"><img src="${episode.imageLink}"
 					 alt="Episode image"></a>
 				<p class="AnimeLbl">episode ${episode.episode}</p>
-				<p class="EpLbl">${episode.episode}</p>
+				<jsp:useBean id="tools" class="Service.Tools"></jsp:useBean>
+				<p class="EpLbl">${tools.dateToString(episode.time)}</p>
 			</figure>
+			
 		</c:forEach>
 		</c:when>
 		<c:otherwise>There's no Episode for this Anime yet !!</c:otherwise>
@@ -302,6 +313,12 @@ hr {
 	<hr>
 
 	<script>
+	$('#searchForm img').click(function() {
+		if ($('#searchForm input').css('visibility') == 'visible'){
+			$('#searchForm input').css('visibility', 'hidden');}
+		else{
+			$('#searchForm input').css('visibility', 'visible');}
+	});
 		$('#searchForm input').keypress(function(e) {
 			if (e.keyCode == 13) {
 				var id = '#' + $('#searchForm input').val();
@@ -315,12 +332,7 @@ hr {
 				}
 			}
 		});
-		$('#searchForm img').click(function() {
-			if ($('#searchForm input').css('visibility') == 'visible')
-				$('#searchForm input').css('visibility', 'hidden');
-			else
-				$('#searchForm input').css('visibility', 'visible');
-		});
+		
 	</script>
 </body>
 </html>

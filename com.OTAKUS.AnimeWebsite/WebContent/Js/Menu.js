@@ -58,8 +58,9 @@ $(".Menu > div:nth-child(3)").css('display','inline-block');
 
 document.onscroll=function(){
 	var a=window.pageYOffset;
-	if(a>=60 && document.body.offsetHeight >=800){
-		$('nav .Menu').parent().css({'position':'fixed','top':'0px','width':'100%','opacity':'0.5px'});
+	if(a>=120 && document.body.offsetHeight >=800){
+
+		$('nav .Menu').parent().css({'position':'fixed','top':'0px','width':'100%','opacity':'0.5px','z-index':'20'});
 		$('nav .Menu').parent().css("opacity",".8");
 		}
 	else{

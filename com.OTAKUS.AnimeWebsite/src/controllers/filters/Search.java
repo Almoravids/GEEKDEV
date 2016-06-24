@@ -74,6 +74,9 @@ public class Search implements Filter {
 				}else if (action.equals("Recommanded")){
 					request.setAttribute("animes", animeImpl.getRecommanded(user.getUserName()));
 					
+				}else if (action.equals("Comingsoon")){
+					request.setAttribute("animes", animeImpl.getByStatus(1));
+					
 				}else if (action.equals("Ongoing")){
 					request.setAttribute("animes", animeImpl.getByStatus(2));
 					
